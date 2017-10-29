@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestTerminplanung"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="700" Width="1350">
+
     <Grid>
-        
+        <Grid.Resources>
+            <DataTemplate x:Key="TermineTemplate" x:Name="TTempplate">
+                <DataTemplate.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </DataTemplate.Resources>
+                <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="5,5,5,0">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="{Binding ID}"/>
+                        <TextBlock Text="{Binding PatientenName}"/>
+                        <TextBlock Text="{Binding Behandler}"/>
+                        <TextBlock Text="{Binding Termin}" />
+
+
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="LB_Montag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=Termine}" />
+        <ListBox x:Name="LB_Dienstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDienstag}" Grid.Column="1"/>
+        <ListBox x:Name="LB_Mittwoch" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineMittwoch}" Grid.Column="2"/>
+        <ListBox x:Name="LB_Donnerstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDonnerstag}" Grid.Column="3"/>
+        <ListBox x:Name="LB_Freitag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineFreitag}" Grid.Column="4" />
+
+
+
     </Grid>
 </Window>

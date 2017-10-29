@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TestTerminplanung.ViewModels;
 
 namespace TestTerminplanung
 {
@@ -23,6 +24,10 @@ namespace TestTerminplanung
         public MainWindow()
         {
             InitializeComponent();
+
+            var vModel = new WeekDayViewModel();
+            this.DataContext = vModel;
+
         }
     }
 }
