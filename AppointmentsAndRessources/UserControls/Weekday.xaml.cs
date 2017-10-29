@@ -12,30 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AppointmentsAndRessourses.ViewModels;
 
-namespace TestTerminplanung
+namespace AppointmentsAndRessources.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Weekday.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Weekday : UserControl
     {
-
-        WeekDayViewModel vModel;
-       
-        public MainWindow()
+        public Weekday()
         {
             InitializeComponent();
-
-            vModel = new WeekDayViewModel();
-            this.DataContext = vModel;
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            vModel.addTerminData();
         }
     }
 }

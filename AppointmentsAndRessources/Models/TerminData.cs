@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestTerminplanung.Models
+namespace AppointmentsAndRessourses.Models
 {
     public class TerminData
     {

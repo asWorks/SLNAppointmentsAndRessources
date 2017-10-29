@@ -8,42 +8,45 @@
         Title="MainWindow" Height="700" Width="1350">
 
     <Grid>
-        <Grid.Resources>
-            <DataTemplate x:Key="TermineTemplate" x:Name="TTempplate">
-                <DataTemplate.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-                </DataTemplate.Resources>
-                <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="5,5,5,0">
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding ID}"/>
-                        <TextBlock Text="{Binding PatientenName}"/>
-                        <TextBlock Text="{Binding Behandler}"/>
-                        <TextBlock Text="{Binding Termin}" />
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Resources>
+               
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="580*"/>
+               
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" x:Name="Column0"/>
+                <ColumnDefinition Width="Auto" x:Name="Column1"/>
+                <ColumnDefinition Width="Auto" x:Name="Column2"/>
+                <ColumnDefinition Width="Auto" x:Name="Column3"/>
+                <ColumnDefinition Width="Auto" x:Name="Column4"/>
+                
+               
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="LB_Montag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=Termine}" Grid.Column="0" Grid.Row="1"/>
+            <ListBox x:Name="LB_Dienstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDienstag}" Grid.Column="1" Grid.Row="1"/>
+            <ListBox x:Name="LB_Mittwoch" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineMittwoch}" Grid.Column="2" Grid.Row="1"/>
+            <ListBox x:Name="LB_Donnerstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDonnerstag}" Grid.Column="3" Grid.Row="1"/>
+            <ListBox x:Name="LB_Freitag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineFreitag}" Grid.Column="4" Grid.Row="1" />
+          
 
 
-                    </StackPanel>
-                </Border>
-            </DataTemplate>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
 
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="LB_Montag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=Termine}" />
-        <ListBox x:Name="LB_Dienstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDienstag}" Grid.Column="1"/>
-        <ListBox x:Name="LB_Mittwoch" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineMittwoch}" Grid.Column="2"/>
-        <ListBox x:Name="LB_Donnerstag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineDonnerstag}" Grid.Column="3"/>
-        <ListBox x:Name="LB_Freitag" Background="Beige" ItemTemplate="{StaticResource TermineTemplate}" ItemsSource="{Binding Path=TermineFreitag}" Grid.Column="4" />
+        </Grid>
 
-
+        <StackPanel Grid.Row="1">
+            <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top"  Click="Button_Click"/>
+        </StackPanel>
 
     </Grid>
 </Window>

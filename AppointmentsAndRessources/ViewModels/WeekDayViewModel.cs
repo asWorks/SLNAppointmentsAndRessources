@@ -4,13 +4,31 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestTerminplanung.Models;
+using AppointmentsAndRessourses.Models;
 
-namespace TestTerminplanung.ViewModels
+namespace AppointmentsAndRessourses.ViewModels
 {
    public class WeekDayViewModel:ViewModelBase
     {
 
+
+
+
+
+        private string _Datum;
+        public string Datum
+        {
+            get { return _Datum; }
+            set
+            {
+                if (value != _Datum)
+                {
+                    _Datum = value;
+                    OnPropertyChanged("Datum");
+                    //  isDirty = true;
+                }
+            }
+        }
 
 
         private ObservableCollection<TerminData> _Termine;
@@ -32,181 +50,53 @@ namespace TestTerminplanung.ViewModels
 
 
 
-        private ObservableCollection<TerminData> _TermineDienstag;
-        public ObservableCollection<TerminData> TermineDienstag
-        {
-            get { return _TermineDienstag; }
-            set
-            {
-                if (value != _TermineDienstag)
-                {
-                    _TermineDienstag = value;
-                    OnPropertyChanged("TermineDienstag");
-                    //  isDirty = true;
-                }
-            }
-        }
-
-
-
-        private ObservableCollection<TerminData> _TermineMittwoch;
-        public ObservableCollection<TerminData> TermineMittwoch
-        {
-            get { return _TermineMittwoch; }
-            set
-            {
-                if (value != _TermineMittwoch)
-                {
-                    _TermineMittwoch = value;
-                    OnPropertyChanged("TermineMittwoch");
-                    //  isDirty = true;
-                }
-            }
-        }
-
-
-
-        private ObservableCollection<TerminData> _TermineDonnerstag;
-        public ObservableCollection<TerminData> TermineDonnerstag
-        {
-            get { return _TermineDonnerstag; }
-            set
-            {
-                if (value != _TermineDonnerstag)
-                {
-                    _TermineDonnerstag = value;
-                    OnPropertyChanged("TermineDonnerstag");
-                    //  isDirty = true;
-                }
-            }
-        }
-
-
-        private ObservableCollection<TerminData> _TermineFreitag;
-        public ObservableCollection<TerminData> TermineFreitag
-        {
-            get { return _TermineFreitag; }
-            set
-            {
-                if (value != _TermineFreitag)
-                {
-                    _TermineFreitag = value;
-                    OnPropertyChanged("TermineFreitag");
-                    //  isDirty = true;
-                }
-            }
-        }
+      
 
         public WeekDayViewModel()
         {
-            Termine = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Arpad Stöver", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            };
 
 
-            TermineDienstag = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-                 new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"},
-                new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-                 new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            };
-
-            TermineMittwoch = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Gerd My", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            };
-
-            TermineDonnerstag = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Christine WInterfeld", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            };
-
-            //TermineFreitag = new ObservableCollection<TerminData>
-            //{ new TerminData { PatientenName="Jennifer Walter", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //Termine = new ObservableCollection<TerminData> { new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
+            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"},
+            //    new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
+            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
             //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
             //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
 
             //};
 
 
+
+
+
             string[] Behandler = { "Mariann", "Anja", "Alex" };
 
-            TermineFreitag = new ObservableCollection<TerminData>();
+            Termine = new ObservableCollection<TerminData>();
 
             for (int i = 1; i < 23; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
                     var td = new TerminData { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = new DateTime(2017, 11, 3, i, 0, 0) };
-                    TermineFreitag.Add(td);
+                    Termine.Add(td);
                 }
             }
 
 
         }
 
-        //private string _PatientenName;
-        //public string PatientenName
-        //{
-        //    get { return _PatientenName; }
-        //    set
-        //    {
-        //        if (value != _PatientenName)
-        //        {
-        //            _PatientenName = value;
-        //            OnPropertyChanged("PatientenName");
-        //            //  isDirty = true;
-        //        }
-        //    }
-        //}
+     public void addTerminData()
+        {
+            var x = new TerminData { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = "125" };
+            Termine.Add(x);
+        }
 
-
-        //private DateTime _Termin;
-        //public DateTime Termin
-        //{
-        //    get { return _Termin; }
-        //    set
-        //    {
-        //        if (value != _Termin)
-        //        {
-        //            _Termin = value;
-        //            OnPropertyChanged("Termin");
-        //            //  isDirty = true;
-        //        }
-        //    }
-        //}
-
-
-        //private string _Behandler;
-        //public string Behandler
-        //{
-        //    get { return _Behandler; }
-        //    set
-        //    {
-        //        if (value != _Behandler)
-        //        {
-        //            _Behandler = value;
-        //            OnPropertyChanged("Behandler");
-        //            //  isDirty = true;
-        //        }
-        //    }
-        //}
 
     }
 }
