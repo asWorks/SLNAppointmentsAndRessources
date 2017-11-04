@@ -55,10 +55,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\TerminData.cs" />
+    <Compile Include="Ressources\UserControlWeekDay.xaml.cs">
+      <DependentUpon>UserControlWeekDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TerminData.xaml.cs">
+      <DependentUpon>TerminData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Weekday.xaml.cs">
       <DependentUpon>Weekday.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\TerminDataViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeekDayOldViewModel.cs" />
     <Compile Include="ViewModels\WeekDayViewModel.cs" />
@@ -78,6 +85,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ressources\UserControlWeekDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TerminData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

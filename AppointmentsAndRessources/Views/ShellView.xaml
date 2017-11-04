@@ -12,14 +12,24 @@
                 <res:Weekday Width="Auto"/>
             </DataTemplate>
         </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="271*"/>
+        </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}">
-            <ListView.ItemsPanel>
+        <StackPanel Grid.Column="0">
+            <Rectangle Width="50" Height="50" Fill="Azure" Stroke="Black" Margin="2,20,2,0" Drop="Rectangle_Drop" AllowDrop="True" MouseMove="Rectangle_MouseMove"/>
+            <TextBlock Text="Leer" Margin="2,30,0,0" AllowDrop="True" Drop="TextBlock_Drop"/>
+
+        </StackPanel>
+
+        <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" SelectionChanged="ListView_SelectionChanged" Drop="ListView_Drop" >
+            <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        
+            </ListBox.ItemsPanel>
+        </ListBox>
+
     </Grid>
 </Window>
