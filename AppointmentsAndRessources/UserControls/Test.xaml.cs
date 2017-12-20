@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace AppointmentsAndRessources.UserControls
 {
     /// <summary>
-    /// Interaction logic for Weekday.xaml
+    /// Interaktionslogik für Test.xaml
     /// </summary>
-    public partial class Weekday : UserControl
+    public partial class Test : UserControl
     {
-        public Weekday()
+        public Test()
         {
             InitializeComponent();
-            SetRessource();
-
-        }
-
-        
-        void SetRessource()
-        {
-
-            var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCFullTemplate");
-            WeekdayListBox.ItemTemplate = templ;
-
         }
     }
 }

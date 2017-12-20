@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AppointmentsAndRessources.UserControls.TerminData"
+﻿<UserControl x:Class="AppointmentsAndRessources.UserControls.TerminDataFull"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,19 +11,16 @@
 
         <Grid.Resources>
 
-            <!--<DataTemplate x:Key="ComboBoxTemplate">
+            <DataTemplate x:Key="ComboBoxTemplate">
                 <StackPanel>
                     <TextBlock Text="{Binding}"/>
                 </StackPanel>
-            </DataTemplate>-->
+            </DataTemplate>
 
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Background" Value="DimGray"/>              
-                        
-                
             </Style>
             <Style TargetType="ComboBox">
                 <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
@@ -37,9 +34,9 @@
 
         <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
             <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" >
-                <!--<TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
-                --><!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />--><!--
-                <TextBlock Text="{Binding Path=PatientenName}"/>-->
+                <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
+                <!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />-->
+                <TextBlock Text="{Binding Path=PatientenName}"/>
                 <!--<TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>-->
 
                 <StackPanel Orientation="Horizontal">

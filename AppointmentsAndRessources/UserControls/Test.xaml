@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="AppointmentsAndRessources.UserControls.Test"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AppointmentsAndRessources.UserControls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="85"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Label Content="I D" />
+    <TextBlock Text="{Binding Path=ID, Mode=OneWay}" Grid.Column="1" Grid.Row="0" x:Name="iD" />
+    <Label Content="Behandler" Grid.Row="1" />
+    <TextBlock Text="{Binding Path=Behandler, Mode=OneWay}" Grid.Column="1" Grid.Row="1" x:Name="behandler" />
+    <Label Content="Patienten Name" Grid.Row="2" />
+    <TextBox Text="{Binding Path=PatientenName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="2" x:Name="patientenName" />
+    <Label Content="Termin" Grid.Row="3" />
+    <DatePicker SelectedDate="{Binding Path=Termin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" SelectedDateFormat="Short" DisplayDateStart="{x:Static sys:DateTime.Now}" DisplayDateEnd="{x:Static sys:DateTime.Now}" Grid.Column="1" Grid.Row="3" x:Name="termin" />
+    </Grid>
+   
+   
+
+   
+</UserControl>

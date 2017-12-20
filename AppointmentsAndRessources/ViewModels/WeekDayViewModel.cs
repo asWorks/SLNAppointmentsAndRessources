@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AppointmentsAndRessourses.Models;
 using AppointmentsAndRessources.ViewModels;
+using AppointmentsAndRessources.HelperClasses;
 
 namespace AppointmentsAndRessourses.ViewModels
 {
-   public class WeekDayViewModel:ViewModelBase
+    public class WeekDayViewModel : ViewModelBase
     {
 
 
@@ -31,10 +32,14 @@ namespace AppointmentsAndRessourses.ViewModels
             }
         }
 
+        public RelayCommand ShowAllTermine { get; set; }
+        public RelayCommand ShowTermineMariann { get; set; }
+        public RelayCommand ShowTermineMaggie { get; set; }
+        public RelayCommand ShowTermineAnja { get; set; }
 
 
+        public List<TerminDataViewModel> AlleTermine { get; set; }
 
-       
 
         private ObservableCollection<TerminDataViewModel> _Termine;
         public ObservableCollection<TerminDataViewModel> Termine
@@ -55,31 +60,17 @@ namespace AppointmentsAndRessourses.ViewModels
 
 
 
-      
+
 
         public WeekDayViewModel()
         {
-            //Termine = new ObservableCollection<TerminData> { new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"},
-            //    new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            //};
-
-
-
-
-
-
+          
             AddTermine();
+
+            ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x=>true);
+            ShowTermineMariann = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Mariann")), x => true);
+            ShowTermineMaggie = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Maggie")), x => true);
+            ShowTermineAnja= new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
 
         }
 
@@ -88,15 +79,26 @@ namespace AppointmentsAndRessourses.ViewModels
             string[] Behandler = { "Mariann", "Anja", "Alex", "Maggie", "Kyra" };
 
             Termine = new ObservableCollection<TerminDataViewModel>();
+            AlleTermine = new List<TerminDataViewModel>();
+
+            var t = new DateTime(2017, 11, 13, 8, 0, 0);
 
             for (int i = 1; i < 20; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = DateTime.Now.AddDays(j) };
-                    Termine.Add(td);
+                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = t };
+                    //Termine.Add(td);
+                    AlleTermine.Add(td);
+                    t = t.AddDays(1);
                 }
+
+
+                t = t.AddMinutes(30);
             }
+
+            Termine = new ObservableCollection < TerminDataViewModel > (AlleTermine.Where(n => n.Behandler == "Alex"));
+
         }
 
         public void addTerminData()

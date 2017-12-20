@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,12 +56,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="Models\TerminData.cs" />
     <Compile Include="Ressources\UserControlWeekDay.xaml.cs">
       <DependentUpon>UserControlWeekDay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TerminDataFull.xaml.cs">
+      <DependentUpon>TerminDataFull.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TerminData.xaml.cs">
       <DependentUpon>TerminData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Weekday.xaml.cs">
       <DependentUpon>Weekday.xaml</DependentUpon>
@@ -88,7 +97,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TerminDataFull.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\TerminData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

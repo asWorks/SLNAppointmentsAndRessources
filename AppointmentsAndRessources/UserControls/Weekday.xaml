@@ -6,24 +6,36 @@
               xmlns:res="clr-namespace:AppointmentsAndRessources.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="Auto" Height="725">
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <DataTemplate x:Key="TermineDataUCTemplate">
                 <res:TerminData Width="Auto"/>
             </DataTemplate>
+
+            <DataTemplate x:Key="TermineDataUCFullTemplate" x:Name="Test">
+                <res:TerminDataFull Width="Auto"/>
+            </DataTemplate>
+            
         </Grid.Resources>
 
 
         <TextBlock Text="{Binding Datum}" Grid.Row="0" />
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
-            <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineDataUCTemplate}" IsSynchronizedWithCurrentItem="False"/>
+        <Button Content="OK"  Grid.Row="1" Command="{Binding Path=ShowAllTermine}"/>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
+            <!--<ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineDataUCTemplate}" IsSynchronizedWithCurrentItem="False"/>-->
+            <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" IsSynchronizedWithCurrentItem="False"/>
         </ScrollViewer>
-        <Button Content="Test" Grid.Row="2"/>
+        <Button Content="Mariann" Grid.Row="3" Command="{Binding Path=ShowTermineMariann}"/>
+        <Button Content="Maggie" Grid.Row="4" Command="{Binding Path=ShowTermineMaggie}"/>
+        <Button Content="Anja" Grid.Row="5" Command="{Binding Path=ShowTermineAnja}"/>
 
 
     </Grid>
