@@ -150,6 +150,8 @@ namespace AppointmentsAndRessources.Views
             if (rect != null && e.LeftButton == MouseButtonState.Pressed)
             {
 
+                //Just as commnt for a commit
+
                 var td = new TerminDataViewModel { Behandler = "Mariann", PatientenName = "Michael Stöver", ID = "0401234567" };
 
                 //System.Windows.DragDrop.DoDragDrop(rect,
