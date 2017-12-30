@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,20 +76,25 @@
     <Compile Include="Ressources\UserControlWeekDay.xaml.cs">
       <DependentUpon>UserControlWeekDay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TerminDataFull.xaml.cs">
+    <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="Views\TerminDataFull.xaml.cs">
       <DependentUpon>TerminDataFull.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TerminData.xaml.cs">
+    <Compile Include="Views\TerminData.xaml.cs">
       <DependentUpon>TerminData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
+    <Compile Include="Views\TermineEditView.xaml.cs">
+      <DependentUpon>TermineEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Weekday.xaml.cs">
+    <Compile Include="Views\TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Weekday.xaml.cs">
       <DependentUpon>Weekday.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TerminDataViewModel.cs" />
+    <Compile Include="ViewModels\TermineEditViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeekDayOldViewModel.cs" />
     <Compile Include="ViewModels\WeekDayViewModel.cs" />
@@ -111,19 +117,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TerminDataFull.xaml">
+    <Page Include="Views\TerminDataFull.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TerminData.xaml">
+    <Page Include="Views\TerminData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Test.xaml">
+    <Page Include="Views\TermineEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Weekday.xaml">
+    <Page Include="Views\TestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Weekday.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +178,9 @@
       <Project>{47b19c1c-43de-4ea4-b051-fa1782c118c6}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

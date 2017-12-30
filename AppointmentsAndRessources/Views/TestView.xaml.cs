@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AppointmentsAndRessources.UserControls
+namespace AppointmentsAndRessources.Views
 {
     /// <summary>
     /// Interaktionslogik für Test.xaml
     /// </summary>
-    public partial class Test : UserControl
+    public partial class TestView : UserControl
     {
-        public Test()
+        public TestView()
         {
             InitializeComponent();
         }

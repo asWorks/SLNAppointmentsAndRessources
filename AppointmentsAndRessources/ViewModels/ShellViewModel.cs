@@ -12,36 +12,32 @@ namespace AppointmentsAndRessources.ViewModels
    public class ShellViewModel: Conductor<object>
     {
 
-   
-        private ObservableCollection<WeekDayViewModel> _Wochentage;
-        public ObservableCollection<WeekDayViewModel> Wochentage
-        {
-            get { return _Wochentage; }
-            set
-            {
-                if (value != _Wochentage)
-                {
-                    _Wochentage = value;
-                    NotifyOfPropertyChange(() => Wochentage);
-                    //  isDirty = true;
-                }
-            }
-        }
+
+
+        public TermineEditViewModel termineEditViewModel { get; set; }
+
 
 
         public ShellViewModel()
         {
 
-            Wochentage = new ObservableCollection<WeekDayViewModel>();
-            for (int i = 0; i < 20; i++)
-            {
-                var wt = new WeekDayViewModel();
-                wt.Datum = DateTime.Now.AddDays(i).ToString();
-                Wochentage.Add(wt);
-            }
+            //  ActivateItem(new TermineEditViewModel());
+            termineEditViewModel = new TermineEditViewModel();
+          
         }
 
 
+
+        public void Termine()
+        {
+            ActivateItem( termineEditViewModel);
+        }
+
+
+        public void Test()
+        {
+            ActivateItem(new TestViewModel());
+        }
 
     }
 }
