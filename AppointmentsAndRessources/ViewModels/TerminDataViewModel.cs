@@ -25,6 +25,12 @@ namespace AppointmentsAndRessources.ViewModels
 
         }
 
+        public void LoadFromModel(TerminData model)
+        {
+            var vm = new TerminDataViewModel { PatientenName = this.PatientenName, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            //    return vm;
+        }
+
 
         public void SetBehandlerBrush()
         {
@@ -106,6 +112,15 @@ namespace AppointmentsAndRessources.ViewModels
         {
             Patienten = new ObservableCollection<string> { "Freier Termin", "Arpad Stöver", "Helmut Kahl", "Knut Kummert", "Georg Witt", "Jennifer Walter", "Marc Marcieu" };
             SelectedPatient = Patienten[0];
+        }
+
+
+        public TerminDataViewModel(TerminData model)
+        {
+            PatientenName = model.PatientenName;
+            Behandler = model.Behandler;
+            Termin = model.Termin;
+            ID = model.ID;
         }
 
         #endregion
