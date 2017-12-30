@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppointmentsAndRessourses.Models;
+using Domain.Models;
 
 namespace AppointmentsAndRessourses.ViewModels
 {

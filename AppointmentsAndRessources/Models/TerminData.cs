@@ -9,20 +9,20 @@ namespace AppointmentsAndRessourses.Models
 
    
 
-    public class TerminData
-    {
+    //public class TerminData
+    //{
 
-        public TerminData()
-        {
+    //    public TerminData()
+    //    {
            
-        }
+    //    }
 
-        public string PatientenName { get; set; }       
-        public string Behandler { get; set; }
+    //    public string PatientenName { get; set; }       
+    //    public string Behandler { get; set; }
 
-        public DateTime Termin { get; set; }
+    //    public DateTime Termin { get; set; }
 
-        public string ID { get; set; }
+    //    public string ID { get; set; }
 
 
 
@@ -30,5 +30,5 @@ namespace AppointmentsAndRessourses.Models
 
        
      
-    }
+    //}
 }

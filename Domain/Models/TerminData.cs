@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    class TerminData
+   public class TerminData
     {
 
 

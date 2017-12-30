@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows;
+using Domain.Models;
 
 namespace AppointmentsAndRessources.ViewModels
 {
