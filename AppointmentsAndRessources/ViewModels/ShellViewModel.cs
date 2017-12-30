@@ -1,4 +1,5 @@
 ﻿using AppointmentsAndRessourses.ViewModels;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace AppointmentsAndRessources.ViewModels
 {
-   public class ShellViewModel:ViewModelBase
-
+   public class ShellViewModel: Conductor<object>
     {
 
-
+   
         private ObservableCollection<WeekDayViewModel> _Wochentage;
         public ObservableCollection<WeekDayViewModel> Wochentage
         {
@@ -22,7 +22,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Wochentage)
                 {
                     _Wochentage = value;
-                    OnPropertyChanged("Wochentage");
+                    NotifyOfPropertyChange(() => Wochentage);
                     //  isDirty = true;
                 }
             }

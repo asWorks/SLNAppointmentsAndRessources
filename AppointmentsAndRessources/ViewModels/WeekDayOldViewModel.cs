@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppointmentsAndRessourses.Models;
+using Caliburn.Micro;
 using Domain.Models;
 
-namespace AppointmentsAndRessourses.ViewModels
+namespace AppointmentsAndRessourses
 {
-   public class WeekDayOldViewModel:ViewModelBase
+   public class WeekDayOldViewModel:Screen
     {
 
 
@@ -24,7 +25,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _Terminlisten)
                 {
                     _Terminlisten = value;
-                    OnPropertyChanged("Terminlisten");
+                    NotifyOfPropertyChange(() => Terminlisten);
                     //  isDirty = true;
                 }
             }
@@ -41,7 +42,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _Termine)
                 {
                     _Termine = value;
-                    OnPropertyChanged("Termine");
+                    NotifyOfPropertyChange(() => Termine);
                     //  isDirty = true;
                 }
             }
@@ -58,7 +59,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _TermineDienstag)
                 {
                     _TermineDienstag = value;
-                    OnPropertyChanged("TermineDienstag");
+                    NotifyOfPropertyChange(() => TermineDienstag);
                     //  isDirty = true;
                 }
             }
@@ -75,7 +76,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _TermineMittwoch)
                 {
                     _TermineMittwoch = value;
-                    OnPropertyChanged("TermineMittwoch");
+                    NotifyOfPropertyChange(() => TermineMittwoch);
                     //  isDirty = true;
                 }
             }
@@ -92,7 +93,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _TermineDonnerstag)
                 {
                     _TermineDonnerstag = value;
-                    OnPropertyChanged("TermineDonnerstag");
+                    NotifyOfPropertyChange(() => TermineDonnerstag);
                     //  isDirty = true;
                 }
             }
@@ -108,7 +109,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _TermineFreitag)
                 {
                     _TermineFreitag = value;
-                    OnPropertyChanged("TermineFreitag");
+                    NotifyOfPropertyChange(() => TermineFreitag);
                     //  isDirty = true;
                 }
             }

@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using AppointmentsAndRessourses.Models;
 using AppointmentsAndRessources.ViewModels;
 using AppointmentsAndRessources.HelperClasses;
+using Caliburn.Micro;
 
 namespace AppointmentsAndRessourses.ViewModels
 {
-    public class WeekDayViewModel : ViewModelBase
+    public class WeekDayViewModel : Screen
     {
 
 
@@ -26,7 +27,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _Datum)
                 {
                     _Datum = value;
-                    OnPropertyChanged("Datum");
+                    NotifyOfPropertyChange(() => Datum);
                     //  isDirty = true;
                 }
             }
@@ -52,7 +53,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 if (value != _Termine)
                 {
                     _Termine = value;
-                    OnPropertyChanged("Termine");
+                    NotifyOfPropertyChange(() => Termine);
                     //  isDirty = true;
                 }
             }

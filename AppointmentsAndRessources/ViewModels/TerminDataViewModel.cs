@@ -10,10 +10,11 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows;
 using Domain.Models;
+using Caliburn.Micro;
 
 namespace AppointmentsAndRessources.ViewModels
 {
-    public class TerminDataViewModel : ViewModelBase
+    public class TerminDataViewModel : Screen
     {
 
         #region "Functions"
@@ -143,7 +144,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Patienten)
                 {
                     _Patienten = value;
-                    OnPropertyChanged("Patienten");
+                    NotifyOfPropertyChange(() => Patienten);
                     //  isDirty = true;
                 }
             }
@@ -163,7 +164,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _SelectedPatient)
                 {
                     _SelectedPatient = value;
-                    OnPropertyChanged("SelectedPatient");
+                    NotifyOfPropertyChange(() => SelectedPatient);
                     //  isDirty = true;
                 }
             }
@@ -178,7 +179,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _PatientenName)
                 {
                     _PatientenName = value;
-                    OnPropertyChanged("PatientenName");
+                    NotifyOfPropertyChange(() => PatientenName);
                     //  isDirty = true;
                 }
             }
@@ -195,8 +196,8 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Behandler)
                 {
                     _Behandler = value;
-                   
-                    OnPropertyChanged("Behandler");
+
+                    NotifyOfPropertyChange(() => Behandler);
 
                     SetBehandlerBrush();
                     //  isDirty = true;
@@ -215,7 +216,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Termin)
                 {
                     _Termin = value;
-                    OnPropertyChanged("Termin");
+                    NotifyOfPropertyChange(() => Termin);
                     //  isDirty = true;
                 }
             }
@@ -231,7 +232,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _ID)
                 {
                     _ID = value;
-                    OnPropertyChanged("ID");
+                    NotifyOfPropertyChange(() => ID);
                     //  isDirty = true;
                 }
             }
@@ -248,7 +249,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     SetSelectedBrush(value);
                     _isSelected = value;
-                    OnPropertyChanged("isSelected");
+                    NotifyOfPropertyChange(() => isSelected);
                     //  isDirty = true;
                 }
             }
@@ -264,7 +265,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _BehandlerBackground)
                 {
                     _BehandlerBackground = value;
-                    OnPropertyChanged("BehandlerBackground");
+                    NotifyOfPropertyChange(() => BehandlerBackground);
                     //  isDirty = true;
                 }
             }
@@ -280,7 +281,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _TerminBackground)
                 {
                     _TerminBackground = value;
-                    OnPropertyChanged("TerminBackground");
+                    NotifyOfPropertyChange(() => TerminBackground);
                     //  isDirty = true;
                 }
             }
