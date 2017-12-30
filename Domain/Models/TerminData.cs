@@ -22,17 +22,6 @@ namespace Domain.Models
 
         public string ID { get; set; }
 
-
-
-
-
-
-
-        //public TerminDataViewModel GetViewModel()
-        //{
-
-        //    var vm = new TerminDataViewModel { PatientenName = this.PatientenName, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
-        //    return vm;
-        //}
+        
     }
 }
