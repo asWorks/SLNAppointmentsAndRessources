@@ -22,6 +22,7 @@
             <TextBlock Text="Leer" Margin="2,30,0,0" AllowDrop="True" Drop="TextBlock_Drop"/>
             <Button Content="Termine" x:Name="Termine"/>
             <Button Content="Test" x:Name="Test"/>
+            <Button Content="Ärzte" x:Name="AerzteListe"/>
 
         </StackPanel>
 

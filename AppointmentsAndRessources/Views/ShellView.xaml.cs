@@ -23,13 +23,13 @@ namespace AppointmentsAndRessources.Views
     {
 
 
-        ShellViewModel vModel;
+        //ShellViewModel vModel;
       
         public ShellView()
         {
             InitializeComponent();
-            vModel = new ShellViewModel();
-            this.DataContext = vModel;
+            //vModel = new ShellViewModel();
+            //this.DataContext = vModel;
 
         }
 
