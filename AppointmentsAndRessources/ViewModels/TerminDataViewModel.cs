@@ -11,11 +11,15 @@ using System.Windows.Controls;
 using System.Windows;
 using Domain.Models;
 using Caliburn.Micro;
+using AppointmentsAndRessources.HelperClasses;
 
 namespace AppointmentsAndRessources.ViewModels
 {
     public class TerminDataViewModel : Screen
     {
+
+        RelayCommand SetTermineIsClicked;
+
 
         #region "Functions"
 
@@ -114,6 +118,10 @@ namespace AppointmentsAndRessources.ViewModels
         {
             Patienten = new ObservableCollection<string> { "Freier Termin", "Arpad Stöver", "Helmut Kahl", "Knut Kummert", "Georg Witt", "Jennifer Walter", "Marc Marcieu" };
             SelectedPatient = Patienten[0];
+            SetTermineIsClicked = new RelayCommand(Param => SetSelectedBrush(!isSelected), x => true);
+
+            // ShowTermineAnja = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
+
         }
 
 
@@ -123,6 +131,7 @@ namespace AppointmentsAndRessources.ViewModels
             Behandler = model.Behandler;
             Termin = model.Termin;
             ID = model.ID;
+            SetTermineIsClicked = new RelayCommand(Param => SetSelectedBrush(!isSelected), x => true);
         }
 
         #endregion

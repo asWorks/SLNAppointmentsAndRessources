@@ -20,7 +20,7 @@
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="12"/>
                 <Setter Property="Background" Value="DimGray"/>              
                         
                 
@@ -44,7 +44,12 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Behandler}"/>
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
+                    <TextBlock Text=":::::"/>
+                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" >
+                        <TextBlock.InputBindings>
+                            <MouseBinding Command="{Binding SetTermineIsClicked}" MouseAction="LeftDoubleClick"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </StackPanel>
                 <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
 

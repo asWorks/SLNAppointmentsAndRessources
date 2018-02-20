@@ -41,9 +41,18 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Behandler}"/>
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
+                    <!--<TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>-->
+                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}"/>
+                    <TextBlock Text="  "/>
+
+                    <CheckBox Content=" " IsChecked="{Binding isSelected}"/>
+                    <!--<TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" >
+                        <TextBlock.InputBindings>
+                            <MouseBinding Command="{Binding SetTermineIsClicked}" MouseAction="LeftClick"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>-->
                 </StackPanel>
-                <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
+                
 
 
             </StackPanel>
