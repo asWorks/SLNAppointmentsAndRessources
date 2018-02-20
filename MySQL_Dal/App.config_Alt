@@ -19,7 +19,5 @@
   </system.data>
   <connectionStrings>
     <add name="GuesterModel" connectionString="server=Localhost;user id=root;password=scMieb2Doi;database=guester_neu;persistsecurityinfo=True" providerName="MySql.Data.MySqlClient" />
-  <add name="Model1" connectionString="server=Localhost;user id=root;password=scMieb2Doi;database=guester_neu;persistsecurityinfo=True" providerName="MySql.Data.MySqlClient" />
-  
-  </connectionStrings>
+  <add name="Model1" connectionString="server=Localhost;user id=root;password=scMieb2Doi;database=guester_neu;persistsecurityinfo=True" providerName="MySql.Data.MySqlClient" /></connectionStrings>
 </configuration>

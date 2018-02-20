@@ -81,14 +81,15 @@ namespace AppointmentsAndRessourses.ViewModels
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
-
+            int counter = 0;
             var t = new DateTime(2017, 11, 13, 8, 0, 0);
 
             for (int i = 1; i < 20; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = t };
+                    ++counter;
+                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = counter, Termin = t };
                     //Termine.Add(td);
                     AlleTermine.Add(td);
                     t = t.AddDays(1);
@@ -104,7 +105,7 @@ namespace AppointmentsAndRessourses.ViewModels
 
         public void addTerminData()
         {
-            var x = new TerminDataViewModel { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = "125" };
+            var x = new TerminDataViewModel { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = 125 };
             Termine.Add(x);
         }
 
