@@ -121,71 +121,71 @@ namespace AppointmentsAndRessourses
           
 
 
-            Termine = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Arpad Stöver", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
+            //Termine = new ObservableCollection<TerminData>
+            //{ new TerminData { PatientenName="Arpad Stöver", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID=1},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=2},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=3}
 
-            };
+            //};
 
 
-            TermineDienstag = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-                 new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"},
-                new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2" },
-                 new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
+            //TermineDienstag = new ObservableCollection<TerminData>
+            //{ new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=4},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=2 },
+            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=3},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=3},
+            //    new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID=1},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=2},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=2 },
+            //     new TerminData { PatientenName="Helmut Kahl", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID=1},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=1},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=1}
 
-            };
+            //};
 
-            TermineMittwoch = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Gerd My", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
+            //TermineMittwoch = new ObservableCollection<TerminData>
+            //{ new TerminData { PatientenName="Gerd My", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID=2},
+            //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID=2}
 
-            };
+            //};
 
-            TermineDonnerstag = new ObservableCollection<TerminData>
-            { new TerminData { PatientenName="Christine WInterfeld", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
-                new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
-                new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
-
-            };
-
-            //TermineFreitag = new ObservableCollection<TerminData>
-            //{ new TerminData { PatientenName="Jennifer Walter", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            //TermineDonnerstag = new ObservableCollection<TerminData>
+            //{ new TerminData { PatientenName="Christine WInterfeld", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID=1},
             //    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
             //    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
 
             //};
 
+            ////TermineFreitag = new ObservableCollection<TerminData>
+            ////{ new TerminData { PatientenName="Jennifer Walter", Behandler="Anja",Termin=new DateTime(2017,11,6,11,25,0),ID="1"},
+            ////    new TerminData { PatientenName = "Knut Kummert", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 11, 50, 0),ID="2"},
+            ////    new TerminData { PatientenName = "Georg Witt", Behandler = "Mariann Fiedrich", Termin = new DateTime(2017, 11, 6, 12, 20, 0),ID="2"}
 
-            string[] Behandler = { "Mariann", "Anja", "Alex" };
+            ////};
 
-            TermineFreitag = new ObservableCollection<TerminData>();
 
-            for (int i = 1; i < 23; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    var td = new TerminData { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = new DateTime(2017, 11, 3, i, 0, 0) };
-                    TermineFreitag.Add(td);
-                }
-            }
+            //string[] Behandler = { "Mariann", "Anja", "Alex" };
+
+            //TermineFreitag = new ObservableCollection<TerminData>();
+
+            //for (int i = 1; i < 23; i++)
+            //{
+            //    for (int j = 0; j < 3; j++)
+            //    {
+            //        var td = new TerminData { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = i.ToString() + " - " + j.ToString(), Termin = new DateTime(2017, 11, 3, i, 0, 0) };
+            //        TermineFreitag.Add(td);
+            //    }
+            //}
 
 
         }
 
      public void addTerminData()
         {
-            var x = new TerminData { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = "125" };
+            var x = new TerminData { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = 125 };
             Terminlisten[1].Add(x);
         }
 

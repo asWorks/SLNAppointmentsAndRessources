@@ -143,7 +143,7 @@
     <Compile Include="matarif7.cs" />
     <Compile Include="matarif8.cs" />
     <Compile Include="matarif9.cs" />
-    <Compile Include="Model1.cs" />
+    <Compile Include="_GuesterModel.cs" />
     <Compile Include="nummern.cs" />
     <Compile Include="pat5.cs" />
     <Compile Include="patbild.cs" />

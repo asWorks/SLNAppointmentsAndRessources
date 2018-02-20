@@ -223,8 +223,8 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
-        private string _ID;
-        public string ID
+        private int _ID;
+        public int ID
         {
             get { return _ID; }
             set
