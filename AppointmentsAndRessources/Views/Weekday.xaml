@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Grid.Resources>
             <DataTemplate x:Key="TermineDataUCTemplate">
-                <res:TerminData Width="Auto"/>
+                <res:TerminDataXX Width="Auto"/>
             </DataTemplate>
 
             <DataTemplate x:Key="TermineDataUCFullTemplate" x:Name="Test">

@@ -24,6 +24,8 @@ namespace AppointmentsAndRessources.Views
         public TerminData()
         {
             InitializeComponent();
+
+           
         }
 
 
