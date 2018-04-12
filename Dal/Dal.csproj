@@ -50,10 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="TermineModel.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +65,15 @@
       <Project>{47b19c1c-43de-4ea4-b051-fa1782c118c6}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MySQL_Dal\MySQL_Dal.csproj">
+      <Project>{802802be-214a-4b50-a5a0-19de2ce33596}</Project>
+      <Name>MySQL_Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySQL_Dal_CodeFirst\MySQL_Dal_CodeFirst.csproj">
+      <Project>{8d97cf93-78e0-4db2-8dfe-8bf06f8bfb4d}</Project>
+      <Name>MySQL_Dal_CodeFirst</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -56,10 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppointmensModel.cs" />
+    <Compile Include="Migrations\201804120038071_Test Memo.cs" />
+    <Compile Include="Migrations\201804120038071_Test Memo.Designer.cs">
+      <DependentUpon>201804120038071_Test Memo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +78,11 @@
       <Project>{802802BE-214A-4B50-A5A0-19DE2CE33596}</Project>
       <Name>MySQL_Dal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804120038071_Test Memo.resx">
+      <DependentUpon>201804120038071_Test Memo.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,6 +19,8 @@ namespace Domain.Models
 
         public string PatientenName { get; set; }
 
+        public string Memo { get; set; }
+
         public string Behandler { get; set; }
 
         public DateTime Termin { get; set; }

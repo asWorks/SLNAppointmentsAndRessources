@@ -8,28 +8,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="85"/>
-        <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
+        <Grid.Resources>
+            <DataTemplate x:Key="PatientenAuswahlTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding ID}" Margin="0,2,5,2" MinWidth="10"/>
 
-    <Label Content="I D" />
-    <TextBlock Text="{Binding Path=ID, Mode=OneWay}" Grid.Column="1" Grid.Row="0" x:Name="iD" />
-    <Label Content="Behandler" Grid.Row="1" />
-    <TextBlock Text="{Binding Path=Behandler, Mode=OneWay}" Grid.Column="1" Grid.Row="1" x:Name="behandler" />
-    <Label Content="Patienten Name" Grid.Row="2" />
-    <TextBox Text="{Binding Path=PatientenName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="2" x:Name="patientenName" />
-    <Label Content="Termin" Grid.Row="3" />
-    <DatePicker SelectedDate="{Binding Path=Termin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" SelectedDateFormat="Short" DisplayDateStart="{x:Static sys:DateTime.Now}" DisplayDateEnd="{x:Static sys:DateTime.Now}" Grid.Column="1" Grid.Row="3" x:Name="termin" />
+                    <TextBlock Text="{Binding N_NAME}" Margin="0,2,5,2" MinWidth="35"/>
+                    <TextBlock Text="{Binding V_NAME}" Margin="0,2,5,2" MinWidth="35"/>
+                    <TextBlock Text="{Binding GEBOREN}" Margin="0,2,5,2" MinWidth="35"/>
+                    <TextBlock Text="{Binding KASSE}" Margin="0,2,5,2" MinWidth="35"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="I D" />
+        <TextBlock Text="{Binding Path=ID, Mode=OneWay}" Grid.Column="1" Grid.Row="0" x:Name="iD" />
+        <Label Content="Behandler" Grid.Row="1" />
+        <TextBlock Text="{Binding Path=Behandler, Mode=OneWay}" Grid.Column="1" Grid.Row="1" x:Name="behandler" />
+        <Label Content="Patienten Name" Grid.Row="2" />
+        <TextBox Text="{Binding Path=PatientenName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="2" x:Name="patientenName" />
+        <Label Content="Termin" Grid.Row="3" />
+        <DatePicker SelectedDate="{Binding Path=Termin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" SelectedDateFormat="Short" DisplayDateStart="{x:Static sys:DateTime.Now}" DisplayDateEnd="{x:Static sys:DateTime.Now}" Grid.Column="1" Grid.Row="3" x:Name="termin" />
+        <Label Content="Auswahl" Grid.Row="3" />
+        <ComboBox ItemsSource="{Binding PatientenAuswahl}" ItemTemplate="{StaticResource PatientenAuswahlTemplate}" Grid.Column="1" Grid.Row="4"/>
     </Grid>
-   
-   
 
-   
+
+
+
 </UserControl>

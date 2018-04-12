@@ -31,7 +31,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
             {
              var query = db.Termine;
                
-                Assert.AreEqual(query.Count(), 1);
+                Assert.AreEqual(query.Count(), 0);
 
                 var t = db.Termine.Where(e => e.ID == 1).SingleOrDefault();
                 if (t !=null)
@@ -40,7 +40,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
 
                 }
 
-                var ap = new TerminData { ID = 1, PatientenName = "Arpad Stöver", Behandler = "Mariann", Termin = DateTime.Now };
+                var ap = new TerminData { ID = 1, PatientenName = "Arpad Stöver", PatientenID=123456,Memo="Test",Behandler = "Mariann", Termin = DateTime.Now };
                 db.Termine.Add(ap);
                 db.SaveChanges();
             }

@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
+using MySQL_Dal;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,25 @@ namespace AppointmentsAndRessources.ViewModels
    
     public class TestViewModel:Screen
     {
+
+            
+
+
+        private ObservableCollection<pat5> _PatientenAuswahl;
+        public ObservableCollection<pat5> PatientenAuswahl
+        {
+            get { return _PatientenAuswahl; }
+            set
+            {
+                if (value != _PatientenAuswahl)
+                {
+                    _PatientenAuswahl = value;
+                    NotifyOfPropertyChange(() => PatientenAuswahl);
+                    //  isDirty = true;
+                }
+            }
+        }
+
 
 
         private string _PatientenName;
@@ -65,7 +86,21 @@ namespace AppointmentsAndRessources.ViewModels
 
         public TestViewModel()
         {
-            PatientenName = "Herr Müller-Lüdenscheidt";
+
+            var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.pat5>(new MySQL_Dal.GuesterModel());
+
+            var patient = repo.FindBy(n => n.V_NAME == "Arpad").SingleOrDefault();
+
+            var patienten = repo.FindBy(n => n.N_NAME.StartsWith("S")).ToList();
+            PatientenAuswahl = new ObservableCollection<pat5>(patienten);
+
+            var pat = patienten.Select  (x => new {Nachname = x.N_NAME });
+                
+            
+
+
+
+            PatientenName = string.Format("Herr {0},{1}",patient.N_NAME,patient.V_NAME) ;
             Behandler = "Anja";
             Id = "TXXX antwortet nicht";
         }

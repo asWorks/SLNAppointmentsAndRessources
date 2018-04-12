@@ -29,6 +29,7 @@
 
         <TextBlock Text="{Binding Datum}" Grid.Row="0" />
         <Button Content="OK"  Grid.Row="1" Command="{Binding Path=ShowAllTermine}"/>
+        <Ellipse Height="10" Width="50" Fill="#FFF3DE07"/>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
             <!--<ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineDataUCTemplate}" IsSynchronizedWithCurrentItem="False"/>-->
             <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" IsSynchronizedWithCurrentItem="False"/>
