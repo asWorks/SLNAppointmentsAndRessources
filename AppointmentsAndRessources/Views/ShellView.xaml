@@ -33,7 +33,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <Ellipse Width="1000" Height="100" Fill="Black" />
+                <Ellipse Width="800" Height="20" Fill="Black" />
             </StackPanel>
             
             <ContentControl x:Name="ActiveItem" Grid.Row="1"/>

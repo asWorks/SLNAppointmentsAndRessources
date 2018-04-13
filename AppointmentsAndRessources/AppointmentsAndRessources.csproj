@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Events\BehandlerFilterMessage.cs" />
+    <Compile Include="Events\RadioButtonNameMessage.cs" />
+    <Compile Include="Interfaces\ITermineEditViewModel.cs" />
+    <Compile Include="Interfaces\IWeekDayViewModel.cs" />
     <Compile Include="OldBootstrapper.cs" />
     <Compile Include="Events\EventMessage.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />

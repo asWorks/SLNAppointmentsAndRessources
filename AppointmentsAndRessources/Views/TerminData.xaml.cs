@@ -49,7 +49,7 @@ namespace AppointmentsAndRessources.Views
         {
             var v = (TerminDataViewModel)this.DataContext;
 
-           // v.PatientenName = dragged.PatientenName;
+            // v.PatientenName = dragged.PatientenName;
             v.isSelected = !v.isSelected;
         }
     }

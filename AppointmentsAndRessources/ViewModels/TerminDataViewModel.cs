@@ -22,14 +22,14 @@ namespace AppointmentsAndRessources.ViewModels
 
         public TerminData GetModel()
         {
-            var model = new TerminData { PatientenName = this.PatientenName, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            var model = new TerminData { PatientenName = this.PatientenName, PatientenID = this.PatientenID, BehandlerID = this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
             return model;
 
         }
 
         public void LoadFromModel(TerminData model)
         {
-            var vm = new TerminDataViewModel { PatientenName = this.PatientenName, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            var vm = new TerminDataViewModel { PatientenName = this.PatientenName,PatientenID=this.PatientenID,BehandlerID =this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
             //    return vm;
         }
 
@@ -98,7 +98,7 @@ namespace AppointmentsAndRessources.ViewModels
 
                 default:
                     {
-                        bg = new SolidColorBrush(Colors.White);
+                        bg = new SolidColorBrush(Colors.LightBlue);
                         break;
                     }
             }
@@ -112,8 +112,8 @@ namespace AppointmentsAndRessources.ViewModels
         #region "Constructors"
         public TerminDataViewModel()
         {
-            Patienten = new ObservableCollection<string> { "Freier Termin", "Arpad Stöver", "Helmut Kahl", "Knut Kummert", "Georg Witt", "Jennifer Walter", "Marc Marcieu" };
-            SelectedPatient = Patienten[0];
+            //Patienten = new ObservableCollection<string> { "Freier Termin", "Arpad Stöver", "Helmut Kahl", "Knut Kummert", "Georg Witt", "Jennifer Walter", "Marc Marcieu" };
+            //SelectedPatient = Patienten[0];
         }
 
 
@@ -121,8 +121,11 @@ namespace AppointmentsAndRessources.ViewModels
         {
             PatientenName = model.PatientenName;
             Behandler = model.Behandler;
+            PatientenID = model.PatientenID;
+            BehandlerID = model.BehandlerID;
             Termin = model.Termin;
             ID = model.ID;
+            TerminBackground = new SolidColorBrush(Colors.LightBlue);
         }
 
         #endregion
@@ -136,35 +139,22 @@ namespace AppointmentsAndRessources.ViewModels
             throw new NotImplementedException();
         }
 
-        public ObservableCollection<string> Patienten
-        {
-            get { return _Patienten; }
-            set
-            {
-                if (value != _Patienten)
-                {
-                    _Patienten = value;
-                    NotifyOfPropertyChange(() => Patienten);
-                    //  isDirty = true;
-                }
-            }
-        }
-
 
         #endregion
 
         #region "Properties"
 
-        private string _SelectedPatient;
-        public string SelectedPatient
+
+        private int _PatientenID;
+        public int PatientenID
         {
-            get { return _SelectedPatient; }
+            get { return _PatientenID; }
             set
             {
-                if (value != _SelectedPatient)
+                if (value != _PatientenID)
                 {
-                    _SelectedPatient = value;
-                    NotifyOfPropertyChange(() => SelectedPatient);
+                    _PatientenID = value;
+                    NotifyOfPropertyChange(() => PatientenID);
                     //  isDirty = true;
                 }
             }
@@ -186,6 +176,21 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
+
+        private int _BehandlerID;
+        public int BehandlerID
+        {
+            get { return _BehandlerID; }
+            set
+            {
+                if (value != _BehandlerID)
+                {
+                    _BehandlerID = value;
+                    NotifyOfPropertyChange(() => BehandlerID);
+                    //  isDirty = true;
+                }
+            }
+        }
 
         private string _Behandler;
         public string Behandler

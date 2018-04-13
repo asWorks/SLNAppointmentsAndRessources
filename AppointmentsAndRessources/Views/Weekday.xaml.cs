@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppointmentsAndRessourses.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,16 +25,50 @@ namespace AppointmentsAndRessources.Views
         {
             InitializeComponent();
             SetRessource();
+           
+
+
+            this.DataContextChanged += Weekday_DataContextChanged;
 
         }
 
-        
+        private void Weekday_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                WeekDayViewModel vm = (WeekDayViewModel)this.DataContext;
+                vm.RadioButtonClick += Vm_RadioButtonClick;
+            }
+        }
+
+            private void Vm_RadioButtonClick(string obj)
+        {
+            
+            if (obj == "RBFull")
+            {
+                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCFullTemplate");
+                WeekdayListBox.ItemTemplate = templ;
+            }
+            else if (obj == "RBBasic")
+            {
+                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCTemplate");
+                WeekdayListBox.ItemTemplate = templ;
+            }
+            else
+            {
+                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCEditTemplate");
+                WeekdayListBox.ItemTemplate = templ;
+            }
+        }
+
         void SetRessource()
         {
 
-            var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCFullTemplate");
+            var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCTemplate");
             WeekdayListBox.ItemTemplate = templ;
 
         }
+
+      
     }
 }

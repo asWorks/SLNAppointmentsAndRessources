@@ -8,12 +8,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+       
         <Grid.Resources>
             <DataTemplate x:Key="WeekdayTemplate">
                 <res:Weekday Width="Auto"/>
             </DataTemplate>
+            <DataTemplate x:Key="BehandlerTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding VORNAME}" MinWidth="120"/>
+                    <TextBlock Text="{Binding NACHNAME}" MinWidth="120" />
+                    <TextBlock Text="{Binding ID}" MinWidth="60"/>
+                    
+                    
+                </StackPanel>
+            </DataTemplate>
         </Grid.Resources>
-        <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <RadioButton x:Name="RadioButtonFull" Content="Full" GroupName="Template"/>
+            <RadioButton x:Name="RadioButtonBasic" Content="Basic" GroupName="Template"/>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <ComboBox ItemsSource="{Binding Behandler}" ItemTemplate="{StaticResource BehandlerTemplate}" SelectedItem="{Binding SelectedBehandler}" Margin="5" MinWidth="160"/>
+
+        </StackPanel>
+        <!--<Ellipse Height="15" Width="200" Grid.Row="0" Fill="#FF1138EA" />-->
+        <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>

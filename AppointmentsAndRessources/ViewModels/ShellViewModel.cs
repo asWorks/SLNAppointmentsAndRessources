@@ -19,7 +19,7 @@ namespace AppointmentsAndRessources.ViewModels
 
 
 
-        public TermineEditViewModel termineEditViewModel { get; set; }
+        public ITermineEditViewModel termineEditViewModel { get; set; }
         private readonly IEventAggregator _events;
         //KundenViewModel kdViewModel;
         //TermineViewModel tViewModel;
@@ -38,11 +38,12 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
         [ImportingConstructor]
-        public ShellViewModel(IAerzteListeViewModel aerzteListeVm, IEventAggregator events)
+        public ShellViewModel(IAerzteListeViewModel aerzteListeVm,ITermineEditViewModel termineEditVM, IEventAggregator events)
         {
             _events = events;
             AerzteListeVModel = aerzteListeVm;
-            termineEditViewModel = new TermineEditViewModel();
+            //termineEditViewModel = new TermineEditViewModel();
+            termineEditViewModel = termineEditVM;
             events.Subscribe(this);
 
         }

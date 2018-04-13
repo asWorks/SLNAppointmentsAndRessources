@@ -21,6 +21,8 @@ namespace Domain.Models
 
         public string Memo { get; set; }
 
+        public int BehandlerID { get; set; }
+
         public string Behandler { get; set; }
 
         public DateTime Termin { get; set; }

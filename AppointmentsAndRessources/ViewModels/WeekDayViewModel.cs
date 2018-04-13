@@ -8,18 +8,23 @@ using AppointmentsAndRessourses.Models;
 using AppointmentsAndRessources.ViewModels;
 using AppointmentsAndRessources.HelperClasses;
 using Caliburn.Micro;
+using AppointmentsAndRessources.Events;
+using AppointmentsAndRessources.Interfaces;
+using System.ComponentModel.Composition;
 
 namespace AppointmentsAndRessourses.ViewModels
 {
-    public class WeekDayViewModel : Screen
+    public class WeekDayViewModel : Screen, IWeekDayViewModel, IHandle<RadioButtonNameMessage>,IHandle<BehandlerFilterMessage>
+
     {
 
+        public event Action<string> RadioButtonClick;
+
+        IEventAggregator _eventaggegator;
 
 
-
-
-        private string _Datum;
-        public string Datum
+        private DateTime _Datum;
+        public DateTime Datum
         {
             get { return _Datum; }
             set
@@ -63,21 +68,30 @@ namespace AppointmentsAndRessourses.ViewModels
 
 
 
-        public WeekDayViewModel()
+        public WeekDayViewModel(IEventAggregator aggregator)
         {
-          
+            _eventaggegator = aggregator;
+            aggregator.Subscribe(this);
+
             AddTermine();
 
-            ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x=>true);
+            ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x => true);
             ShowTermineMariann = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Mariann")), x => true);
             ShowTermineMaggie = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Maggie")), x => true);
-            ShowTermineAnja= new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
+            ShowTermineAnja = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
 
         }
 
         private void AddTermine()
         {
             string[] Behandler = { "Mariann", "Anja", "Alex", "Maggie", "Kyra" };
+
+            var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(new MySQL_Dal.GuesterModel());
+
+
+            var behandler = repo.All();
+
+            var Beh = new List<MySQL_Dal.kollegen2>(behandler);
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
@@ -86,10 +100,10 @@ namespace AppointmentsAndRessourses.ViewModels
 
             for (int i = 1; i < 20; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     ++counter;
-                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Behandler[j], ID = counter, Termin = t };
+                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Beh[j].VORNAME, BehandlerID=Beh[j].ID, ID = counter, Termin = t };
                     //Termine.Add(td);
                     AlleTermine.Add(td);
                     t = t.AddDays(1);
@@ -99,7 +113,7 @@ namespace AppointmentsAndRessourses.ViewModels
                 t = t.AddMinutes(30);
             }
 
-            Termine = new ObservableCollection < TerminDataViewModel > (AlleTermine.Where(n => n.Behandler == "Alex"));
+            Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine);
 
         }
 
@@ -110,5 +124,20 @@ namespace AppointmentsAndRessourses.ViewModels
         }
 
 
+        public void Handle(RadioButtonNameMessage message)
+        {
+            RadioButtonClick?.Invoke(message.ButtonName);
+
+        }
+
+        public void Handle(BehandlerFilterMessage message)
+        {
+            int res = message.Message;
+
+            Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.BehandlerID ==res));
+
+            
+
+        }
     }
 }

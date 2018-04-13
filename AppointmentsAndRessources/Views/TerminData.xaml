@@ -21,7 +21,7 @@
             <Style TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Background" Value="DimGray"/>              
+                <Setter Property="Background" Value="LightGray"/>              
                         
                 
             </Style>
@@ -36,16 +36,32 @@
 
 
         <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
-            <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" >
+            <StackPanel Margin="5" AllowDrop="True" >
                 <!--<TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
                 --><!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />--><!--
                 <TextBlock Text="{Binding Path=PatientenName}"/>-->
                 <!--<TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>-->
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Behandler}"/>
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
-                </StackPanel>
+              
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
+
+
+                        </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                            
+                         <TextBlock Grid.Column="0" Text="{Binding Behandler}"/>
+                         <Ellipse Grid.Column="1" Height="20" Width="30"  Fill="{Binding TerminBackground}" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="Black" />
+
+                        <TextBlock Grid.Column="2" Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
+                    </Grid>
+                   
+                
                 <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
 
 

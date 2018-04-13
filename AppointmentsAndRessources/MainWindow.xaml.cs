@@ -28,8 +28,8 @@ namespace TestTerminplanung
         {
             InitializeComponent();
 
-            vModel = new WeekDayViewModel();
-            this.DataContext = vModel;
+            //vModel = new WeekDayViewModel();
+            //this.DataContext = vModel;
 
         }
 

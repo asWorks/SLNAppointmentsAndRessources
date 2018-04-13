@@ -5,8 +5,8 @@ namespace AppointmentsAndRessources {
     using AppointmentsAndRessources.ViewModels;
     using AppointmentsAndRessources;
     using Caliburn.Micro;
+  
 
-   
     public class Bootstrapper : BootstrapperBase {
         SimpleContainer container;
 
@@ -21,6 +21,8 @@ namespace AppointmentsAndRessources {
             container.Singleton<IEventAggregator, EventAggregator>();
             container.PerRequest<IShellViewModel, ShellViewModel>();
             container.PerRequest<IAerzteListeViewModel, AerzteListeViewModel>();
+            container.PerRequest<ITermineEditViewModel, TermineEditViewModel>();
+            container.PerRequest<IWeekDayViewModel, AppointmentsAndRessourses.ViewModels.WeekDayViewModel>();
         }
 
         protected override object GetInstance(Type service, string key) {
