@@ -25,8 +25,21 @@
             <Button Content="Ärzte" x:Name="AerzteListe"/>
 
         </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
 
-        <ContentControl x:Name="ActiveItem" Grid.Column="1"/>
+            <StackPanel>
+                <Ellipse Width="1000" Height="100" Fill="Black" />
+            </StackPanel>
+            
+            <ContentControl x:Name="ActiveItem" Grid.Row="1"/>
+            
+        </Grid>
+        
 
         <!--<ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" SelectionChanged="ListView_SelectionChanged" Drop="ListView_Drop" >
             <ListBox.ItemsPanel>

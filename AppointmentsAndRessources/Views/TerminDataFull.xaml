@@ -38,21 +38,12 @@
                 <!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />-->
                 <TextBlock Text="{Binding Path=PatientenName}"/>
                 <!--<TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>-->
-
+                <Ellipse Height="5" Width="100" Fill="#FF43B60E" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Behandler}"/>
-                    <!--<TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>-->
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}"/>
-                    <TextBlock Text="  "/>
-
-                    <CheckBox Content=" " IsChecked="{Binding isSelected}"/>
-                    <!--<TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" >
-                        <TextBlock.InputBindings>
-                            <MouseBinding Command="{Binding SetTermineIsClicked}" MouseAction="LeftClick"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>-->
+                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
                 </StackPanel>
-                
+                <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
 
 
             </StackPanel>
