@@ -13,7 +13,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
     [TestClass]
     public class CreateDBandTables
     {
-        //[TestMethod]
+        //[TestMethod] 
         //public void CreateDatabase()
         //{
         //    using (var db = new AppointmensModel())
@@ -40,7 +40,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
 
                 }
 
-                var ap = new TerminData { ID = 1, PatientenName = "Arpad Stöver", Behandler = "Mariann", Termin = DateTime.Now };
+                var ap = new TerminData { ID = 1,PatientenID=100, PatientenName = "Arpad Stöver", Behandler = "Mariann", Termin = DateTime.Now };
                 db.Termine.Add(ap);
                 db.SaveChanges();
             }
