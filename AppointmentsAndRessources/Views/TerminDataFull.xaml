@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
+              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -33,7 +34,7 @@
 
 
         <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
-            <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" >
+            <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" cal:Message.Attach="[Event Drop] = [Action GetDropInfo($this,$eventArgs]" >
                 <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
                 <!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />-->
                 <TextBlock Text="{Binding Path=PatientenName}"/>
@@ -41,7 +42,7 @@
                 <Ellipse Height="5" Width="100" Fill="#FF43B60E" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Behandler}"/>
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>
+                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]"/>
                 </StackPanel>
                 <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
 

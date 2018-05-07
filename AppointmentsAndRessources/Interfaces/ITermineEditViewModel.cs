@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppointmentsAndRessources.Interfaces
 {
-    public interface ITermineEditViewModel
+    public interface IWeekDisplayViewModel
     {
     }
 }

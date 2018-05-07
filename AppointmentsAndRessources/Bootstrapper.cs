@@ -21,7 +21,7 @@ namespace AppointmentsAndRessources {
             container.Singleton<IEventAggregator, EventAggregator>();
             container.PerRequest<IShellViewModel, ShellViewModel>();
             container.PerRequest<IAerzteListeViewModel, AerzteListeViewModel>();
-            container.PerRequest<ITermineEditViewModel, TermineEditViewModel>();
+            container.PerRequest<IWeekDisplayViewModel, WeekDisplayViewModel>();
             container.PerRequest<IWeekDayViewModel, AppointmentsAndRessourses.ViewModels.WeekDayViewModel>();
         }
 
