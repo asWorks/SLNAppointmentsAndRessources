@@ -23,7 +23,7 @@ namespace AppointmentsAndRessources.UserControls
         public Weekday()
         {
             InitializeComponent();
-            SetRessource();
+            //SetRessource();
 
         }
 

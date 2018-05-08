@@ -99,6 +99,11 @@ namespace AppointmentsAndRessources.ViewModels
 
         }
 
+        public void TestInteraction(object sender, DragEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region "Constructors"

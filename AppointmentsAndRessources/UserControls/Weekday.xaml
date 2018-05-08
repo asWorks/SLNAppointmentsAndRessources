@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:res="clr-namespace:AppointmentsAndRessources.UserControls"
+              xmlns:uc="clr-namespace:AppointmentsAndRessources.UserControls"
+              xmlns:ress="clr-namespace:AppointmentsAndRessources.Ressources"
+             xmlns:local="clr-namespace:AppointmentsAndRessources"
+             
+             
+              
+             
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="Auto" Height="725">
     <Grid x:Name="MainGrid">
@@ -17,21 +23,25 @@
         </Grid.RowDefinitions>
         <Grid.Resources>
             <DataTemplate x:Key="TermineDataUCTemplate">
-                <res:TerminData Width="Auto"/>
+                <uc:TerminData Width="Auto"/>
             </DataTemplate>
 
             <DataTemplate x:Key="TermineDataUCFullTemplate" x:Name="Test">
-                <res:TerminDataFull Width="Auto"/>
+                <uc:TerminDataFull Width="Auto"/>
             </DataTemplate>
-            
+
+            <DataTemplate x:Key="xxxx">
+               
+            </DataTemplate>
+
         </Grid.Resources>
 
 
         <TextBlock Text="{Binding Datum}" Grid.Row="0" />
         <Button Content="OK"  Grid.Row="1" Command="{Binding Path=ShowAllTermine}"/>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
-            <!--<ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineDataUCTemplate}" IsSynchronizedWithCurrentItem="False"/>-->
-            <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" IsSynchronizedWithCurrentItem="False"/>
+            <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineFromTemplates}" IsSynchronizedWithCurrentItem="False"/>
+            <!--<ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" IsSynchronizedWithCurrentItem="False"/>-->
         </ScrollViewer>
         <Button Content="Mariann" Grid.Row="3" Command="{Binding Path=ShowTermineMariann}"/>
         <Button Content="Maggie" Grid.Row="4" Command="{Binding Path=ShowTermineMaggie}"/>

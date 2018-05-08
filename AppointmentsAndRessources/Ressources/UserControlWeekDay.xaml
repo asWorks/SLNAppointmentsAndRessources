@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary x:Class="AppointmentsAndRessources.Ressources.UserControlWeekDay"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:VM="clr-namespace:AppointmentsAndRessources.ViewModels">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <DataTemplate x:Key="ComboBoxTemplate">
         <StackPanel>

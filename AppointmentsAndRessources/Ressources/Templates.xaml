@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AppointmentsAndRessources.ViewModels"
+                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+                     xmlns:cal="http://www.caliburnproject.org"
+                   >
+
+
+    <DataTemplate x:Key="TermineFromTemplates" DataType="{x:Type local:TerminDataViewModel}">
+        <DataTemplate.Resources>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+           
+        </DataTemplate.Resources>
+        <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="5,5,5,0">
+            <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" >
+                <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
+                <ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />
+                <TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>
+                <TextBlock Text="{Binding Termin, StringFormat=Time: {0:HH:mm}}" Foreground="Red">
+                    <!--Hier eventuell noch versuchen die Anbindung der Drop Action an das ViewModel über Interactionzu machen. ?????-->
+                    <!--<i:Interaction.Triggers> 
+                <i:EventTrigger EventName="Drop"> 
+                    <cal:ActionMessage MethodName="TestInteraction"> 
+                       <cal:Parameter Value="{Binding ElementName=Name, Path=Text}" /> 
+                    </cal:ActionMessage> 
+                </i:EventTrigger> 
+            </i:Interaction.Triggers>-->
+                </TextBlock>
+                <CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>
+
+
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+   
+
+</ResourceDictionary>
