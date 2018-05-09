@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace AppointmentsAndRessources.ViewModels
 {
-    [Export(typeof(ITermineEditViewModel))]
-    public class TermineEditViewModel:Screen,ITermineEditViewModel
+    [Export(typeof(IWeekDisplayViewModel))]
+    public class WeekDisplayViewModel:Screen,IWeekDisplayViewModel
     {
 
         IEventAggregator _eventAggregator;
@@ -69,7 +69,7 @@ namespace AppointmentsAndRessources.ViewModels
 
 
         [ImportingConstructor]
-        public TermineEditViewModel(IEventAggregator eventAggregator)
+        public WeekDisplayViewModel(IEventAggregator eventAggregator)
         {
 
             _eventAggregator = eventAggregator;

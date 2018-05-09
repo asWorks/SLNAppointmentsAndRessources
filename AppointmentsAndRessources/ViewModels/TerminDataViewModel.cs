@@ -297,6 +297,24 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "EventHandlers"
 
+        public void CheckTermin()
+        {
+
+            isSelected = !isSelected;
+        }
+
+        public void GetDropInfo(object sender, DragEventArgs e)
+        {
+
+           var dataObj = e.Data as DataObject;
+            var dragged = dataObj.GetData(typeof(TerminDataViewModel)) as TerminDataViewModel;
+
+            //var v = (TerminDataViewModel)this.DataContext;
+
+            PatientenName = dragged.PatientenName;
+            isSelected = true;
+        }
+
 
        public void ListView_Drop(object sender, DragEventArgs e)
         {

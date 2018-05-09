@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AppointmentsAndRessources.Views
 {
     /// <summary>
-    /// Interaction logic for TermineEditViewModel.xaml
+    /// Interaction logic for WeekDisplayViewModel.xaml
     /// </summary>
-    public partial class TermineEditView : UserControl
+    public partial class WeekDisplayView : UserControl
     {
-        public TermineEditView()
+        public WeekDisplayView()
         {
             InitializeComponent();
         }

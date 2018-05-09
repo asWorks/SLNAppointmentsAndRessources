@@ -30,13 +30,13 @@ namespace AppointmentsAndRessources.Views
         private void ListView_Drop(object sender, DragEventArgs e)
         {
 
-            var dataObj = e.Data as DataObject;
-            var dragged = dataObj.GetData(typeof(TerminDataViewModel)) as TerminDataViewModel;
+            //var dataObj = e.Data as DataObject;
+            //var dragged = dataObj.GetData(typeof(TerminDataViewModel)) as TerminDataViewModel;
 
-            var v = (TerminDataViewModel)this.DataContext;
+            //var v = (TerminDataViewModel)this.DataContext;
 
-            v.PatientenName = dragged.PatientenName;
-            v.isSelected = true;
+            //v.PatientenName = dragged.PatientenName;
+            //v.isSelected = true;
 
 
            // MessageBox.Show(dragged.PatientenName);
@@ -48,7 +48,7 @@ namespace AppointmentsAndRessources.Views
             var v = (TerminDataViewModel)this.DataContext;
 
            // v.PatientenName = dragged.PatientenName;
-            v.isSelected = !v.isSelected;
+            //v.isSelected = !v.isSelected;
         }
     }
 }

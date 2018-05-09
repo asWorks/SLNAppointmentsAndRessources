@@ -111,8 +111,8 @@
     <Compile Include="Views\TerminData.xaml.cs">
       <DependentUpon>TerminData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TermineEditView.xaml.cs">
-      <DependentUpon>TermineEditView.xaml</DependentUpon>
+    <Compile Include="Views\WeekDisplayView.xaml.cs">
+      <DependentUpon>WeekDisplayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
@@ -122,7 +122,7 @@
     </Compile>
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TerminDataViewModel.cs" />
-    <Compile Include="ViewModels\TermineEditViewModel.cs" />
+    <Compile Include="ViewModels\WeekDisplayViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeekDayOldViewModel.cs" />
     <Compile Include="ViewModels\WeekDayViewModel.cs" />
@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TermineEditView.xaml">
+    <Page Include="Views\WeekDisplayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
