@@ -27,6 +27,10 @@ namespace Domain.Models
 
         public DateTime Termin { get; set; }
 
+        public int Mandant { get; set; }
+
+        public int RezeptID { get; set; }
+
 
 
 

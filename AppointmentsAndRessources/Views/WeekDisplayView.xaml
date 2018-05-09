@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
               xmlns:res="clr-namespace:AppointmentsAndRessources.Views"
+               xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
        
         <Grid.Resources>
@@ -26,21 +27,36 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <RadioButton x:Name="RadioButtonFull" Content="Full" GroupName="Template"/>
             <RadioButton x:Name="RadioButtonBasic" Content="Basic" GroupName="Template"/>
+            <RadioButton x:Name="RadioButtonAll" Content="All" GroupName="Template"/>
+
+
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
+            <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
+            <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
+
 
 
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <ComboBox ItemsSource="{Binding Behandler}" ItemTemplate="{StaticResource BehandlerTemplate}" SelectedItem="{Binding SelectedBehandler}" Margin="5" MinWidth="160"/>
-
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <ComboBox ItemsSource="{Binding Behandler}" ItemTemplate="{StaticResource BehandlerTemplate}" SelectedItem="{Binding SelectedBehandler}" Style="{StaticResource CommonComboBox}" />
+            <ComboBox ItemsSource="{Binding Patienten}" ItemTemplate="{StaticResource PatientenAuswahlComboBox}" SelectedItem="{Binding SelectedPatient}" Style="{StaticResource CommonComboBox}"
+                      cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
+            <Rectangle Width="25" Height="25" Fill="Azure" Stroke="Black" Margin="2,1,2,0"
+                      cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
         </StackPanel>
         <!--<Ellipse Height="15" Width="200" Grid.Row="0" Fill="#FF1138EA" />-->
-        <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="2">
+        <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="3">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>

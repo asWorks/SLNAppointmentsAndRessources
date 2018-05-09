@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201804131927019_CodeNeu.Designer.cs">
       <DependentUpon>201804131927019_CodeNeu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805092349217_Updated TerminModel.cs" />
+    <Compile Include="Migrations\201805092349217_Updated TerminModel.Designer.cs">
+      <DependentUpon>201805092349217_Updated TerminModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804131927019_CodeNeu.resx">
       <DependentUpon>201804131927019_CodeNeu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805092349217_Updated TerminModel.resx">
+      <DependentUpon>201805092349217_Updated TerminModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

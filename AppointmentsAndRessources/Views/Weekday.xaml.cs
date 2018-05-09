@@ -54,6 +54,13 @@ namespace AppointmentsAndRessources.Views
                 var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCTemplate");
                 WeekdayListBox.ItemTemplate = templ;
             }
+            else if (obj == "RBAll")
+            {
+                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCAllTemplate");
+                WeekdayListBox.ItemTemplate = templ;
+            }
+
+
             else
             {
                 var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCEditTemplate");

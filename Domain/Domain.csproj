@@ -40,8 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\DragDropPatientenInfo.cs" />
     <Compile Include="Models\TerminData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MySQL_Dal\MySQL_Dal.csproj">
+      <Project>{802802be-214a-4b50-a5a0-19de2ce33596}</Project>
+      <Name>MySQL_Dal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

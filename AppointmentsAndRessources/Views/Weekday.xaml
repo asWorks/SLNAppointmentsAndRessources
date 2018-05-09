@@ -18,11 +18,15 @@
                 <res:TerminData Width="Auto"/>
             </DataTemplate>
 
-            <DataTemplate x:Key="TermineDataUCFullTemplate" x:Name="Test">
+            <DataTemplate x:Key="TermineDataUCFullTemplate" >
                 <res:TerminDataFull Width="Auto"/>
             </DataTemplate>
 
-           
+            <DataTemplate x:Key="TermineDataUCAllTemplate">
+                <res:TerminDataAll Width="Auto"/>
+            </DataTemplate>
+
+
         </Grid.Resources>
 
 

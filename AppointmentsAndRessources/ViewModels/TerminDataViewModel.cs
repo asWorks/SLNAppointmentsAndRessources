@@ -11,14 +11,39 @@ using System.Windows.Controls;
 using System.Windows;
 using Domain.Models;
 using Caliburn.Micro;
+using AppointmentsAndRessources.Interfaces;
+using AppointmentsAndRessources.Events;
 
 namespace AppointmentsAndRessources.ViewModels
 {
-    public class TerminDataViewModel : Screen
+    public class TerminDataViewModel : Screen, ITerminDataViewModel, IHandle<PatientenInfoChangedMessage>
     {
+
+        IEventAggregator _eventAggregator;
+        //bool sendRequest = false;
+
 
         #region "Functions"
 
+        public void CheckTermin()
+        {
+
+            //isSelected = !isSelected;
+            if (!isSelected)
+            {
+
+                _eventAggregator.PublishOnUIThread(new RequestPatientenInfoMessage(this.ID));
+            }
+            else
+            {
+                this.PatientenID = 0;
+                this.PatientenName = "Freier Termin";
+                isSelected = false;
+            }
+
+
+
+        }
 
         public TerminData GetModel()
         {
@@ -29,7 +54,7 @@ namespace AppointmentsAndRessources.ViewModels
 
         public void LoadFromModel(TerminData model)
         {
-            var vm = new TerminDataViewModel { PatientenName = this.PatientenName,PatientenID=this.PatientenID,BehandlerID =this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            var vm = new TerminDataViewModel { PatientenName = this.PatientenName, PatientenID = this.PatientenID, BehandlerID = this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
             //    return vm;
         }
 
@@ -37,36 +62,24 @@ namespace AppointmentsAndRessources.ViewModels
         public void SetBehandlerBrush()
         {
             Brush bg;
-            switch (Behandler)
+            switch (BehandlerID)
             {
-                case "Mariann":
+                case 8:
                     {
-                        bg = new SolidColorBrush(Colors.LightGreen);
+                        bg = new SolidColorBrush(Colors.LightSalmon);
                         break;
                     }
 
-                case "Anja":
+                case 10:
                     {
-                        bg = new SolidColorBrush(Colors.LightSkyBlue);
+                        bg = new SolidColorBrush(Colors.LightBlue);
                         break;
                     }
-                case "Alex":
+                case 9:
                     {
-                        bg = new SolidColorBrush(Colors.LightYellow);
+                        bg = new SolidColorBrush(Colors.LimeGreen);
                         break;
                     }
-                case "Maggie":
-                    {
-                        bg = new SolidColorBrush(Colors.PaleGreen);
-                        break;
-                    }
-                case "Kyra":
-                    {
-                        bg = new SolidColorBrush(Colors.PaleTurquoise);
-                        break;
-                    }
-
-
                 default:
                     {
                         bg = new SolidColorBrush(Colors.White);
@@ -116,6 +129,12 @@ namespace AppointmentsAndRessources.ViewModels
             //SelectedPatient = Patienten[0];
         }
 
+        public TerminDataViewModel(IEventAggregator aggregator)
+        {
+            _eventAggregator = aggregator;
+            aggregator.Subscribe(this);
+        }
+
 
         public TerminDataViewModel(TerminData model)
         {
@@ -132,12 +151,12 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Collections"
 
-        private ObservableCollection<string> _Patienten;
+        //private ObservableCollection<string> _Patienten;
 
-        public static explicit operator TerminDataViewModel(ListViewItem v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static explicit operator TerminDataViewModel(ListViewItem v)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
         #endregion
@@ -187,6 +206,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _BehandlerID = value;
                     NotifyOfPropertyChange(() => BehandlerID);
+                    SetBehandlerBrush();
                     //  isDirty = true;
                 }
             }
@@ -204,7 +224,7 @@ namespace AppointmentsAndRessources.ViewModels
 
                     NotifyOfPropertyChange(() => Behandler);
 
-                    SetBehandlerBrush();
+
                     //  isDirty = true;
                 }
             }
@@ -297,35 +317,58 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "EventHandlers"
 
-        public void CheckTermin()
-        {
 
-            isSelected = !isSelected;
-        }
 
         public void GetDropInfo(object sender, DragEventArgs e)
         {
 
-           var dataObj = e.Data as DataObject;
-            var dragged = dataObj.GetData(typeof(TerminDataViewModel)) as TerminDataViewModel;
+            var dataObj = e.Data as DataObject;
+            var dragged = dataObj.GetData(typeof(Domain.DTOs.DragDropPatientenInfo)) as Domain.DTOs.DragDropPatientenInfo;
 
             //var v = (TerminDataViewModel)this.DataContext;
 
-            PatientenName = dragged.PatientenName;
+            PatientenID = dragged.PatientenId;
+            PatientenName = dragged.PatientenFullName;
             isSelected = true;
         }
 
 
-       public void ListView_Drop(object sender, DragEventArgs e)
+        public void ListView_Drop(object sender, DragEventArgs e)
         {
 
         }
 
-        #endregion
 
+        void ManageTerminSelection(bool value)
+        {
+
+        }
+
+        public void Handle(PatientenInfoChangedMessage message)
+        {
+
+            if (message != null)
+            {
+                if (message.TerminId == this.ID && message.isInValidState == true)
+                {
+                    PatientenID = message.patientenInfo.PatientenId;
+                    PatientenName = message.patientenInfo.PatientenFullName;
+                    isSelected = true;
+
+                }
+
+
+            }
+
+
+        }
 
     }
 
+    #endregion
 
 
 }
+
+
+

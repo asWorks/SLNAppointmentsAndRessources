@@ -16,7 +16,7 @@ namespace AppointmentsAndRessources.ViewModels
     public class AerzteListeViewModel : Screen, IAerzteListeViewModel/*, IHandle<Events.EventMessage>*/
     {
         GuesterModel db;
-        private bool isDirty;
+        //private bool isDirty;
         private readonly IEventAggregator _events;
         private ObservableCollection<arzt> _AerzteListe;
         public ObservableCollection<arzt> AerzteListe
@@ -28,7 +28,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _AerzteListe = value;
                     NotifyOfPropertyChange(() => AerzteListe);
-                    isDirty = true;
+                   // isDirty = true;
                 }
             }
         }

@@ -14,7 +14,7 @@ using System.ComponentModel.Composition;
 
 namespace AppointmentsAndRessourses.ViewModels
 {
-    public class WeekDayViewModel : Screen, IWeekDayViewModel, IHandle<RadioButtonNameMessage>,IHandle<BehandlerFilterMessage>
+    public class WeekDayViewModel : Screen, IWeekDayViewModel, IHandle<RadioButtonNameMessage>,IHandle<BehandlerFilterMessage>,IHandle<TermineFilterMessage>
 
     {
 
@@ -103,7 +103,19 @@ namespace AppointmentsAndRessourses.ViewModels
                 for (int j = 0; j < 3; j++)
                 {
                     ++counter;
-                    var td = new TerminDataViewModel { PatientenName = "Freier Termin", Behandler = Beh[j].VORNAME, BehandlerID=Beh[j].ID, ID = counter, Termin = t };
+
+
+                    var td = new TerminDataViewModel(_eventaggegator)
+                    {
+                        PatientenName = "Freier Termin",
+                        Behandler = Beh[j].VORNAME,
+                        BehandlerID = Beh[j].ID,
+                        ID = TempHelperFunctions.GetCounter(),
+                        Termin = t
+                    };
+
+
+
                     //Termine.Add(td);
                     AlleTermine.Add(td);
                     t = t.AddDays(1);
@@ -138,6 +150,30 @@ namespace AppointmentsAndRessourses.ViewModels
 
             
 
+        }
+
+        public void Handle(TermineFilterMessage message)
+        {
+            switch (message.TerminFilter)
+            {
+                case TermineFilterMessage.EnumFilterMessage.Alle:
+                    {
+                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine);
+                        break;
+                    }
+                case TermineFilterMessage.EnumFilterMessage.Vergebene:
+                    {
+                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n=>n.isSelected==true));
+                        break;
+                    }
+                case TermineFilterMessage.EnumFilterMessage.Freie:
+                    {
+                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.isSelected == false));
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 }

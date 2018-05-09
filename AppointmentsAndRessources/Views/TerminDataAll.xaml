@@ -1,15 +1,13 @@
-﻿<UserControl x:Class="AppointmentsAndRessources.Views.TerminDataFull"
+﻿<UserControl x:Class="AppointmentsAndRessources.Views.TerminDataAll"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
-              xmlns:cal="http://www.caliburnproject.org"
+                xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-
-
         <Grid.Resources>
 
             <DataTemplate x:Key="ComboBoxTemplate">
@@ -27,27 +25,33 @@
                 <Setter Property="FontFamily" Value="Lucida Sans Typewriter"/>
                 <Setter Property="FontSize" Value="12"/>
             </Style>
-            <Style TargetType="{x:Type StackPanel}">
-                <EventSetter Event="Drop" Handler="ListView_Drop"/>
-            </Style>
+            
         </Grid.Resources>
 
 
         <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
             <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" cal:Message.Attach="[Event Drop] = [Action GetDropInfo($this,$eventArgs]" >
-                <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
-                <!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />-->
-                <TextBlock Text="{Binding Path=PatientenName}"/>
-                <!--<TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>-->
-                <Ellipse Height="5" Width="100" Fill="#FF43B60E" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}"/>
-                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]"/>
+                    <TextBlock Text="{Binding ID}" Margin="10,0,0,0"/>
+                    <Rectangle Width="80" Height="20" Fill="{Binding BehandlerBackground}" Margin="15,0,0,0" Stroke="Black"/>
                 </StackPanel>
-                <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
+                <TextBlock Text="{Binding Path=PatientenID}"/>
+                <TextBlock Text="{Binding Path=PatientenName}"/>
+                <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding BehandlerID}"/>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    
+                    <TextBlock Text="{Binding Behandler}"/>
+                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}"  cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]"/>
+                </StackPanel>
 
+                <Ellipse Height="15" Width="15" Fill="{Binding TerminBackground}" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]" />
 
             </StackPanel>
         </Border>
     </Grid>
+
+   
 </UserControl>
