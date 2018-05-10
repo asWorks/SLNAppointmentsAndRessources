@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace AppointmentsAndRessources.ViewModels
 {
     [Export(typeof(IWeekDisplayViewModel))]
-    public class WeekDisplayViewModel : Screen, IWeekDisplayViewModel,IHandle<RequestPatientenInfoMessage>
+    public class WeekDisplayViewModel : Screen, IWeekDisplayViewModel, IHandle<RequestPatientenInfoMessage>
     {
 
         IEventAggregator _eventAggregator;
@@ -123,11 +123,15 @@ namespace AppointmentsAndRessources.ViewModels
             TherapiContext = new MySQL_Dal.GuesterModel();
 
             Wochentage = new ObservableCollection<WeekDayViewModel>();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 21; i++)
             {
-                var wt = new WeekDayViewModel(_eventAggregator);
-                wt.Datum = DateTime.Now.AddDays(i);
-                Wochentage.Add(wt);
+                if (!(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Saturday) && !(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
+                {
+                    var wt = new WeekDayViewModel(_eventAggregator);
+                    wt.Datum = DateTime.Now.AddDays(i);
+                    Wochentage.Add(wt);
+                }
+
             }
 
             var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(TherapiContext);
@@ -153,7 +157,7 @@ namespace AppointmentsAndRessources.ViewModels
             {
 
 
-               if (vModel.SelectedPatient != null)
+                if (vModel.SelectedPatient != null)
                 {
                     var ddInfo = new Domain.DTOs.DragDropPatientenInfo(vModel.SelectedPatient);
                     //ddInfo.PatientenId = vModel.SelectedPatient.id;
@@ -208,21 +212,21 @@ namespace AppointmentsAndRessources.ViewModels
         public void Handle(RequestPatientenInfoMessage message)
         {
 
-           if(SelectedPatient!=null)
+            if (SelectedPatient != null)
             {
-               
-                    _eventAggregator.PublishOnUIThread(new PatientenInfoChangedMessage(new Domain.DTOs.DragDropPatientenInfo(SelectedPatient),true,message.TerminId));
-               
 
-               
+                _eventAggregator.PublishOnUIThread(new PatientenInfoChangedMessage(new Domain.DTOs.DragDropPatientenInfo(SelectedPatient), true, message.TerminId));
+
+
+
             }
             else
             {
-                     //SelectedPatient is null
-                     //Send Message with State isNotValid so that calling appointment can handle it.
-                    _eventAggregator.PublishOnUIThread(new PatientenInfoChangedMessage(null, false,message.TerminId));
-              
-                
+                //SelectedPatient is null
+                //Send Message with State isNotValid so that calling appointment can handle it.
+                _eventAggregator.PublishOnUIThread(new PatientenInfoChangedMessage(null, false, message.TerminId));
+
+
             }
 
         }
