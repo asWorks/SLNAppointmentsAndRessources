@@ -75,10 +75,10 @@ namespace AppointmentsAndRessourses.ViewModels
 
             AddTermine();
 
-            ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x => true);
-            ShowTermineMariann = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Mariann")), x => true);
-            ShowTermineMaggie = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Maggie")), x => true);
-            ShowTermineAnja = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
+            //ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x => true);
+            //ShowTermineMariann = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Mariann")), x => true);
+            //ShowTermineMaggie = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Maggie")), x => true);
+            //ShowTermineAnja = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
 
         }
 
