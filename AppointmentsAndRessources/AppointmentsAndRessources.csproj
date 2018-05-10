@@ -88,6 +88,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Events\BehandlerFilterMessage.cs" />
+    <Compile Include="Events\SaveAppointmentsMessage.cs" />
     <Compile Include="Events\PatientenInfoChangedMessage.cs" />
     <Compile Include="Events\RadioButtonNameMessage.cs" />
     <Compile Include="Events\RequestPatientenInfoMessage.cs" />
@@ -125,8 +126,8 @@
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Weekday.xaml.cs">
-      <DependentUpon>Weekday.xaml</DependentUpon>
+    <Compile Include="Views\WeekdayView.xaml.cs">
+      <DependentUpon>WeekdayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TerminDataViewModel.cs" />
@@ -185,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Weekday.xaml">
+    <Page Include="Views\WeekdayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,6 +236,14 @@
     <ProjectReference Include="..\MySQL_Dal\MySQL_Dal.csproj">
       <Project>{802802be-214a-4b50-a5a0-19de2ce33596}</Project>
       <Name>MySQL_Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySQL_Dal_CodeFirst\MySQL_Dal_CodeFirst.csproj">
+      <Project>{8d97cf93-78e0-4db2-8dfe-8bf06f8bfb4d}</Project>
+      <Name>MySQL_Dal_CodeFirst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{88ca5714-28dd-43a5-8ef4-bac265b1f2b6}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

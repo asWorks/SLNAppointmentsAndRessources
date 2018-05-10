@@ -136,15 +136,20 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
-        public TerminDataViewModel(TerminData model)
+        public TerminDataViewModel(TerminData model,IEventAggregator aggregator):this(aggregator)
         {
+            TerminBackground = new SolidColorBrush(Colors.White);
+            Appointment = model;
             PatientenName = model.PatientenName;
             Behandler = model.Behandler;
             PatientenID = model.PatientenID;
             BehandlerID = model.BehandlerID;
             Termin = model.Termin;
             ID = model.ID;
-            TerminBackground = new SolidColorBrush(Colors.LightBlue);
+            isSelected = model.istVergeben;
+            istAusgeführt = model.istAusgeführt;
+            
+           
         }
 
         #endregion
@@ -164,6 +169,42 @@ namespace AppointmentsAndRessources.ViewModels
         #region "Properties"
 
 
+
+
+
+        private Domain.Models.TerminData _Appointment;
+        public Domain.Models.TerminData Appointment
+        {
+            get { return _Appointment; }
+            set
+            {
+                if (value != _Appointment)
+                {
+                    _Appointment = value;
+                    NotifyOfPropertyChange(() => Appointment);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+
+
+        private bool _istAusgeführt;
+        public bool istAusgeführt
+        {
+            get { return _istAusgeführt; }
+            set
+            {
+                if (value != _istAusgeführt)
+                {
+                    _istAusgeführt = value;
+                    NotifyOfPropertyChange(() => istAusgeführt);
+                    Appointment.istAusgeführt = value;
+                    //  isDirty = true;
+                }
+            }
+        }
+
         private int _PatientenID;
         public int PatientenID
         {
@@ -173,6 +214,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _PatientenID)
                 {
                     _PatientenID = value;
+                    Appointment.PatientenID = value;
                     NotifyOfPropertyChange(() => PatientenID);
                     //  isDirty = true;
                 }
@@ -188,7 +230,9 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _PatientenName)
                 {
                     _PatientenName = value;
+                    Appointment.PatientenName = value;
                     NotifyOfPropertyChange(() => PatientenName);
+                    //NotifyOfPropertyChange(() => Appointment);
                     //  isDirty = true;
                 }
             }
@@ -205,6 +249,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _BehandlerID)
                 {
                     _BehandlerID = value;
+                    Appointment.BehandlerID = value;
                     NotifyOfPropertyChange(() => BehandlerID);
                     SetBehandlerBrush();
                     //  isDirty = true;
@@ -221,6 +266,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Behandler)
                 {
                     _Behandler = value;
+                    Appointment.Behandler = value;
 
                     NotifyOfPropertyChange(() => Behandler);
 
@@ -232,6 +278,11 @@ namespace AppointmentsAndRessources.ViewModels
 
 
 
+
+
+
+      
+
         private DateTime _Termin;
         public DateTime Termin
         {
@@ -241,6 +292,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _Termin)
                 {
                     _Termin = value;
+                    Appointment.Termin = value;
                     NotifyOfPropertyChange(() => Termin);
                     //  isDirty = true;
                 }
@@ -257,6 +309,7 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _ID)
                 {
                     _ID = value;
+                    Appointment.ID = value;
                     NotifyOfPropertyChange(() => ID);
                     //  isDirty = true;
                 }
@@ -274,6 +327,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     SetSelectedBrush(value);
                     _isSelected = value;
+                    Appointment.istVergeben = value;
                     NotifyOfPropertyChange(() => isSelected);
                     //  isDirty = true;
                 }
@@ -353,6 +407,8 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     PatientenID = message.patientenInfo.PatientenId;
                     PatientenName = message.patientenInfo.PatientenFullName;
+                 
+                 
                     isSelected = true;
 
                 }

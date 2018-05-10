@@ -12,7 +12,7 @@
        
         <Grid.Resources>
             <DataTemplate x:Key="WeekdayTemplate">
-                <res:Weekday Width="Auto"/>
+                <res:WeekdayView Width="Auto"/>
             </DataTemplate>
             <DataTemplate x:Key="BehandlerTemplate">
                 <StackPanel Orientation="Horizontal">
@@ -44,9 +44,11 @@
             <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
             <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
 
-
+ 
 
         </StackPanel>
+
+       
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <ComboBox ItemsSource="{Binding Behandler}" ItemTemplate="{StaticResource BehandlerTemplate}" SelectedItem="{Binding SelectedBehandler}" Style="{StaticResource CommonComboBox}" />
@@ -54,6 +56,8 @@
                       cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
             <Rectangle Width="25" Height="25" Fill="Azure" Stroke="Black" Margin="2,1,2,0"
                       cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
+            <Button Margin ="100,0" Content="Speichern" x:Name="BtnSaveChanges"/>                
+                    
         </StackPanel>
         <!--<Ellipse Height="15" Width="200" Grid.Row="0" Fill="#FF1138EA" />-->
         <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="3">

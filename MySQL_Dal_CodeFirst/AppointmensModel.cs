@@ -2,6 +2,7 @@ namespace MySQL_Dal_CodeFirst
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
     using Domain.Models;
 
@@ -23,6 +24,13 @@ namespace MySQL_Dal_CodeFirst
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<TerminData> Termine { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+        }
 
     }
 

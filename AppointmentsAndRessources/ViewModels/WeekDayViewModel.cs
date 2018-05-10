@@ -11,14 +11,19 @@ using Caliburn.Micro;
 using AppointmentsAndRessources.Events;
 using AppointmentsAndRessources.Interfaces;
 using System.ComponentModel.Composition;
+using Services;
 
 namespace AppointmentsAndRessourses.ViewModels
 {
-    public class WeekDayViewModel : Screen, IWeekDayViewModel, IHandle<RadioButtonNameMessage>,IHandle<BehandlerFilterMessage>,IHandle<TermineFilterMessage>
+    public class WeekDayViewModel : Screen, IWeekDayViewModel, IHandle<RadioButtonNameMessage>,IHandle<BehandlerFilterMessage>,IHandle<TermineFilterMessage>,IHandle<SaveAppointmentsMessage>
 
     {
 
         public event Action<string> RadioButtonClick;
+
+        AppointmentDataService _ApoService;
+
+
 
         IEventAggregator _eventaggegator;
 
@@ -38,13 +43,15 @@ namespace AppointmentsAndRessourses.ViewModels
             }
         }
 
-        public RelayCommand ShowAllTermine { get; set; }
-        public RelayCommand ShowTermineMariann { get; set; }
-        public RelayCommand ShowTermineMaggie { get; set; }
-        public RelayCommand ShowTermineAnja { get; set; }
+        //public RelayCommand ShowAllTermine { get; set; }
+        //public RelayCommand ShowTermineMariann { get; set; }
+        //public RelayCommand ShowTermineMaggie { get; set; }
+        //public RelayCommand ShowTermineAnja { get; set; }
 
 
         public List<TerminDataViewModel> AlleTermine { get; set; }
+
+        public List<Domain.Models.TerminData> AlleTermineModel { get; set; }
 
 
         private ObservableCollection<TerminDataViewModel> _Termine;
@@ -68,62 +75,76 @@ namespace AppointmentsAndRessourses.ViewModels
 
 
 
-        public WeekDayViewModel(IEventAggregator aggregator)
+        public WeekDayViewModel(IEventAggregator aggregator, DateTime datum )
         {
             _eventaggegator = aggregator;
             aggregator.Subscribe(this);
 
+            Datum = datum;
+            _ApoService = new AppointmentDataService();
+
+
             AddTermine();
 
-            //ShowAllTermine = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine), x => true);
-            //ShowTermineMariann = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Mariann")), x => true);
-            //ShowTermineMaggie = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Maggie")), x => true);
-            //ShowTermineAnja = new RelayCommand(Param => Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.Behandler == "Anja")), x => true);
+         
 
         }
 
         private void AddTermine()
         {
-            string[] Behandler = { "Mariann", "Anja", "Alex", "Maggie", "Kyra" };
+           
 
-            var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(new MySQL_Dal.GuesterModel());
+            //var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(new MySQL_Dal.GuesterModel());
 
 
-            var behandler = repo.All();
+            //var behandler = repo.All();
 
-            var Beh = new List<MySQL_Dal.kollegen2>(behandler);
+            //var Beh = new List<MySQL_Dal.kollegen2>(behandler);
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
-            int counter = 0;
-            var t = new DateTime(2017, 11, 13, 8, 0, 0);
+            AlleTermineModel = _ApoService.GetTerminListe(Datum);
 
-            for (int i = 1; i < 20; i++)
+            foreach (var item in AlleTermineModel)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    ++counter;
+                var td = new TerminDataViewModel(item, _eventaggegator);
+                AlleTermine.Add(td);
+                
 
-
-                    var td = new TerminDataViewModel(_eventaggegator)
-                    {
-                        PatientenName = "Freier Termin",
-                        Behandler = Beh[j].VORNAME,
-                        BehandlerID = Beh[j].ID,
-                        ID = TempHelperFunctions.GetCounter(),
-                        Termin = t
-                    };
-
-
-
-                    //Termine.Add(td);
-                    AlleTermine.Add(td);
-                    t = t.AddDays(1);
-                }
-
-
-                t = t.AddMinutes(30);
             }
+
+
+
+
+            //int counter = 0;
+            //var t = new DateTime(2017, 11, 13, 8, 0, 0);
+
+            //for (int i = 1; i < 20; i++)
+            //{
+            //    for (int j = 0; j < 3; j++)
+            //    {
+            //        ++counter;
+
+
+            //        var td = new TerminDataViewModel(_eventaggegator)
+            //        {
+            //            PatientenName = "Freier Termin",
+            //            Behandler = Beh[j].VORNAME,
+            //            BehandlerID = Beh[j].ID,
+            //            ID = TempHelperFunctions.GetCounter(),
+            //            Termin = t
+            //        };
+
+
+
+            //        //Termine.Add(td);
+            //        AlleTermine.Add(td);
+            //        t = t.AddDays(1);
+            //    }
+
+
+            //    t = t.AddMinutes(30);
+            //}
 
             Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine);
 
@@ -133,6 +154,19 @@ namespace AppointmentsAndRessourses.ViewModels
         {
             var x = new TerminDataViewModel { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = 125 };
             Termine.Add(x);
+        }
+
+        public void Test123()
+        {
+
+            int y = 42;
+        }
+
+        public void BtnSave()
+        {
+
+          int res=  _ApoService.SaveAppointments();
+            int x = res;
         }
 
 
@@ -173,6 +207,14 @@ namespace AppointmentsAndRessourses.ViewModels
                     }
                 default:
                     break;
+            }
+        }
+
+        public void Handle(SaveAppointmentsMessage message)
+        {
+            if (message.DoAskBeforeSave != true)
+            {
+                _ApoService.SaveAppointments();
             }
         }
     }

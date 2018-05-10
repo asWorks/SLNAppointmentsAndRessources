@@ -19,9 +19,9 @@ namespace AppointmentsAndRessources.Views
     /// <summary>
     /// Interaction logic for Weekday.xaml
     /// </summary>
-    public partial class Weekday : UserControl
+    public partial class WeekdayView : UserControl
     {
-        public Weekday()
+        public WeekdayView()
         {
             InitializeComponent();
             SetRessource();
@@ -63,7 +63,7 @@ namespace AppointmentsAndRessources.Views
 
             else
             {
-                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCEditTemplate");
+                var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCAllTemplate");
                 WeekdayListBox.ItemTemplate = templ;
             }
         }

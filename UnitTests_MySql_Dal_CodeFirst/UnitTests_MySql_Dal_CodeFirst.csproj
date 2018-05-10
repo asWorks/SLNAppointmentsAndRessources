@@ -82,6 +82,10 @@
       <Project>{8d97cf93-78e0-4db2-8dfe-8bf06f8bfb4d}</Project>
       <Name>MySQL_Dal_CodeFirst</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{88ca5714-28dd-43a5-8ef4-bac265b1f2b6}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

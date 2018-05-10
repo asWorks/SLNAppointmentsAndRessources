@@ -7,13 +7,13 @@ namespace MySQL_Dal_CodeFirst.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CodeNeu : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CodeNeu));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804131927019_CodeNeu"; }
+            get { return "201805102129487_Init"; }
         }
         
         string IMigrationMetadata.Source

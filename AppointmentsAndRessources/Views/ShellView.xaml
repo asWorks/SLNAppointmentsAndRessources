@@ -9,7 +9,7 @@
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="WeekdayTemplate">
-                <res:Weekday Width="Auto"/>
+                <res:WeekdayView Width="Auto"/>
             </DataTemplate>
         </Grid.Resources>
         <Grid.ColumnDefinitions>

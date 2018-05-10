@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL_Dal_CodeFirst", "MySQ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests_MySql_Dal_CodeFirst", "UnitTests_MySql_Dal_CodeFirst\UnitTests_MySql_Dal_CodeFirst.csproj", "{DD38E7CC-394F-46BC-B2F1-378105E83553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

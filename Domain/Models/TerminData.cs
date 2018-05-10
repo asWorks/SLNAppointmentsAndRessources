@@ -31,6 +31,12 @@ namespace Domain.Models
 
         public int RezeptID { get; set; }
 
+        public bool istVergeben { get; set; }
+
+        public bool istAusgeführt { get; set; }
+
+        public bool  test { get; set; }
+
 
 
 

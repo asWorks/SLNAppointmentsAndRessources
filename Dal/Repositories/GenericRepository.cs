@@ -57,6 +57,15 @@ namespace Dal.Repositories
             return results;
         }
 
+        public IEnumerable<TEntity> FindByWithTracking(Expression<Func<TEntity, bool>> predicate)
+        {
+
+            IEnumerable<TEntity> results = _dbSet
+              .Where(predicate).ToList();
+            return results;
+        }
+
+
         public TEntity FindByKey(int id)
         {
             Expression<Func<TEntity, bool>> lambda = Utilities.BuildLambdaForFindByKey<TEntity>(id);

@@ -127,8 +127,8 @@ namespace AppointmentsAndRessources.ViewModels
             {
                 if (!(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Saturday) && !(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
                 {
-                    var wt = new WeekDayViewModel(_eventAggregator);
-                    wt.Datum = DateTime.Now.AddDays(i);
+                    var wt = new WeekDayViewModel(_eventAggregator, DateTime.Now.AddDays(i));
+                    //wt.Datum = DateTime.Now.AddDays(i);
                     Wochentage.Add(wt);
                 }
 
@@ -201,6 +201,11 @@ namespace AppointmentsAndRessources.ViewModels
         public void RadioButtonTermineFrei()
         {
             _eventAggregator.PublishOnUIThread(new Events.TermineFilterMessage(TermineFilterMessage.EnumFilterMessage.Freie));
+        }
+
+        public void BtnSaveChanges()
+        {
+            _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
         }
 
         /// <summary>
