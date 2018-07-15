@@ -123,16 +123,23 @@ namespace AppointmentsAndRessources.ViewModels
             TherapiContext = new MySQL_Dal.GuesterModel();
 
             Wochentage = new ObservableCollection<WeekDayViewModel>();
-            for (int i = 0; i < 21; i++)
+            SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(29);
+            foreach (var item in Woche)
             {
-                if (!(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Saturday) && !(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
-                {
-                    var wt = new WeekDayViewModel(_eventAggregator, DateTime.Now.AddDays(i));
-                    //wt.Datum = DateTime.Now.AddDays(i);
-                    Wochentage.Add(wt);
-                }
-
+                var wt = new WeekDayViewModel(_eventAggregator, item.Value);
+                Wochentage.Add(wt);
             }
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    if (!(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Saturday) && !(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
+            //    {
+            //        var wt = new WeekDayViewModel(_eventAggregator, DateTime.Now.AddDays(i));
+            //        //wt.Datum = DateTime.Now.AddDays(i);
+            //        Wochentage.Add(wt);
+            //    }
+
+            //}
 
             var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(TherapiContext);
 
@@ -146,6 +153,9 @@ namespace AppointmentsAndRessources.ViewModels
             Patienten = new ObservableCollection<MySQL_Dal.pat5>(pat.OrderBy(i => i.N_NAME));
 
         }
+
+
+
 
 
 

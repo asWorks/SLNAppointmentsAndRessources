@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppointmentDataService.cs" />
+    <Compile Include="DateTimeServices.cs" />
+    <Compile Include="DivExtensions.cs" />
     <Compile Include="MandatenService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

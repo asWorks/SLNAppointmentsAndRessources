@@ -8,6 +8,7 @@ using Domain.Models;
 using Dal.Repositories;
 using MySQL_Dal;
 using MySQL_Dal_CodeFirst;
+using System.Globalization;
 
 namespace Services
 {
@@ -53,10 +54,17 @@ namespace Services
 
         private List<TerminData> GenerateTermine(DateTime forDate)
         {
+            List<TerminData> buffer = new List<TerminData>();
+
+            if (forDate.IstFeiertag())
+            {
+                return buffer;
+            }
+
             var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
             var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
 
-            List<TerminData> buffer = new List<TerminData>();
+           
 
             var behandler = BehRepo.All();
 
@@ -97,6 +105,15 @@ namespace Services
 
         }
 
+        List<DateTime> GetWeekDates(int weeknumber)
+        {
+
+            
+            return null;
+
+        }
+
+   
     }
 }
 ;

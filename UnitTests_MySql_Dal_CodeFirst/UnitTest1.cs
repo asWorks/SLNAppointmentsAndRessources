@@ -64,5 +64,8 @@ namespace UnitTests_MySql_Dal_CodeFirst
             apoService.SaveAppointments();
 
         }
+
+      
+
     }
 }
