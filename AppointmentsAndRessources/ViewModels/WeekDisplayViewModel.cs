@@ -9,10 +9,12 @@ using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AppointmentsAndRessources.ViewModels
 {
@@ -22,7 +24,46 @@ namespace AppointmentsAndRessources.ViewModels
 
         IEventAggregator _eventAggregator;
         DbContext TherapiContext = null;
+        bool bTemp = false;
 
+        #region "Properties"
+
+
+
+        private bool _IsLoadingData;
+        public bool IsLoadingData
+        {
+            get { return _IsLoadingData; }
+            set
+            {
+                if (value != _IsLoadingData)
+                {
+
+                    _IsLoadingData = value;
+                    NotifyOfPropertyChange(() => IsLoadingData);
+
+
+                }
+            }
+        }
+        private int _WeekNumber;
+        public int WeekNumber
+        {
+            get { return _WeekNumber; }
+
+            set
+            {
+                if (value != _WeekNumber)
+                {
+                    _WeekNumber = value;
+                    NotifyOfPropertyChange(() => WeekNumber);
+
+                    IsLoadingData = true;
+
+                  // LoadSelectedWeek(WeekNumber);
+                }
+            }
+        }
 
         private ObservableCollection<WeekDayViewModel> _Wochentage;
         public ObservableCollection<WeekDayViewModel> Wochentage
@@ -74,9 +115,6 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
-
-
-
         private ObservableCollection<MySQL_Dal.pat5> _Patienten;
         public ObservableCollection<MySQL_Dal.pat5> Patienten
         {
@@ -108,11 +146,12 @@ namespace AppointmentsAndRessources.ViewModels
             }
         }
 
+        #endregion
 
 
 
 
-
+        #region "Constructors"
 
         [ImportingConstructor]
         public WeekDisplayViewModel(IEventAggregator eventAggregator)
@@ -122,24 +161,13 @@ namespace AppointmentsAndRessources.ViewModels
             eventAggregator.Subscribe(this);
             TherapiContext = new MySQL_Dal.GuesterModel();
 
-            Wochentage = new ObservableCollection<WeekDayViewModel>();
-            SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(29);
-            foreach (var item in Woche)
-            {
-                var wt = new WeekDayViewModel(_eventAggregator, item.Value);
-                Wochentage.Add(wt);
-            }
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    if (!(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Saturday) && !(DateTime.Now.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
-            //    {
-            //        var wt = new WeekDayViewModel(_eventAggregator, DateTime.Now.AddDays(i));
-            //        //wt.Datum = DateTime.Now.AddDays(i);
-            //        Wochentage.Add(wt);
-            //    }
+           // WeekNumber = 29;
 
-            //}
+
+
+
+
 
             var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(TherapiContext);
 
@@ -153,12 +181,66 @@ namespace AppointmentsAndRessources.ViewModels
             Patienten = new ObservableCollection<MySQL_Dal.pat5>(pat.OrderBy(i => i.N_NAME));
 
         }
+        #endregion
 
 
+        #region "Methods"
 
 
+     
+
+        //private async Task LoadWeek(int wNumb)
+        //{
+        //    await LoadSelectedWeekASync(wNumb);
+        //}
+
+        //private async Task LoadSelectedWeekASync(int wNumber)
+        //{
+        //    //await Task.Factory.StartNew((i) => LoadSelectedWeek((int)i), wNumber)
+
+        //   await LoadSelectedWeek(wNumber);
+
+        //  //  Wochentage = new ObservableCollection<WeekDayViewModel>(wNumber);
+        //    //IsLoadingData = false;
+        //}
+
+        public async Task LoadSelectedWeek(int wNumber)
+        {
+            WeekNumber = wNumber;
+            IsLoadingData = true;
+
+            _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
+
+            await Task.Run(() =>
+            {
 
 
+                var ThisDispatcher = Application.Current.Dispatcher;
+
+                ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
+                 {
+                     Wochentage = new ObservableCollection<WeekDayViewModel>();
+                     SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
+                     foreach (var item in Woche)
+                     {
+                         var wt = new WeekDayViewModel(_eventAggregator, item.Value);
+                         Wochentage.Add(wt);
+                     }
+                 }));
+
+            });
+
+
+            
+
+
+          //  IsLoadingData = false;
+
+        }
+        #endregion
+
+
+        #region "CommandMethods"
         public void CollectDropInfo(object sender, MouseEventArgs e)
         {
             Rectangle rect = new Rectangle();
@@ -183,11 +265,15 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
+        public void TestBusy()
+        {
+            IsLoadingData = !IsLoadingData;
+        }
+
         public void RadioButtonFull()
         {
             _eventAggregator.PublishOnUIThread(new Events.RadioButtonNameMessage("RBFull"));
         }
-
         public void RadioButtonBasic()
         {
             _eventAggregator.PublishOnUIThread(new Events.RadioButtonNameMessage("RBBasic"));
@@ -218,6 +304,10 @@ namespace AppointmentsAndRessources.ViewModels
             _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
         }
 
+        #endregion
+
+
+        #region "HandleMessages"
         /// <summary>
         /// Termin sendet Message und fordert die Daten des ausgewählten Patienten an.
         /// Wenn nicht Null wird werden die Daten incl. der TerminId zurückgeschickt mit Status isValid.
@@ -245,5 +335,7 @@ namespace AppointmentsAndRessources.ViewModels
             }
 
         }
+        #endregion
+
     }
 }

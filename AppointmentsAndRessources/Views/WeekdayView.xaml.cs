@@ -71,7 +71,7 @@ namespace AppointmentsAndRessources.Views
         void SetRessource()
         {
 
-            var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCTemplate");
+            var templ = (DataTemplate)this.MainGrid.FindResource("TermineDataUCAllTemplate");
             WeekdayListBox.ItemTemplate = templ;
 
         }

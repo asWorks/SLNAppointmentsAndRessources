@@ -9,6 +9,8 @@ using Dal.Repositories;
 using MySQL_Dal;
 using MySQL_Dal_CodeFirst;
 using System.Globalization;
+using System.Windows.Input;
+
 
 namespace Services
 {
@@ -35,11 +37,11 @@ namespace Services
             var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
 
             terminListe = AppRepo.FindByWithTracking(n => n.Termin >= VonDatum && n.Termin <= BisDatum).ToList();
-                
-                
 
+           
             if (!terminListe.Any())
             {
+              
                 terminListe = GenerateTermine(ForDate);
             }
 
