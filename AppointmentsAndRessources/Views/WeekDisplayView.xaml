@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  x:Class="AppointmentsAndRessources.Views.WeekDisplayView"
+﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
               xmlns:res="clr-namespace:AppointmentsAndRessources.Views"
                xmlns:cal="http://www.caliburnproject.org"
+             xmlns:asUserControls="clr-namespace:asWorks.de.asUserControls;assembly=asUserControls"  x:Class="AppointmentsAndRessources.Views.WeekDisplayView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
-       
+
         <Grid.Resources>
             <DataTemplate x:Key="WeekdayTemplate">
                 <res:WeekdayView Width="Auto"/>
@@ -19,14 +20,14 @@
                     <TextBlock Text="{Binding VORNAME}" MinWidth="120"/>
                     <TextBlock Text="{Binding NACHNAME}" MinWidth="120" />
                     <TextBlock Text="{Binding ID}" MinWidth="60"/>
-                    
-                    
+
+
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="20" />
 
             <RowDefinition Height="Auto" />
@@ -43,14 +44,17 @@
             <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
             <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
             <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
-            <syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged" ValueChanging="UpDownWeekNumber_ValueChanging"  Visibility="Visible" PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown"/>
+            <syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged"  Visibility="Visible" PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown"/>
 
-            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="80" Height="80" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData,Mode=TwoWay}" />
-            <Button Content="Test" x:Name="TestBusy"/>
+            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />
+            <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
+            <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
+
             <CheckBox IsChecked="{Binding IsLoadingData, Mode=TwoWay}"/>
+            <asUserControls:BusyIndicator x:Name="asBusyIndicator" Width="100" Visibility="Hidden"/>
         </StackPanel>
 
-       
+
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <ComboBox ItemsSource="{Binding Behandler}" ItemTemplate="{StaticResource BehandlerTemplate}" SelectedItem="{Binding SelectedBehandler}" Style="{StaticResource CommonComboBox}" />
@@ -58,17 +62,17 @@
                       cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
             <Rectangle Width="25" Height="25" Fill="Azure" Stroke="Black" Margin="2,1,2,0"
                       cal:Message.Attach="[Event MouseMove] = [Action CollectDropInfo($this,$eventArgs]"/>
-            <Button Margin ="100,0" Content="Speichern" x:Name="BtnSaveChanges"/>                
-                    
+            <Button Margin ="100,0" Content="Speichern" x:Name="BtnSaveChanges"/>
+
         </StackPanel>
         <!--<Ellipse Height="15" Width="200" Grid.Row="0" Fill="#FF1138EA" />-->
         <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="3">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
+                    <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-      
+
     </Grid>
 </UserControl>

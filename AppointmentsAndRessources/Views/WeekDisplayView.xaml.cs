@@ -21,7 +21,7 @@ namespace AppointmentsAndRessources.Views
     /// </summary>
     public partial class WeekDisplayView : UserControl
     {
-
+        int i = 43;
         WeekDisplayViewModel vm;
 
         public WeekDisplayView()
@@ -44,29 +44,114 @@ namespace AppointmentsAndRessources.Views
             }
         }
 
-        private void TestBusy_Click(object sender, RoutedEventArgs e)
+        private async void TestBusy_Click(object sender, RoutedEventArgs e)
         {
-            this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
+            //this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
+
+            BusyIndicator.IsBusy = true;
+            TestBusy.IsEnabled = false;
+            asBusyIndicator.Visibility = Visibility.Visible;
+
+            // await Task.Run(() => Task.Delay(5000));
+
+            if (vm != null)
+            {
+                // var ud = (Syncfusion.Windows.Shared.UpDown)d;
+                await vm.LoadSelectedWeek((int)i++);
+            }
+
+            BusyIndicator.IsBusy = false;
+            TestBusy.IsEnabled = true;
+            asBusyIndicator.Visibility = Visibility.Hidden;
+
         }
 
-        private void UpDownWeekNumber_ValueChanging(object sender, Syncfusion.Windows.Shared.ValueChangingEventArgs e)
-        {
-
-        }
 
         private async void UpDownWeekNumber_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (vm != null)
+            int result = 0;
+            bool res = false;
+            BusyIndicator.IsBusy = res;
+            TestBusy.IsEnabled = !res;
+            asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
+
+            try
             {
-                var ud = (Syncfusion.Windows.Shared.UpDown)d;
-                await vm.LoadSelectedWeek((int)ud.Value);
+                if (vm != null)
+                {
+                    var ud = (Syncfusion.Windows.Shared.UpDown)d;
+                    result = await vm.LoadSelectedWeek((int)ud.Value);
+                    // MessageBox.Show(result.ToString());
+                    res = true;
+                    BusyIndicator.IsBusy = !res;
+                    TestBusy.IsEnabled = res;
+                    asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
+
+
+
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+            }
+
+
+
 
         }
 
         private void UpDownWeekNumber_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             //this.BusyIndicator.IsBusy = true;
+        }
+
+        private async void TestBusy1_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+
+                bool res = false;
+                BusyIndicator.IsBusy = !res;
+                TestBusy.IsEnabled = res;
+                asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
+
+                //res = await Task.Run<bool>(() => 
+                //{
+
+                //    return true;
+                //});
+
+
+                await Task.Run(() => Task.Delay(5000));
+
+                res = true;
+                BusyIndicator.IsBusy = !res;
+                TestBusy.IsEnabled = res;
+                asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+
+
+
+            finally
+            {
+
+
+            }
         }
     }
 }

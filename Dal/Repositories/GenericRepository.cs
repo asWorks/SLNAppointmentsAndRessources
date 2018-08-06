@@ -64,7 +64,12 @@ namespace Dal.Repositories
               .Where(predicate).ToList();
             return results;
         }
-
+       
+        public async Task<IEnumerable<TEntity>> FindByWithTrackingAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbSet
+                .Where(predicate).ToListAsync();
+        }
 
         public TEntity FindByKey(int id)
         {

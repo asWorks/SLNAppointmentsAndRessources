@@ -233,6 +233,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\asUserControls\asUserControls.csproj">
+      <Project>{B331C444-C639-4C1D-A866-6CAECFEA980E}</Project>
+      <Name>asUserControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dal\Dal.csproj">
       <Project>{2e4b1d8e-3693-4f99-9181-baed015daf8b}</Project>
       <Name>Dal</Name>

@@ -51,7 +51,7 @@ namespace AppointmentsAndRessourses.ViewModels
 
         public List<TerminDataViewModel> AlleTermine { get; set; }
 
-        public List<Domain.Models.TerminData> AlleTermineModel { get; set; }
+        public IEnumerable<Domain.Models.TerminData> AlleTermineModel { get; set; }
 
 
         private ObservableCollection<TerminDataViewModel> _Termine;
@@ -103,7 +103,7 @@ namespace AppointmentsAndRessourses.ViewModels
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
-            AlleTermineModel = _ApoService.GetTerminListe(Datum);
+            AlleTermineModel =  _ApoService.GetTerminListe(Datum).Result;
 
             foreach (var item in AlleTermineModel)
             {

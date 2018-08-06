@@ -28,7 +28,7 @@ namespace Services
         private List<Domain.Models.TerminData> terminListe { get; set; }
 
 
-        public List<Domain.Models.TerminData> GetTerminListe(DateTime ForDate)
+        public async Task<List<Domain.Models.TerminData>> GetTerminListe(DateTime ForDate)
         {
 
             DateTime VonDatum = SetTimeForDate(ForDate, 8, 0, 0);
@@ -36,16 +36,23 @@ namespace Services
 
             var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
 
-            terminListe = AppRepo.FindByWithTracking(n => n.Termin >= VonDatum && n.Termin <= BisDatum).ToList();
+            //terminListe = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum).Result.ToList();
+            var tl = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
 
-           
+            terminListe = tl.ToList();
+
             if (!terminListe.Any())
             {
-              
-                terminListe = GenerateTermine(ForDate);
+
+                terminListe = await GenerateTermineAsync(ForDate);
             }
 
-            return terminListe;
+            return terminListe.ToList();
+
+
+
+
+
         }
 
         public int SaveAppointments()
@@ -54,8 +61,41 @@ namespace Services
 
         }
 
+        public async Task<List<TerminData>> GenerateTermineAsync(DateTime forDate)
+        {
+
+            try
+            {
+               // var x = Task.Factory.StartNew((p) => GenerateTermine((DateTime)p), forDate);
+                 await Task.Factory.StartNew((p) => TestAsync((DateTime)p), forDate);
+                return  null;
+            
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+
+
+
+        }
+
+        private void TestAsync(DateTime dt)
+        {
+
+            Task.Delay(2500);
+
+            return;
+        }
+
         private List<TerminData> GenerateTermine(DateTime forDate)
         {
+
             List<TerminData> buffer = new List<TerminData>();
 
             if (forDate.IstFeiertag())
@@ -66,7 +106,7 @@ namespace Services
             var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
             var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
 
-           
+
 
             var behandler = BehRepo.All();
 
@@ -91,7 +131,7 @@ namespace Services
                     buffer.Add(t);
                 }
 
-               dt= dt.AddMinutes(30);
+                dt = dt.AddMinutes(30);
             }
 
             return buffer;
@@ -110,12 +150,12 @@ namespace Services
         List<DateTime> GetWeekDates(int weeknumber)
         {
 
-            
+
             return null;
 
         }
 
-   
+
     }
 }
 ;

@@ -52,7 +52,9 @@ namespace UnitTests_MySql_Dal_CodeFirst
         {
 
             AppointmentDataService apoService = new AppointmentDataService();
-            List<TerminData> Liste = apoService.GetTerminListe(new DateTime(2018,09,05,0,0,0));
+
+            List<TerminData> Liste = apoService.GetTerminListe(new DateTime(2018, 09, 05, 0, 0, 0)).Result;
+            
 
             List<TerminData> buf = new List<TerminData>(Liste).ToList();
 
