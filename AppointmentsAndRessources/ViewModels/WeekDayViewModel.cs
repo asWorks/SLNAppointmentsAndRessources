@@ -96,6 +96,8 @@ namespace AppointmentsAndRessourses.ViewModels
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
+
+
             var res = await _ApoService.GetTerminListe(Datum);
             AlleTermineModel = res;
 

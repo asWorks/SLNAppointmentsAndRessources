@@ -114,7 +114,7 @@ namespace Services
 
                 DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
 
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i <= 15; i++)
                 {
                     foreach (var item in behandler)
                     {
@@ -133,7 +133,7 @@ namespace Services
                         buffer.Add(t);
                     }
 
-                    dt = dt.AddMinutes(15);
+                    dt = dt.AddMinutes(30);
                 }
 
                 return buffer;

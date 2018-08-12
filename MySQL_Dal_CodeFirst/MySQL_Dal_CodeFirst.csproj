@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppointmensModel.cs" />
-    <Compile Include="Migrations\201805102129487_Init.cs" />
-    <Compile Include="Migrations\201805102129487_Init.Designer.cs">
-      <DependentUpon>201805102129487_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201808121235524_Recreate Database.cs" />
+    <Compile Include="Migrations\201808121235524_Recreate Database.Designer.cs">
+      <DependentUpon>201808121235524_Recreate Database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,8 +80,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805102129487_Init.resx">
-      <DependentUpon>201805102129487_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808121235524_Recreate Database.resx">
+      <DependentUpon>201808121235524_Recreate Database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

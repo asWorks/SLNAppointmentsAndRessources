@@ -60,7 +60,7 @@ namespace AppointmentsAndRessources.ViewModels
 
                     IsLoadingData = true;
 
-                    // LoadSelectedWeek(WeekNumber);
+                    LoadSelectedWeek(WeekNumber);
                 }
             }
         }
@@ -172,6 +172,8 @@ namespace AppointmentsAndRessources.ViewModels
             var pat = patRepo.All();
             Patienten = new ObservableCollection<MySQL_Dal.pat5>(pat.OrderBy(i => i.N_NAME));
 
+            WeekNumber = 29;
+
         }
         #endregion
 
@@ -196,45 +198,55 @@ namespace AppointmentsAndRessources.ViewModels
         //    //IsLoadingData = false;
         //}
 
+        public async void IncreaseWeek()
+        {
+            WeekNumber++;
+            await LoadSelectedWeek(WeekNumber);
+        }
+
+        public async void DecreaseWeek()
+        {
+            WeekNumber--;
+            await LoadSelectedWeek(WeekNumber);
+        }
+
         public async Task<int> LoadSelectedWeek(int wNumber)
         {
             //WeekNumber = wNumber;
-            //IsLoadingData = true;
-          var res = Task.Run(() =>
-                       {
+            IsLoadingData = true;
+            var res = Task.Run(() =>
+                         {
 
-                           _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
-
-
-                           int buf = 0;
-
-                           var ThisDispatcher = Application.Current.Dispatcher;
-
-                           ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
-                            {
-                                Wochentage = new ObservableCollection<WeekDayViewModel>();
-                                SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
-                                foreach (var item in Woche)
-                                {
-                                    var wt = new WeekDayViewModel(_eventAggregator, item.Value);
-                                    Wochentage.Add(wt);
-                                    buf += wt.Termine.Count;
-
-                                }
-
-                            }));
+                             _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
 
 
-                           //Thread.Sleep(10000);
+                             int buf = 0;
+
+                             var ThisDispatcher = Application.Current.Dispatcher;
+
+                             ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
+                              {
+                                  Wochentage = new ObservableCollection<WeekDayViewModel>();
+                                  SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
+                                  foreach (var item in Woche)
+                                  {
+                                      var wt = new WeekDayViewModel(_eventAggregator, item.Value);
+                                      Wochentage.Add(wt);
+                                      buf += wt.Termine.Count;
+
+                                  }
+
+                              }));
+
+                             return buf;
+
+                         });
 
 
-                           return buf;
-                           
-                       });
-
-            //var logTask = Task.Delay(1000); // Log the login
+            //await Task.WhenAll(res).ContinueWith((t)=> { IsLoadingData = false; });
 
             await Task.WhenAll(res);
+            IsLoadingData = false;
 
             return res.Result;
 
@@ -242,7 +254,7 @@ namespace AppointmentsAndRessources.ViewModels
 
 
 
-            //  IsLoadingData = false;
+
 
         }
         #endregion

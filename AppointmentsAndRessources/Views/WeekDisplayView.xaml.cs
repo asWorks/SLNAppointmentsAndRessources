@@ -44,62 +44,62 @@ namespace AppointmentsAndRessources.Views
             }
         }
 
-        private async void TestBusy_Click(object sender, RoutedEventArgs e)
+        private void TestBusy_Click(object sender, RoutedEventArgs e)
         {
-            //this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
+           this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
 
-            BusyIndicator.IsBusy = true;
-            TestBusy.IsEnabled = false;
-            asBusyIndicator.Visibility = Visibility.Visible;
+            //BusyIndicator.IsBusy = true;
+            //TestBusy.IsEnabled = false;
+            //asBusyIndicator.Visibility = Visibility.Visible;
 
-            // await Task.Run(() => Task.Delay(5000));
+            //// await Task.Run(() => Task.Delay(5000));
 
-            if (vm != null)
-            {
-                // var ud = (Syncfusion.Windows.Shared.UpDown)d;
-                await vm.LoadSelectedWeek((int)i++);
-            }
+            //if (vm != null)
+            //{
+            //    // var ud = (Syncfusion.Windows.Shared.UpDown)d;
+            //    await vm.LoadSelectedWeek((int)i++);
+            //}
 
-            BusyIndicator.IsBusy = false;
-            TestBusy.IsEnabled = true;
-            asBusyIndicator.Visibility = Visibility.Hidden;
+            //BusyIndicator.IsBusy = false;
+            //TestBusy.IsEnabled = true;
+            //asBusyIndicator.Visibility = Visibility.Hidden;
 
         }
 
 
         private async void UpDownWeekNumber_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            int result = 0;
-            bool res = false;
-            BusyIndicator.IsBusy = res;
-            TestBusy.IsEnabled = !res;
-            asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
+            //int result = 0;
+            //bool res = false;
+            //BusyIndicator.IsBusy = res;
+            //TestBusy.IsEnabled = !res;
+            //asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
 
-            try
-            {
-                if (vm != null)
-                {
-                    var ud = (Syncfusion.Windows.Shared.UpDown)d;
-                    result = await vm.LoadSelectedWeek((int)ud.Value);
-                    // MessageBox.Show(result.ToString());
-                    res = true;
-                    BusyIndicator.IsBusy = !res;
-                    TestBusy.IsEnabled = res;
-                    asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
+            //try
+            //{
+            //    if (vm != null)
+            //    {
+            //        var ud = (Syncfusion.Windows.Shared.UpDown)d;
+            //        result = await vm.LoadSelectedWeek((int)ud.Value);
+            //        // MessageBox.Show(result.ToString());
+            //        res = true;
+            //        BusyIndicator.IsBusy = !res;
+            //        TestBusy.IsEnabled = res;
+            //        asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
 
 
 
-                }
-            }
-            catch (Exception)
-            {
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
-            finally
-            {
+            //    throw;
+            //}
+            //finally
+            //{
 
-            }
+            //}
 
 
 
@@ -114,44 +114,45 @@ namespace AppointmentsAndRessources.Views
         private async void TestBusy1_Click(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
+            vm.IsLoadingData = true;
+            //try
+            //{
 
-                bool res = false;
-                BusyIndicator.IsBusy = !res;
-                TestBusy.IsEnabled = res;
-                asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
+            //    bool res = false;
+            //    BusyIndicator.IsBusy = !res;
+            //    TestBusy.IsEnabled = res;
+            //    asBusyIndicator.Visibility = res == true ? Visibility.Visible : Visibility.Hidden;
 
-                //res = await Task.Run<bool>(() => 
-                //{
+            //    //res = await Task.Run<bool>(() => 
+            //    //{
 
-                //    return true;
-                //});
-
-
-                await Task.Run(() => Task.Delay(5000));
-
-                res = true;
-                BusyIndicator.IsBusy = !res;
-                TestBusy.IsEnabled = res;
-                asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
+            //    //    return true;
+            //    //});
 
 
-            }
-            catch (Exception)
-            {
+            //    await Task.Run(() => Task.Delay(5000));
+
+            //    res = true;
+            //    BusyIndicator.IsBusy = !res;
+            //    TestBusy.IsEnabled = res;
+            //    asBusyIndicator.Visibility = res == true ? Visibility.Hidden : Visibility.Visible;
 
 
-            }
+            //}
+            //catch (Exception)
+            //{
+
+
+            //}
 
 
 
 
-            finally
-            {
+            //finally
+            //{
 
 
-            }
+            //}
         }
 
         private async void TestAsyncCall1_Click(object sender, RoutedEventArgs e)
