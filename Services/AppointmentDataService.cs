@@ -56,7 +56,7 @@ namespace Services
 
             }
 
-            return terminListe.ToList();
+            return terminListe;
 
 
 
@@ -73,85 +73,12 @@ namespace Services
         public async Task<List<TerminData>> GenerateTermineAsync(DateTime forDate)
         {
 
-            //try
-            //{
-            //    var x = await Task.Factory.StartNew((p) => GenerateTermine((DateTime)p), forDate);
-            //    var y = 121;
-            //    var a = y + 12;
-            //    return x;
-
-            //    // await Task.Factory.StartNew((p) => TestAsync((DateTime)p), forDate);
-            //    // return  null;
-
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
-
-            var x = await Task.Factory.StartNew(() =>
-            {
-
-                List<TerminData> buffer = new List<TerminData>();
-
-
-                //if (forDate.IstFeiertag())
-                //{
-                //    var t = new TerminData();
-                //    t.Behandler = "Feiertag";
-                //    buffer.Add(t);
-                //    return buffer;
-                //}
-
-                var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
-                var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
-
-
-
-                var behandler = BehRepo.All();
-
-                DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
-
-                for (int i = 0; i < 160; i++)
-                {
-                    foreach (var item in behandler)
-                    {
-                        var t = new TerminData();
-                        t.Termin = dt;
-                        t.BehandlerID = item.ID;
-                        t.Behandler = string.Format("{0} {1}", item.VORNAME, item.NACHNAME);
-                        t.PatientenID = 0;
-                        t.PatientenName = "Freier Termin";
-                        t.Mandant = MandatenService.GetCurrentMandant();
-                        t.Memo = "";
-                        t.RezeptID = 0;
-                        t.istVergeben = false;
-                        t.istAusgeführt = false;
-                        AppRepo.Insert(t);
-                        buffer.Add(t);
-                    }
-
-                    dt = dt.AddMinutes(3);
-                }
-
-                try
-                {
-                    return buffer;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
-
-            });
-
             try
             {
+                var x = await Task.Factory.StartNew((p) => GenerateTermine((DateTime)p), forDate);
+              
                 return x;
+
             }
             catch (Exception)
             {
@@ -160,15 +87,9 @@ namespace Services
             }
 
 
+          
         }
 
-        private void TestAsync(DateTime dt)
-        {
-
-            Task.Delay(2500);
-
-            return;
-        }
 
         private List<TerminData> GenerateTermine(DateTime forDate)
         {
@@ -176,13 +97,13 @@ namespace Services
             {
                 List<TerminData> buffer = new List<TerminData>();
 
-                //if (forDate.IstFeiertag())
-                //{
-                //    var t = new TerminData();
-                //    t.Behandler = "Feiertag";
-                //    buffer.Add(t);
-                //    return buffer;
-                //}
+                if (forDate.IstFeiertag())
+                {
+                    //var t = new TerminData();
+                    //t.Behandler = "Feiertag";
+                    //buffer.Add(t);
+                    return buffer;
+                }
 
                 var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
                 var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
@@ -193,7 +114,7 @@ namespace Services
 
                 DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
 
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 32; i++)
                 {
                     foreach (var item in behandler)
                     {
@@ -212,7 +133,7 @@ namespace Services
                         buffer.Add(t);
                     }
 
-                    dt = dt.AddMinutes(30);
+                    dt = dt.AddMinutes(15);
                 }
 
                 return buffer;

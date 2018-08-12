@@ -90,13 +90,14 @@ namespace AppointmentsAndRessourses.ViewModels
 
         }
 
-        private void AddTermine()
+        private async void AddTermine()
         {
            
 
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
-            AlleTermineModel =  _ApoService.GetTerminListe(Datum).Result;
+            var res = await _ApoService.GetTerminListe(Datum);
+            AlleTermineModel = res;
 
             foreach (var item in AlleTermineModel)
             {
