@@ -153,5 +153,15 @@ namespace AppointmentsAndRessources.Views
 
             }
         }
+
+        private async void TestAsyncCall1_Click(object sender, RoutedEventArgs e)
+        {
+            var s = new Services.AppointmentDataService();
+
+            var x = await s.GetTerminListe(new DateTime(2018,11,18));
+
+            MessageBox.Show(x.Count.ToString());
+
+        }
     }
 }

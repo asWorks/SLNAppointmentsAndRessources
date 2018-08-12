@@ -49,6 +49,7 @@
             <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />
             <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
             <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
+            <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
 
             <CheckBox IsChecked="{Binding IsLoadingData, Mode=TwoWay}"/>
             <asUserControls:BusyIndicator x:Name="asBusyIndicator" Width="100" Visibility="Hidden"/>
