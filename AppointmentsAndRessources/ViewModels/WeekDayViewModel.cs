@@ -94,13 +94,6 @@ namespace AppointmentsAndRessourses.ViewModels
         {
            
 
-            //var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(new MySQL_Dal.GuesterModel());
-
-
-            //var behandler = repo.All();
-
-            //var Beh = new List<MySQL_Dal.kollegen2>(behandler);
-
             Termine = new ObservableCollection<TerminDataViewModel>();
             AlleTermine = new List<TerminDataViewModel>();
             AlleTermineModel =  _ApoService.GetTerminListe(Datum).Result;
@@ -113,39 +106,6 @@ namespace AppointmentsAndRessourses.ViewModels
 
             }
 
-
-
-
-            //int counter = 0;
-            //var t = new DateTime(2017, 11, 13, 8, 0, 0);
-
-            //for (int i = 1; i < 20; i++)
-            //{
-            //    for (int j = 0; j < 3; j++)
-            //    {
-            //        ++counter;
-
-
-            //        var td = new TerminDataViewModel(_eventaggegator)
-            //        {
-            //            PatientenName = "Freier Termin",
-            //            Behandler = Beh[j].VORNAME,
-            //            BehandlerID = Beh[j].ID,
-            //            ID = TempHelperFunctions.GetCounter(),
-            //            Termin = t
-            //        };
-
-
-
-            //        //Termine.Add(td);
-            //        AlleTermine.Add(td);
-            //        t = t.AddDays(1);
-            //    }
-
-
-            //    t = t.AddMinutes(30);
-            //}
-
             Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine);
 
         }
@@ -156,12 +116,7 @@ namespace AppointmentsAndRessourses.ViewModels
             Termine.Add(x);
         }
 
-        public void Test123()
-        {
-
-            int y = 42;
-        }
-
+        
         public void BtnSave()
         {
 

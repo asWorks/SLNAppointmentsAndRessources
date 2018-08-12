@@ -161,14 +161,6 @@ namespace AppointmentsAndRessources.ViewModels
             eventAggregator.Subscribe(this);
             TherapiContext = new MySQL_Dal.GuesterModel();
 
-
-            // WeekNumber = 29;
-
-
-
-
-
-
             var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(TherapiContext);
 
             var behandler = repo.All();

@@ -60,6 +60,7 @@
     <Compile Include="DivExtensions.cs" />
     <Compile Include="MandatenService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TermineService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dal\Dal.csproj">
