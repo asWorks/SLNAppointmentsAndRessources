@@ -30,7 +30,7 @@ namespace Services
 
         public async Task<List<Domain.Models.TerminData>> GetTerminListe(DateTime ForDate)
         {
-           // https://stackoverflow.com/questions/38717533/mvvm-async-await-pattern
+            // https://stackoverflow.com/questions/38717533/mvvm-async-await-pattern
 
             DateTime VonDatum = SetTimeForDate(ForDate, 8, 0, 0);
             DateTime BisDatum = SetTimeForDate(ForDate, 23, 59, 59);
@@ -76,7 +76,7 @@ namespace Services
             try
             {
                 var x = await Task.Factory.StartNew((p) => GenerateTermine((DateTime)p), forDate);
-              
+
                 return x;
 
             }
@@ -87,7 +87,7 @@ namespace Services
             }
 
 
-          
+
         }
 
 
@@ -99,9 +99,6 @@ namespace Services
 
                 if (forDate.IstFeiertag())
                 {
-                    //var t = new TerminData();
-                    //t.Behandler = "Feiertag";
-                    //buffer.Add(t);
                     return buffer;
                 }
 
@@ -114,7 +111,7 @@ namespace Services
 
                 DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
 
-                for (int i = 0; i <= 15; i++)
+                for (int i = 0; i <= 32; i++)
                 {
                     foreach (var item in behandler)
                     {
@@ -133,7 +130,7 @@ namespace Services
                         buffer.Add(t);
                     }
 
-                    dt = dt.AddMinutes(30);
+                    dt = dt.AddMinutes(15);
                 }
 
                 return buffer;

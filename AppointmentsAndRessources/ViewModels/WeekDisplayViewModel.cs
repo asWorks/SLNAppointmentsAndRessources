@@ -58,9 +58,9 @@ namespace AppointmentsAndRessources.ViewModels
                     _WeekNumber = value;
                     NotifyOfPropertyChange(() => WeekNumber);
 
-                    IsLoadingData = true;
+                    // IsLoadingData = true;
 
-                    LoadSelectedWeek(WeekNumber);
+                    // LoadSelectedWeek(WeekNumber);
                 }
             }
         }
@@ -200,55 +200,75 @@ namespace AppointmentsAndRessources.ViewModels
 
         public async void IncreaseWeek()
         {
-            WeekNumber++;
-            await LoadSelectedWeek(WeekNumber);
+
+            try
+            {
+                //await Task.Run(()=> LoadSelectedWeek(WeekNumber));
+                WeekNumber++;
+                await LoadSelectedWeek(WeekNumber);
+            }
+            finally
+            {
+                IsLoadingData = false;
+            }
+
+
         }
 
         public async void DecreaseWeek()
         {
-            WeekNumber--;
-            await LoadSelectedWeek(WeekNumber);
+            try
+            {
+                WeekNumber--;
+                await LoadSelectedWeek(WeekNumber);
+            }
+            catch (Exception)
+            {
+
+                IsLoadingData = false;
+            }
+
         }
 
         public async Task<int> LoadSelectedWeek(int wNumber)
         {
-            //WeekNumber = wNumber;
+
             IsLoadingData = true;
-            var res = Task.Run(() =>
-                         {
+            //var res = await Task.Run(() =>
+            //             {
 
-                             _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
-
-
-                             int buf = 0;
-
-                             var ThisDispatcher = Application.Current.Dispatcher;
-
-                             ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
-                              {
-                                  Wochentage = new ObservableCollection<WeekDayViewModel>();
-                                  SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
-                                  foreach (var item in Woche)
-                                  {
-                                      var wt = new WeekDayViewModel(_eventAggregator, item.Value);
-                                      Wochentage.Add(wt);
-                                      buf += wt.Termine.Count;
-
-                                  }
-
-                              }));
-
-                             return buf;
-
-                         });
+            //                 _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
 
 
-            //await Task.WhenAll(res).ContinueWith((t)=> { IsLoadingData = false; });
+            //                 int buf = 0;
 
-            await Task.WhenAll(res);
-            IsLoadingData = false;
+            //                 var ThisDispatcher = Application.Current.Dispatcher;
 
-            return res.Result;
+            //                 ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
+            //                  {
+
+            int buf = 0;
+            Wochentage = new ObservableCollection<WeekDayViewModel>();
+            SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
+            foreach (var item in Woche)
+            {
+                var wt = new WeekDayViewModel(_eventAggregator, item.Value);
+                Wochentage.Add(wt);
+                buf += wt.Termine.Count;
+
+            }
+
+            return buf;
+
+            //                  }));
+
+            //                 return buf;
+
+            //             });
+
+
+
+            //return res;
 
 
 
