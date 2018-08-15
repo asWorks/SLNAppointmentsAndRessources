@@ -228,8 +228,6 @@ namespace AppointmentsAndRessources.ViewModels
 
                                   }
 
-
-
                              //     }));
 
                               return w;
