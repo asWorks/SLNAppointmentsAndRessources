@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
               xmlns:res="clr-namespace:AppointmentsAndRessources.Views"
                xmlns:cal="http://www.caliburnproject.org"
-             xmlns:asUserControls="clr-namespace:asWorks.de.asUserControls;assembly=asUserControls"  x:Class="AppointmentsAndRessources.Views.WeekDisplayView"
+             xmlns:asUserControls="clr-namespace:asWorks.de.asUserControls;assembly=asUserControls"  
+             x:Class="AppointmentsAndRessources.Views.WeekDisplayView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
@@ -38,15 +39,20 @@
             <RadioButton x:Name="RadioButtonAll" Content="All" GroupName="Template"/>
 
 
-
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
             <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
             <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
-            <syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged"  Visibility="Visible" PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown" Value="{Binding WeekNumber}"/>
+           <!--<syncfusion:SfBusyIndicator />
+            <syncfusion:SfBusyIndicator />-->
+            
+            <syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged"  Visibility="Visible" 
+                               PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown" Value="{Binding WeekNumber}"/>
 
-            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />
+            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " 
+                                        IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />
+            
             <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
             <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
             <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
@@ -79,6 +85,7 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        <syncfusion:UpDown HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="85"/>
 
     </Grid>
 </UserControl>
