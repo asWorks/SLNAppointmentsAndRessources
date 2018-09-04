@@ -10,23 +10,35 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Constructors"
 
-        BehandlerPatientenTermin bpt;
+        private BehandlerPatientenTermin bpt;
 
         public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model)
         {
+
+
+
+            bpt = model;
+
             Termin = model.Termin;
             BehandlerID = model.BehandlerID;
             PatientenID = model.PatientenID;
-            BehandlerName = model.BehandlerName;
-            PatientenName = model.PatientenName;
+            PatientenVorname = model.PatientenVorname;
+            PatientenNachname = model.PatientenNachname;
+            BehandlerVorname = model.BehandlerVorname;
+            BehandlerNachname = model.BehandlerNachname;
             MandantID = model.MandantID;
             RezeptID = model.RezeptID;
             this.istVergeben = model.istVergeben;
             this.istAusgefuehrt = model.istAusgefuehrt;
+            SetBehandlerPatientenName();
 
-            bpt = model;
 
+        }
 
+        private void SetBehandlerPatientenName()
+        {
+            BehandlerName = BehandlerVorname + " " + BehandlerNachname;
+            PatientenName = PatientenVorname + " " + PatientenNachname;
         }
 
 
@@ -86,6 +98,40 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
+        private string _PatientenVorname;
+        public string PatientenVorname
+        {
+            get { return _PatientenVorname; }
+            set
+            {
+                if (value != _PatientenVorname)
+                {
+                    _PatientenVorname = value;
+                    bpt.PatientenVorname = value;
+                  
+                    NotifyOfPropertyChange(() => PatientenVorname);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+
+        private string _PatientenNachname;
+        public string PatientenNachname
+        {
+            get { return _PatientenNachname; }
+            set
+            {
+                if (value != _PatientenNachname)
+                {
+                    _PatientenNachname = value;
+                    bpt.PatientenNachname = value;
+                    NotifyOfPropertyChange(() => PatientenNachname);
+                    //  isDirty = true;
+                }
+            }
+        }
+
         private string _PatientenName;
         public string PatientenName
         {
@@ -103,6 +149,45 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
+
+
+        private string _BehandlerVorname;
+        public string BehandlerVorname
+        {
+            get { return _BehandlerVorname; }
+            set
+            {
+                if (value != _BehandlerVorname)
+                {
+                    _BehandlerVorname = value;
+                    bpt.BehandlerVorname = value;
+                    SetBehandlerPatientenName();
+                    NotifyOfPropertyChange(() => BehandlerVorname);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+
+
+        private string _BehandlerNachname;
+        public string BehandlerNachname
+        {
+            get { return _BehandlerNachname; }
+            set
+            {
+                if (value != _BehandlerNachname)
+                {
+                    _BehandlerNachname = value;
+                    bpt.BehandlerNachname = value;
+                    SetBehandlerPatientenName();
+                    NotifyOfPropertyChange(() => BehandlerNachname);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+
         private string _BehandlerName;
         public string BehandlerName
         {
@@ -114,6 +199,7 @@ namespace AppointmentsAndRessources.ViewModels
                     _BehandlerName = value;
                     bpt.BehandlerName = value;
                     NotifyOfPropertyChange(() => BehandlerName);
+                  
                     //  isDirty = true;
                 }
             }
@@ -121,6 +207,7 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
+    
         private bool _istVergeben;
         public bool istVergeben
         {

@@ -59,6 +59,8 @@ namespace AppointmentsAndRessources.ViewModels
 
         public void LoadFromModel(TerminData model)
         {
+            Termin = model.Termin;
+            ID = model.ID;
             BehandlerPatientenTerminViewModel bptvm;
             var bpt = new ObservableCollection<BehandlerPatientenTerminViewModel>();
             foreach (var item in model.BehandlerPatientenTermine)
@@ -66,7 +68,9 @@ namespace AppointmentsAndRessources.ViewModels
                 bptvm = new BehandlerPatientenTerminViewModel(item);
                 bpt.Add(bptvm);
             }
-            var vm = new TerminDataViewModel { Termin = this.Termin, ID = this.ID, BehandlerPatientenTermine = bpt };
+
+            this.BehandlerPatientenTermine = bpt;
+            //var vm = new TerminDataViewModel { Termin = this.Termin, ID = this.ID, BehandlerPatientenTermine = bpt };
             //    return vm;
         }
 
@@ -94,7 +98,8 @@ namespace AppointmentsAndRessources.ViewModels
         {
             TerminBackground = new SolidColorBrush(Colors.White);
             Appointment = model;
-         
+            LoadFromModel(model);
+            
             
            
         }

@@ -9,7 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
-
+            <DataTemplate x:Key="BehandlerPatientTermin">
+                <local:BehandlerPatientTermin Width="Auto"/>
+            </DataTemplate>
             <DataTemplate x:Key="ComboBoxTemplate">
                 <StackPanel>
                     <TextBlock Text="{Binding}"/>
@@ -29,25 +31,28 @@
         </Grid.Resources>
 
 
-        <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
+        <Border BorderThickness="1" BorderBrush="#FF2CD624" CornerRadius="7" Margin="2,2,2,0">
             <StackPanel Margin="5" Background="{Binding TerminBackground}" AllowDrop="True" cal:Message.Attach="[Event Drop] = [Action GetDropInfo($this,$eventArgs]" >
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding ID}" Margin="10,0,0,0"/>
-                    <Rectangle Width="80" Height="20" Fill="{Binding BehandlerBackground}" Margin="15,0,0,0" Stroke="Black"/>
+                    <TextBlock Text="{Binding ID}" Margin="50,0,0,0" Background="#FFF1F10D"/>
+                    <Rectangle Width="80" Height="20" Fill="{Binding BehandlerBackground}" Margin="15,0,0,0" Stroke="#FFEE2E96"/>
                 </StackPanel>
-                <TextBlock Text="{Binding Path=PatientenID}"/>
-                <TextBlock Text="{Binding Path=PatientenName}"/>
-                <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding BehandlerID}"/>
-                    
-                </StackPanel>
+              
                 <StackPanel Orientation="Horizontal">
                     
-                    <TextBlock Text="{Binding Behandler}"/>
+                  
                     <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}"  cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]"/>
                 </StackPanel>
 
-                <Ellipse Height="15" Width="15" Fill="{Binding TerminBackground}" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]" />
+                <ListBox ItemsSource="{Binding BehandlerPatientenTermine}" ItemTemplate="{StaticResource BehandlerPatientTermin}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+                <Ellipse Height="15" Width="15" Fill="{Binding TerminBackground}" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]" Stroke="#FFE02178" />
 
             </StackPanel>
         </Border>

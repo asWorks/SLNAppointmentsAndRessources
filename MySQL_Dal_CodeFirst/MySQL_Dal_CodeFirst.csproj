@@ -60,6 +60,14 @@
     <Compile Include="Migrations\201808121235524_Recreate Database.Designer.cs">
       <DependentUpon>201808121235524_Recreate Database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809040149337_Changeing Data to multiple Physiotherapists per timeslot.cs" />
+    <Compile Include="Migrations\201809040149337_Changeing Data to multiple Physiotherapists per timeslot.Designer.cs">
+      <DependentUpon>201809040149337_Changeing Data to multiple Physiotherapists per timeslot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809040459030_Added Vor und Nachnamen.cs" />
+    <Compile Include="Migrations\201809040459030_Added Vor und Nachnamen.Designer.cs">
+      <DependentUpon>201809040459030_Added Vor und Nachnamen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -82,6 +90,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808121235524_Recreate Database.resx">
       <DependentUpon>201808121235524_Recreate Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809040149337_Changeing Data to multiple Physiotherapists per timeslot.resx">
+      <DependentUpon>201809040149337_Changeing Data to multiple Physiotherapists per timeslot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809040459030_Added Vor und Nachnamen.resx">
+      <DependentUpon>201809040459030_Added Vor und Nachnamen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

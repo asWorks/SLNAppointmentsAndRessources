@@ -120,7 +120,7 @@ namespace Services
 
                 DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
 
-                for (int i = 0; i <= 32; i++)
+                for (int i = 0; i <= 16; i++)
                 {
 
                     var t = new TerminData();
@@ -130,17 +130,19 @@ namespace Services
 
                     foreach (var b in behandler)
                     {
-                        var bpt = new BehandlerPatientenTermin(dt, b.ID, 0, string.Format("{0} {1}", b.VORNAME, b.NACHNAME),
-                                                              "frei", man, 0, false, false);
+                        var bpt = new BehandlerPatientenTermin(dt, b.ID, 0, b.VORNAME, b.NACHNAME,"Nicht","vergeben",
+                                                               man, 0, false, false);
 
-                        AppRepo.Insert(t);
+
+                        t.BehandlerPatientenTermine.Add(bpt);
+
                         //buffer.Add(t);
                     }
-
-                    dt = dt.AddMinutes(15);
+                    AppRepo.Insert(t);
+                    dt = dt.AddMinutes(30);
                 }
 
-                if (SaveAppointments()>0)
+                if (SaveAppointments() > 0)
                 {
                     return GenerateAppointmentResult.Success;
                 }

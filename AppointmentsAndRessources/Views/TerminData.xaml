@@ -38,8 +38,8 @@
 
         <Border BorderThickness="1" BorderBrush="#FF3424D6" CornerRadius="7" Margin="2,2,2,0">
             <StackPanel Margin="5" AllowDrop="True" cal:Message.Attach="[Event Drop] = [Action GetDropInfo($this,$eventArgs]" >
-                <!--<TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
-                --><!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />--><!--
+                <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
+                <!--<ComboBox ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" ItemTemplate="{StaticResource ComboBoxTemplate}" />--><!--
                 <TextBlock Text="{Binding Path=PatientenName}"/>-->
                 <!--<TextBlock Text="{Binding Behandler}" Background="{Binding BehandlerBackground}" Margin="0,2,0,2"/>-->
 

@@ -120,6 +120,9 @@
     <Compile Include="Views\AerzteListeView.xaml.cs">
       <DependentUpon>AerzteListeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BehandlerPatientTermin.xaml.cs">
+      <DependentUpon>BehandlerPatientTermin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TerminDataAll.xaml.cs">
       <DependentUpon>TerminDataAll.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AerzteListeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BehandlerPatientTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

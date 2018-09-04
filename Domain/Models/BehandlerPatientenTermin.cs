@@ -29,6 +29,14 @@ namespace Domain.Models
 
         public bool istAusgefuehrt { get; set; }
 
+        public string PatientenVorname { get; set; }
+
+        public string PatientenNachname { get; set; }
+
+        public string BehandlerVorname { get; set; }
+
+        public string BehandlerNachname { get; set; }
+
         public bool test { get; set; }
 
 
@@ -74,15 +82,20 @@ namespace Domain.Models
         }
 
         public BehandlerPatientenTermin(DateTime termin, int behandlerID,
-                                        int patientenID, string behandlerName, string patientenName,
+                                        int patientenID, string behandlerVorname,string behandlerNachname,
+                                        string patientenVorname,string patientenNachname, 
                                         int mandantID, int rezeptID,bool ist_vergeben,bool ist_ausgefuehrt )
         {
 
             Termin = termin;
             BehandlerID = behandlerID;
             PatientenID = patientenID;
-            BehandlerName = behandlerName;
-            PatientenName = patientenName;
+            PatientenVorname = patientenVorname;
+            PatientenNachname = patientenNachname;
+            BehandlerVorname = behandlerVorname;
+            BehandlerNachname = behandlerNachname;
+            
+           
             MandantID = mandantID;
             RezeptID = rezeptID;
             this.istVergeben =ist_vergeben;
