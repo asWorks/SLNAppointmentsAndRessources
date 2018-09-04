@@ -1,23 +1,27 @@
-﻿using System;
+﻿using Dal.Repositories;
+using Domain.Models;
+using MySQL_Dal;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
-using Dal.Repositories;
-using MySQL_Dal;
-using MySQL_Dal_CodeFirst;
-using System.Globalization;
-using System.Windows.Input;
 
 
 namespace Services
 {
     public class AppointmentDataService
     {
-        DbContext _TherapiContext;
-        DbContext _AppointmentContext;
+        public enum GenerateAppointmentResult
+        {
+            Success,
+            NoData,
+            NoWorkingDay,
+            Failure
+        }
+
+        private DbContext _TherapiContext;
+        private DbContext _AppointmentContext;
 
         public AppointmentDataService()
         {
@@ -46,7 +50,12 @@ namespace Services
             {
                 try
                 {
-                    terminListe = await GenerateTermineAsync(ForDate);
+                    var res = await GenerateTermineAsync(ForDate);
+                    if (res == GenerateAppointmentResult.Success)
+                    {
+                        var t2 = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
+                        terminListe = t2.ToList();
+                    }
                 }
                 catch (Exception)
                 {
@@ -70,7 +79,7 @@ namespace Services
 
         }
 
-        public async Task<List<TerminData>> GenerateTermineAsync(DateTime forDate)
+        public async Task<GenerateAppointmentResult> GenerateTermineAsync(DateTime forDate)
         {
 
             try
@@ -91,7 +100,7 @@ namespace Services
         }
 
 
-        private List<TerminData> GenerateTermine(DateTime forDate)
+        private GenerateAppointmentResult GenerateTermine(DateTime forDate)
         {
             try
             {
@@ -99,7 +108,7 @@ namespace Services
 
                 if (forDate.IstFeiertag())
                 {
-                    return buffer;
+                    return GenerateAppointmentResult.NoWorkingDay;
                 }
 
                 var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
@@ -113,27 +122,33 @@ namespace Services
 
                 for (int i = 0; i <= 32; i++)
                 {
-                    foreach (var item in behandler)
+
+                    var t = new TerminData();
+                    t.Termin = dt;
+                    t.BehandlerPatientenTermine = new List<BehandlerPatientenTermin>();
+                    int man = MandatenService.GetCurrentMandant();
+
+                    foreach (var b in behandler)
                     {
-                        var t = new TerminData();
-                        t.Termin = dt;
-                        t.BehandlerID = item.ID;
-                        t.Behandler = string.Format("{0} {1}", item.VORNAME, item.NACHNAME);
-                        t.PatientenID = 0;
-                        t.PatientenName = "Freier Termin";
-                        t.Mandant = MandatenService.GetCurrentMandant();
-                        t.Memo = "";
-                        t.RezeptID = 0;
-                        t.istVergeben = false;
-                        t.istAusgeführt = false;
+                        var bpt = new BehandlerPatientenTermin(dt, b.ID, 0, string.Format("{0} {1}", b.VORNAME, b.NACHNAME),
+                                                              "frei", man, 0, false, false);
+
                         AppRepo.Insert(t);
-                        buffer.Add(t);
+                        //buffer.Add(t);
                     }
 
                     dt = dt.AddMinutes(15);
                 }
 
-                return buffer;
+                if (SaveAppointments()>0)
+                {
+                    return GenerateAppointmentResult.Success;
+                }
+                else
+                {
+                    return GenerateAppointmentResult.Failure;
+                }
+
             }
             catch (Exception)
             {
@@ -144,7 +159,7 @@ namespace Services
 
         }
 
-        DateTime SetTimeForDate(DateTime Datum, int hour, int minute, int second)
+        private DateTime SetTimeForDate(DateTime Datum, int hour, int minute, int second)
         {
 
             DateTime Neu = new DateTime(Datum.Year, Datum.Month, Datum.Day, hour, minute, second);
@@ -153,7 +168,7 @@ namespace Services
 
         }
 
-        List<DateTime> GetWeekDates(int weeknumber)
+        private List<DateTime> GetWeekDates(int weeknumber)
         {
 
 

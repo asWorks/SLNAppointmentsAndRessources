@@ -185,8 +185,8 @@ namespace AppointmentsAndRessourses
 
      public void addTerminData()
         {
-            var x = new TerminData { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = 125 };
-            Terminlisten[1].Add(x);
+            //var x = new TerminData { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), Id = 125 };
+            //Terminlisten[1].Add(x);
         }
 
 

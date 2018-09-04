@@ -113,11 +113,7 @@ namespace AppointmentsAndRessourses.ViewModels
 
         }
 
-        public void addTerminData()
-        {
-            var x = new TerminDataViewModel { PatientenName = "Marc Marcieu", Behandler = "Anja", Termin = new DateTime(2017, 11, 6, 11, 25, 0), ID = 125 };
-            Termine.Add(x);
-        }
+     
 
         
         public void BtnSave()
@@ -138,7 +134,7 @@ namespace AppointmentsAndRessourses.ViewModels
         {
             int res = message.Message;
 
-            Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.BehandlerID ==res));
+            //Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.BehandlerID ==res));
 
             
 

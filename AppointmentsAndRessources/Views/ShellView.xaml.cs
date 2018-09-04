@@ -152,7 +152,7 @@ namespace AppointmentsAndRessources.Views
 
                 //Just as commnt for a commit
 
-                var td = new TerminDataViewModel { Behandler = "Mariann", PatientenName = "Michael Stöver", ID = 10 };
+                var td = new TerminDataViewModel {  ID = 10 };
 
                 //System.Windows.DragDrop.DoDragDrop(rect,
                 //              DateTime.Now.ToLongTimeString(),

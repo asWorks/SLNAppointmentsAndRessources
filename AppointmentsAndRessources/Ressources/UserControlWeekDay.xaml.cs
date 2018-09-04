@@ -25,7 +25,7 @@ namespace AppointmentsAndRessources.Ressources
             var v = this.Values;
             
 
-            MessageBox.Show(dragged.PatientenName);
+            MessageBox.Show(dragged.Termin.ToString());
 
         }
     }

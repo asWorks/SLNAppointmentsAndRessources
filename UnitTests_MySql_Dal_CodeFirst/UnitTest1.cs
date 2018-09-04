@@ -41,7 +41,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
 
                 }
 
-                var ap = new TerminData { ID = 1, PatientenName = "Arpad Stöver", PatientenID = 123456, Memo = "Test", Behandler = "Mariann", Termin = DateTime.Now };
+                var ap = new TerminData { ID = 1,  Termin = DateTime.Now };
                 db.Termine.Add(ap);
                 db.SaveChanges();
             }
@@ -60,7 +60,7 @@ namespace UnitTests_MySql_Dal_CodeFirst
 
             foreach (var item in buf)
             {
-                item.PatientenName = "qwertz ungngfffn";
+                //item.PatientenName = "qwertz ungngfffn";
             }
 
             apoService.SaveAppointments();

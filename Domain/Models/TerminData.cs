@@ -10,35 +10,47 @@ namespace Domain.Models
     {
 
 
+      
+
+        public int ID { get; set; }
+
+        public DateTime Termin { get; set; }
+
+        public virtual ICollection<BehandlerPatientenTermin> BehandlerPatientenTermine { get; set; }
+
+        public TerminData(DateTime termin)
+        {
+            Termin = termin;
+        }
+
         public TerminData()
         {
 
         }
-        public int ID { get; set; }
-        public int PatientenID { get; set; }
 
-        public string PatientenName { get; set; }
+        public TerminData(DateTime termin, List<BehandlerPatientenTermin> termine)
+        {
+            if (BehandlerPatientenTermine == null)
+            {
+                BehandlerPatientenTermine = new List<BehandlerPatientenTermin>();
+            }
+            Termin = termin;
+            BehandlerPatientenTermine = termine;
+        }
 
-        public string Memo { get; set; }
+        public TerminData(int id,DateTime termin, List<BehandlerPatientenTermin> termine)
+        {
 
-        public int BehandlerID { get; set; }
+            ID = id;
+           
 
-        public string Behandler { get; set; }
-
-        public DateTime Termin { get; set; }
-
-        public int Mandant { get; set; }
-
-        public int RezeptID { get; set; }
-
-        public bool istVergeben { get; set; }
-
-        public bool istAusgeführt { get; set; }
-
-        public bool  test { get; set; }
-
-
-
+            if (BehandlerPatientenTermine == null)
+            {
+                BehandlerPatientenTermine = new List<BehandlerPatientenTermin>();
+            }
+            Termin = termin;
+            BehandlerPatientenTermine = termine;
+        }
 
     }
 }

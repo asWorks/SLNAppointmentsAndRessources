@@ -36,8 +36,7 @@ namespace AppointmentsAndRessources.ViewModels
             }
             else
             {
-                this.PatientenID = 0;
-                this.PatientenName = "Freier Termin";
+               
                 isSelected = false;
             }
 
@@ -47,86 +46,41 @@ namespace AppointmentsAndRessources.ViewModels
 
         public TerminData GetModel()
         {
-            var model = new TerminData { PatientenName = this.PatientenName, PatientenID = this.PatientenID, BehandlerID = this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            var bpt = new List<BehandlerPatientenTermin>();
+            foreach (var item in this.BehandlerPatientenTermine)
+            {
+                bpt.Add(item.GetModel());
+            }
+            var model = new TerminData(this.ID, this.Termin, bpt);
+           
             return model;
 
         }
 
         public void LoadFromModel(TerminData model)
         {
-            var vm = new TerminDataViewModel { PatientenName = this.PatientenName, PatientenID = this.PatientenID, BehandlerID = this.BehandlerID, Behandler = this.Behandler, Termin = this.Termin, ID = this.ID };
+            BehandlerPatientenTerminViewModel bptvm;
+            var bpt = new ObservableCollection<BehandlerPatientenTerminViewModel>();
+            foreach (var item in model.BehandlerPatientenTermine)
+            {
+                bptvm = new BehandlerPatientenTerminViewModel(item);
+                bpt.Add(bptvm);
+            }
+            var vm = new TerminDataViewModel { Termin = this.Termin, ID = this.ID, BehandlerPatientenTermine = bpt };
             //    return vm;
         }
 
 
-        public void SetBehandlerBrush()
-        {
-            Brush bg;
-            switch (BehandlerID)
-            {
-                case 8:
-                    {
-                        bg = new SolidColorBrush(Colors.LightSalmon);
-                        break;
-                    }
+     
 
-                case 10:
-                    {
-                        bg = new SolidColorBrush(Colors.LightBlue);
-                        break;
-                    }
-                case 9:
-                    {
-                        bg = new SolidColorBrush(Colors.LimeGreen);
-                        break;
-                    }
-                default:
-                    {
-                        bg = new SolidColorBrush(Colors.White);
-                        break;
-                    }
-            }
-
-            BehandlerBackground = bg;
-
-        }
-
-        public void SetSelectedBrush(bool flag)
-        {
-            Brush bg;
-            switch (flag)
-            {
-                case true:
-                    {
-                        bg = new SolidColorBrush(Colors.Yellow);
-                        break;
-                    }
-
-                case false:
-                    {
-                        bg = new SolidColorBrush(Colors.White);
-                        break;
-                    }
-
-
-                default:
-                    {
-                        bg = new SolidColorBrush(Colors.LightBlue);
-                        break;
-                    }
-            }
-
-            TerminBackground = bg;
-
-        }
+      
 
         #endregion
 
         #region "Constructors"
         public TerminDataViewModel()
         {
-            //Patienten = new ObservableCollection<string> { "Freier Termin", "Arpad Stöver", "Helmut Kahl", "Knut Kummert", "Georg Witt", "Jennifer Walter", "Marc Marcieu" };
-            //SelectedPatient = Patienten[0];
+          
         }
 
         public TerminDataViewModel(IEventAggregator aggregator)
@@ -140,14 +94,7 @@ namespace AppointmentsAndRessources.ViewModels
         {
             TerminBackground = new SolidColorBrush(Colors.White);
             Appointment = model;
-            PatientenName = model.PatientenName;
-            Behandler = model.Behandler;
-            PatientenID = model.PatientenID;
-            BehandlerID = model.BehandlerID;
-            Termin = model.Termin;
-            ID = model.ID;
-            isSelected = model.istVergeben;
-            istAusgeführt = model.istAusgeführt;
+         
             
            
         }
@@ -156,12 +103,21 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Collections"
 
-        //private ObservableCollection<string> _Patienten;
 
-        //public static explicit operator TerminDataViewModel(ListViewItem v)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private ObservableCollection<BehandlerPatientenTerminViewModel> _BehandlerPatientenTermine;
+        public ObservableCollection<BehandlerPatientenTerminViewModel> BehandlerPatientenTermine
+        {
+            get { return _BehandlerPatientenTermine; }
+            set
+            {
+                if (value != _BehandlerPatientenTermine)
+                {
+                    _BehandlerPatientenTermine = value;
+                    NotifyOfPropertyChange(() => BehandlerPatientenTermine);
+                    //  isDirty = true;
+                }
+            }
+        }
 
 
         #endregion
@@ -189,96 +145,7 @@ namespace AppointmentsAndRessources.ViewModels
 
 
 
-        private bool _istAusgeführt;
-        public bool istAusgeführt
-        {
-            get { return _istAusgeführt; }
-            set
-            {
-                if (value != _istAusgeführt)
-                {
-                    _istAusgeführt = value;
-                    NotifyOfPropertyChange(() => istAusgeführt);
-                    Appointment.istAusgeführt = value;
-                    //  isDirty = true;
-                }
-            }
-        }
-
-        private int _PatientenID;
-        public int PatientenID
-        {
-            get { return _PatientenID; }
-            set
-            {
-                if (value != _PatientenID)
-                {
-                    _PatientenID = value;
-                    Appointment.PatientenID = value;
-                    NotifyOfPropertyChange(() => PatientenID);
-                    //  isDirty = true;
-                }
-            }
-        }
-
-        private string _PatientenName;
-        public string PatientenName
-        {
-            get { return _PatientenName; }
-            set
-            {
-                if (value != _PatientenName)
-                {
-                    _PatientenName = value;
-                    Appointment.PatientenName = value;
-                    NotifyOfPropertyChange(() => PatientenName);
-                    //NotifyOfPropertyChange(() => Appointment);
-                    //  isDirty = true;
-                }
-            }
-        }
-
-
-
-        private int _BehandlerID;
-        public int BehandlerID
-        {
-            get { return _BehandlerID; }
-            set
-            {
-                if (value != _BehandlerID)
-                {
-                    _BehandlerID = value;
-                    Appointment.BehandlerID = value;
-                    NotifyOfPropertyChange(() => BehandlerID);
-                    SetBehandlerBrush();
-                    //  isDirty = true;
-                }
-            }
-        }
-
-        private string _Behandler;
-        public string Behandler
-        {
-            get { return _Behandler; }
-            set
-            {
-                if (value != _Behandler)
-                {
-                    _Behandler = value;
-                    Appointment.Behandler = value;
-
-                    NotifyOfPropertyChange(() => Behandler);
-
-
-                    //  isDirty = true;
-                }
-            }
-        }
-
-
-
-
+     
 
 
       
@@ -325,9 +192,9 @@ namespace AppointmentsAndRessources.ViewModels
             {
                 if (value != _isSelected)
                 {
-                    SetSelectedBrush(value);
+                    //SetSelectedBrush(value);
                     _isSelected = value;
-                    Appointment.istVergeben = value;
+                    //Appointment.istVergeben = value;
                     NotifyOfPropertyChange(() => isSelected);
                     //  isDirty = true;
                 }
@@ -381,8 +248,8 @@ namespace AppointmentsAndRessources.ViewModels
 
             //var v = (TerminDataViewModel)this.DataContext;
 
-            PatientenID = dragged.PatientenId;
-            PatientenName = dragged.PatientenFullName;
+            //PatientenID = dragged.PatientenId;
+            //PatientenName = dragged.PatientenFullName;
             isSelected = true;
         }
 
@@ -405,8 +272,8 @@ namespace AppointmentsAndRessources.ViewModels
             {
                 if (message.TerminId == this.ID && message.isInValidState == true)
                 {
-                    PatientenID = message.patientenInfo.PatientenId;
-                    PatientenName = message.patientenInfo.PatientenFullName;
+                    //PatientenID = message.patientenInfo.PatientenId;
+                    //PatientenName = message.patientenInfo.PatientenFullName;
                  
                  
                     isSelected = true;
