@@ -65,7 +65,7 @@ namespace AppointmentsAndRessources.ViewModels
             var bpt = new ObservableCollection<BehandlerPatientenTerminViewModel>();
             foreach (var item in model.BehandlerPatientenTermine)
             {
-                bptvm = new BehandlerPatientenTerminViewModel(item);
+                bptvm = new BehandlerPatientenTerminViewModel(item,_eventAggregator);
                 bpt.Add(bptvm);
             }
 

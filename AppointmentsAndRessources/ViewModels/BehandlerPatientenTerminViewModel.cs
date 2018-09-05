@@ -1,24 +1,33 @@
-﻿using Caliburn.Micro;
+﻿using AppointmentsAndRessources.Events;
+using Caliburn.Micro;
 using Domain.Models;
 using System;
 using System.Windows.Media;
 
 namespace AppointmentsAndRessources.ViewModels
 {
-    public class BehandlerPatientenTerminViewModel : Screen
+    public class BehandlerPatientenTerminViewModel : Screen, IHandle<PatientenInfoChangedMessage>
     {
+
+        #region "Local Fields"
+        private IEventAggregator _eventAggregator;
+
+
+        #endregion
 
         #region "Constructors"
 
         private BehandlerPatientenTermin bpt;
 
-        public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model)
+        public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model, IEventAggregator aggregator)
         {
 
 
+            _eventAggregator = aggregator;
+            aggregator.Subscribe(this);
 
             bpt = model;
-
+            ID = model.ID;
             Termin = model.Termin;
             BehandlerID = model.BehandlerID;
             PatientenID = model.PatientenID;
@@ -32,7 +41,9 @@ namespace AppointmentsAndRessources.ViewModels
             this.istAusgefuehrt = model.istAusgefuehrt;
             SetBehandlerPatientenName();
 
-
+            ImageUriLink = new Uri("pack://application:,,,/AppointmentsAndRessources; component/Assets/Pictures/Link_02_24.png",UriKind.Absolute);
+            //"pack://application:,,,/ApplicationNamespace;component/Images/App/image.png";
+            // AppointmentsAndRessources; component / Assets / Pictures / Link_02_24.png"
         }
 
         private void SetBehandlerPatientenName()
@@ -46,6 +57,42 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Properties"
 
+
+        public string ImagePathTest
+        {
+            get { return "/AppointmentsAndRessources;component/Assets/Pictures/Link_02_48.png"; }
+        }
+
+
+        private string _ImagePathInfo;
+        public string ImagePathInfo
+        {
+            get { return _ImagePathInfo; }
+            set
+            {
+                if (value != _ImagePathInfo)
+                {
+                    _ImagePathInfo = value;
+                    NotifyOfPropertyChange(() => ImagePathInfo);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+        private int _ID;
+        public int ID
+        {
+            get { return _ID; }
+            set
+            {
+                if (value != _ID)
+                {
+                    _ID = value;
+                    NotifyOfPropertyChange(() => ID);
+                    //  isDirty = true;
+                }
+            }
+        }
 
         private DateTime _Termin;
         public DateTime Termin
@@ -108,7 +155,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _PatientenVorname = value;
                     bpt.PatientenVorname = value;
-                  
+
                     NotifyOfPropertyChange(() => PatientenVorname);
                     //  isDirty = true;
                 }
@@ -199,7 +246,7 @@ namespace AppointmentsAndRessources.ViewModels
                     _BehandlerName = value;
                     bpt.BehandlerName = value;
                     NotifyOfPropertyChange(() => BehandlerName);
-                  
+
                     //  isDirty = true;
                 }
             }
@@ -207,7 +254,7 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
 
-    
+
         private bool _istVergeben;
         public bool istVergeben
         {
@@ -218,6 +265,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _istVergeben = value;
                     bpt.istVergeben = value;
+                    isSelected = value;
                     NotifyOfPropertyChange(() => istVergeben);
                     //  isDirty = true;
                 }
@@ -274,12 +322,71 @@ namespace AppointmentsAndRessources.ViewModels
                 }
             }
         }
+
+        private bool _isSelected;
+        public bool isSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (value != _isSelected)
+                {
+                    _isSelected = value;
+                    bpt.istVergeben = value;
+                    SetSelectedBrush(value);
+                    NotifyOfPropertyChange(() => isSelected);
+                    //  isDirty = true;
+                }
+            }
+        }
+
+
+
+
+        private Uri _ImageUriLink;
+        public Uri ImageUriLink
+        {
+            get { return _ImageUriLink; }
+            set
+            {
+                if (value != _ImageUriLink)
+                {
+                    _ImageUriLink = value;
+                    NotifyOfPropertyChange(() => ImageUriLink);
+                    //  isDirty = true;
+                }
+            }
+        }
+ 
         #endregion
+
+
+
 
         #region "Functions"
         public BehandlerPatientenTermin GetModel()
         {
             return bpt;
+        }
+
+        public void CheckTermin()
+        {
+
+            //isSelected = !isSelected;
+            if (!isSelected)
+            {
+
+                _eventAggregator.PublishOnUIThread(new RequestPatientenInfoMessage(this.ID));
+               
+            }
+            else
+            {
+
+               // isSelected = false;
+            }
+
+
+
         }
 
 
@@ -379,11 +486,32 @@ namespace AppointmentsAndRessources.ViewModels
 
         }
 
-
-
         #endregion
 
+        #region "Events"
 
+        public void Handle(PatientenInfoChangedMessage message)
+        {
+            if (message != null)
+            {
+                if (message.TerminId == this.ID && message.isInValidState == true)
+                {
+                    PatientenID = message.patientenInfo.PatientenId;
+
+                    PatientenVorname = message.patientenInfo.PatientenVorname;
+                    PatientenNachname = message.patientenInfo.PatientenNachname;
+                    ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Bulb_green_48.png";
+
+
+                    isSelected = true;
+
+                }
+
+
+            }
+        }
+
+        #endregion
 
     }
 }

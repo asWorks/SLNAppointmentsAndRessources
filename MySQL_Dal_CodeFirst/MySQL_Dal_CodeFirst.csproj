@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201809040459030_Added Vor und Nachnamen.Designer.cs">
       <DependentUpon>201809040459030_Added Vor und Nachnamen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809042337336_Aenderung Schreibweise Id nach ID.cs" />
+    <Compile Include="Migrations\201809042337336_Aenderung Schreibweise Id nach ID.Designer.cs">
+      <DependentUpon>201809042337336_Aenderung Schreibweise Id nach ID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809040459030_Added Vor und Nachnamen.resx">
       <DependentUpon>201809040459030_Added Vor und Nachnamen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809042337336_Aenderung Schreibweise Id nach ID.resx">
+      <DependentUpon>201809042337336_Aenderung Schreibweise Id nach ID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

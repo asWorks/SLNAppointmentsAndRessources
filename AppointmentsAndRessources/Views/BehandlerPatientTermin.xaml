@@ -4,14 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AppointmentsAndRessources.Views"
+               xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border BorderBrush="#FF173BE0" CornerRadius="3" BorderThickness="1" >
-            <StackPanel>
+            <StackPanel Background="{Binding TerminBackground}">
 
-                <TextBlock Text="{Binding BehandlerVorname}" Margin="0,0,0,5"/>
-               
+                <TextBlock Text="{Binding BehandlerVorname}" Margin="0,0,0,5" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]" />
+              
+                <Image Source="{Binding ImagePathInfo}" Width="65" Height="35"/>
                 <TextBlock Text="{Binding PatientenVorname}"/>
                 <TextBlock Text="{Binding PatientenNachname}"/>
                 

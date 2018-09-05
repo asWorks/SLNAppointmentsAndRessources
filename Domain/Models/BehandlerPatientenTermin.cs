@@ -10,7 +10,7 @@ namespace Domain.Models
     public class BehandlerPatientenTermin : INotifyPropertyChanged
     {
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public DateTime Datum { get; set; }
 

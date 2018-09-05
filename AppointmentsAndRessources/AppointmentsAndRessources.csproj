@@ -269,5 +269,25 @@
   <ItemGroup>
     <Folder Include="UserControls\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\Link - 01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\Link_02_16.png" />
+    <Resource Include="Assets\Pictures\Link_02_24.png" />
+    <Resource Include="Assets\Pictures\Link_02_32.png" />
+    <Resource Include="Assets\Pictures\Link_02_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\Bulb_yellow_24.png" />
+    <Resource Include="Assets\Pictures\Bulb_yellow_32.png" />
+    <Resource Include="Assets\Pictures\Bulb_yellow_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\Bulb_green_128.png" />
+    <Resource Include="Assets\Pictures\Bulb_green_24.png" />
+    <Resource Include="Assets\Pictures\Bulb_green_32.png" />
+    <Resource Include="Assets\Pictures\Bulb_green_48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

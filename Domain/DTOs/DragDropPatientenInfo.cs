@@ -10,11 +10,16 @@ namespace Domain.DTOs
     {
         public int PatientenId { get; set; }
         public string PatientenFullName { get; set; }
+        public string PatientenVorname { get; set; }
+
+        public string PatientenNachname { get; set; }
 
         public DragDropPatientenInfo(int Id,string Nachname,string Vorname)    
         {
             PatientenId = Id;
             PatientenFullName = string.Format("{0} {1}", Vorname, Nachname);
+            PatientenVorname = Vorname;
+            PatientenNachname = Nachname;
         }
 
         public DragDropPatientenInfo(MySQL_Dal.pat5 patient):this(patient.id,patient.V_NAME,patient.N_NAME)
