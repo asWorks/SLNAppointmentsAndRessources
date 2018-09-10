@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Models
 {
     public class BehandlerPatientenTermin : INotifyPropertyChanged
     {
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Properties
 
         public int ID { get; set; }
-
-        public DateTime Datum { get; set; }
-
-        public DateTime Uhrzeit { get; set; }
-
 
         public int BehandlerID { get; set; }
 
@@ -74,7 +70,9 @@ namespace Domain.Models
 
 
         public string BehandlerName { get; set; }
+        #endregion
 
+        #region Constructors
 
         public BehandlerPatientenTermin()
         {
@@ -82,9 +80,9 @@ namespace Domain.Models
         }
 
         public BehandlerPatientenTermin(DateTime termin, int behandlerID,
-                                        int patientenID, string behandlerVorname,string behandlerNachname,
-                                        string patientenVorname,string patientenNachname, 
-                                        int mandantID, int rezeptID,bool ist_vergeben,bool ist_ausgefuehrt )
+                                        int patientenID, string behandlerVorname, string behandlerNachname,
+                                        string patientenVorname, string patientenNachname,
+                                        int mandantID, int rezeptID, bool ist_vergeben, bool ist_ausgefuehrt)
         {
 
             Termin = termin;
@@ -94,18 +92,18 @@ namespace Domain.Models
             PatientenNachname = patientenNachname;
             BehandlerVorname = behandlerVorname;
             BehandlerNachname = behandlerNachname;
-            
-           
+
+
             MandantID = mandantID;
             RezeptID = rezeptID;
-            this.istVergeben =ist_vergeben;
+            this.istVergeben = ist_vergeben;
             this.istAusgefuehrt = ist_ausgefuehrt;
 
         }
 
+        #endregion
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Functions
 
         protected void OnPropertyChanged(string name)
         {
@@ -114,7 +112,11 @@ namespace Domain.Models
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
-        }
+        } 
+
+        #endregion
+
+
 
 
     }
