@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201809042337336_Aenderung Schreibweise Id nach ID.Designer.cs">
       <DependentUpon>201809042337336_Aenderung Schreibweise Id nach ID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809101511193_Removed Datum, Uhrzeit from BehandlerTerminePatienten.cs" />
+    <Compile Include="Migrations\201809101511193_Removed Datum, Uhrzeit from BehandlerTerminePatienten.Designer.cs">
+      <DependentUpon>201809101511193_Removed Datum, Uhrzeit from BehandlerTerminePatienten.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809042337336_Aenderung Schreibweise Id nach ID.resx">
       <DependentUpon>201809042337336_Aenderung Schreibweise Id nach ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809101511193_Removed Datum, Uhrzeit from BehandlerTerminePatienten.resx">
+      <DependentUpon>201809101511193_Removed Datum, Uhrzeit from BehandlerTerminePatienten.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

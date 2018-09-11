@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DTOs\DragDropPatientenInfo.cs" />
     <Compile Include="Models\BehandlerPatientenTermin.cs" />
+    <Compile Include="Models\Interfaces\ITerminStatus.cs" />
+    <Compile Include="Models\Interfaces\ITerminType.cs" />
     <Compile Include="Models\TerminData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

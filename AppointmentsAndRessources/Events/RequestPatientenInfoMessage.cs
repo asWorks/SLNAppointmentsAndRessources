@@ -11,7 +11,7 @@ namespace AppointmentsAndRessources.Events
 
 
         public int TerminId { get; set; }
-                                           // public Func<Domain.DTOs.DragDropPatientenInfo> GetPationenInfo;
+                                          
         public RequestPatientenInfoMessage(int terminId)
         {
             TerminId = terminId;

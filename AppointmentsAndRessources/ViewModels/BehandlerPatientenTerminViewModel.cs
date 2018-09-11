@@ -11,13 +11,13 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Local Fields"
         private IEventAggregator _eventAggregator;
+        private BehandlerPatientenTermin bpt;
 
 
         #endregion
 
         #region "Constructors"
 
-        private BehandlerPatientenTermin bpt;
 
         public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model, IEventAggregator aggregator)
         {
@@ -333,7 +333,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _isSelected = value;
                     bpt.istVergeben = value;
-                    SetSelectedBrush(value);
+                     SetSelectedBrush(value);
                     NotifyOfPropertyChange(() => isSelected);
                     //  isDirty = true;
                 }
