@@ -28,7 +28,7 @@ namespace AppointmentsAndRessources.Views
         {
             InitializeComponent();
             this.DataContextChanged += WeekDisplayView_DataContextChanged;
-            this.UpDownWeekNumber.Value = 29;
+            //this.UpDownWeekNumber.Value = 29;
         }
 
         private void WeekDisplayView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -46,7 +46,7 @@ namespace AppointmentsAndRessources.Views
 
         private void TestBusy_Click(object sender, RoutedEventArgs e)
         {
-           this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
+          // this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
 
             //BusyIndicator.IsBusy = true;
             //TestBusy.IsEnabled = false;

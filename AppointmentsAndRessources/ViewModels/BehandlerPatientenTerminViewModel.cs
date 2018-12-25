@@ -381,8 +381,12 @@ namespace AppointmentsAndRessources.ViewModels
             }
             else
             {
+                PatientenID = 0;
 
-               // isSelected = false;
+                PatientenVorname = "Nicht";
+                PatientenNachname = "vergeben";
+                ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Link_02_24.png";
+                isSelected = false;
             }
 
 
@@ -500,7 +504,7 @@ namespace AppointmentsAndRessources.ViewModels
 
                     PatientenVorname = message.patientenInfo.PatientenVorname;
                     PatientenNachname = message.patientenInfo.PatientenNachname;
-                    ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Bulb_green_48.png";
+                    ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Bulb_green_24.png";
 
 
                     isSelected = true;

@@ -47,9 +47,9 @@
             <!--<syncfusion:UpDown />
             <syncfusion:SfBusyIndicator />-->
             
-            <syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged"  Visibility="Visible" PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown" Value="{Binding WeekNumber}"/>
+            <!--<syncfusion:UpDown x:Name="UpDownWeekNumber" ValueChanged="UpDownWeekNumber_ValueChanged"  Visibility="Visible" PreviewMouseDown="UpDownWeekNumber_PreviewMouseDown" Value="{Binding WeekNumber}"/>
        
-            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />
+            <syncfusion:SfBusyIndicator x:Name="BusyIndicator" Width="30" Height="30" AnimationType="DoubleCircle" Header="Loading . . " IsBusy="{Binding IsLoadingData, Mode=TwoWay}" />-->
             <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
             <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
             <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
