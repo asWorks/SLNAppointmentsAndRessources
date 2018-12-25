@@ -45,6 +45,7 @@
     <Compile Include="Models\Interfaces\ITerminStatus.cs" />
     <Compile Include="Models\Interfaces\ITerminType.cs" />
     <Compile Include="Models\TerminData.cs" />
+    <Compile Include="Models\TestPeople.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

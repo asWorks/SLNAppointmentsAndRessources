@@ -23,6 +23,7 @@ namespace AppointmentsAndRessources {
             container.PerRequest<IAerzteListeViewModel, AerzteListeViewModel>();
             container.PerRequest<IWeekDisplayViewModel, WeekDisplayViewModel>();
             container.PerRequest<IWeekDayViewModel, AppointmentsAndRessourses.ViewModels.WeekDayViewModel>();
+            container.PerRequest<ITestPeopleViewModel, TestPeopleViewModel>();
         }
 
         protected override object GetInstance(Type service, string key) {

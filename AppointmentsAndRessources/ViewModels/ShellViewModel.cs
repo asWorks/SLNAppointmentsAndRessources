@@ -21,6 +21,7 @@ namespace AppointmentsAndRessources.ViewModels
         private readonly IEventAggregator _events;
         private readonly IAerzteListeViewModel AerzteListeVModel;
         private readonly IWeekDisplayViewModel weekDisplayViewModel;
+        private readonly ITestPeopleViewModel testPeopleViewModel;
 
         //public IWeekDisplayViewModel weekDisplayViewModel { get; set; }
 
@@ -39,12 +40,17 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
         [ImportingConstructor]
-        public ShellViewModel(IAerzteListeViewModel aerzteListeVm, IWeekDisplayViewModel weekDisplayVM, IEventAggregator events)
+        public ShellViewModel(IAerzteListeViewModel aerzteListeVm,
+            IWeekDisplayViewModel weekDisplayVM,
+            ITestPeopleViewModel testPeopleVM,
+            IEventAggregator events)
         {
             _events = events;
             AerzteListeVModel = aerzteListeVm;
             //weekDisplayViewModel = new WeekDisplayViewModel();
             weekDisplayViewModel = weekDisplayVM;
+            testPeopleViewModel = testPeopleVM;
+
             events.Subscribe(this);
 
         } 
@@ -67,6 +73,11 @@ namespace AppointmentsAndRessources.ViewModels
         {
             ActivateItem(AerzteListeVModel);
 
+        }
+
+        public void TestPeople()
+        {
+            ActivateItem(testPeopleViewModel);
         }
 
         public void Handle(EventMessage message)

@@ -24,7 +24,7 @@ namespace MySQL_Dal_CodeFirst
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<TerminData> Termine { get; set; }
-
+        public virtual DbSet<TestPeopleX> PeopleTest { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
