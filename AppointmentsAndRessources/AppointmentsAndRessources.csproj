@@ -117,6 +117,8 @@
     <Compile Include="LocalServices\ManageAppointmentscs.cs" />
     <Compile Include="ViewModels\AerzteListeViewModel.cs" />
     <Compile Include="ViewModels\BehandlerPatientenTerminViewModel.cs" />
+    <Compile Include="Interfaces\ITestPeopleViewModel.cs" />
+    <Compile Include="ViewModels\TestPeopleViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="Views\AerzteListeView.xaml.cs">
       <DependentUpon>AerzteListeView.xaml</DependentUpon>
@@ -132,6 +134,9 @@
     </Compile>
     <Compile Include="Views\TerminData.xaml.cs">
       <DependentUpon>TerminData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestPeopleView.xaml.cs">
+      <DependentUpon>TestPeopleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WeekDisplayView.xaml.cs">
       <DependentUpon>WeekDisplayView.xaml</DependentUpon>
@@ -192,6 +197,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TerminData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestPeopleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

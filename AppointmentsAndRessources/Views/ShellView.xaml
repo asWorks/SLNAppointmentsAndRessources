@@ -23,6 +23,7 @@
             <Button Content="Termine" x:Name="Termine"/>
             <Button Content="Test" x:Name="Test"/>
             <Button Content="Ärzte" x:Name="AerzteListe"/>
+            <Button Content="TestPeople" x:Name="TestPeople"/>
 
         </StackPanel>
         <Grid Grid.Column="1">
