@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentsAndRessources", "AppointmentsAndRessources\AppointmentsAndRessources.csproj", "{681E21B7-EE02-4120-8BD0-C21C4126D5C0}"
 EndProject
@@ -13,13 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL_Dal", "MySQL_Dal\MySQ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL_Dal_CodeFirst", "MySQL_Dal_CodeFirst\MySQL_Dal_CodeFirst.csproj", "{8D97CF93-78E0-4DB2-8DFE-8BF06F8BFB4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests_MySql_Dal_CodeFirst", "UnitTests_MySql_Dal_CodeFirst\UnitTests_MySql_Dal_CodeFirst.csproj", "{DD38E7CC-394F-46BC-B2F1-378105E83553}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asUserControls", "asUserControls\asUserControls.csproj", "{B331C444-C639-4C1D-A866-6CAECFEA980E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsServices", "UnitTestsServices\UnitTestsServices.csproj", "{85DD2E55-A997-42E4-931E-87CFD6EB4881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asUserControls", "asUserControls\asUserControls.csproj", "{B331C444-C639-4C1D-A866-6CAECFEA980E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests_MySql_Dal_CodeFirst", "UnitTests_MySql_Dal_CodeFirst\UnitTests_MySql_Dal_CodeFirst.csproj", "{DD38E7CC-394F-46BC-B2F1-378105E83553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,14 +69,6 @@ Global
 		{8D97CF93-78E0-4DB2-8DFE-8BF06F8BFB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D97CF93-78E0-4DB2-8DFE-8BF06F8BFB4D}.Release|x86.ActiveCfg = Release|Any CPU
 		{8D97CF93-78E0-4DB2-8DFE-8BF06F8BFB4D}.Release|x86.Build.0 = Release|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|x86.Build.0 = Debug|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|x86.ActiveCfg = Release|Any CPU
-		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|x86.Build.0 = Release|Any CPU
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -85,14 +77,6 @@ Global
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{88CA5714-28DD-43A5-8EF4-BAC265B1F2B6}.Release|x86.Build.0 = Release|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|x86.Build.0 = Debug|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|x86.ActiveCfg = Release|Any CPU
-		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|x86.Build.0 = Release|Any CPU
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -101,6 +85,22 @@ Global
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Release|x86.ActiveCfg = Release|Any CPU
 		{B331C444-C639-4C1D-A866-6CAECFEA980E}.Release|x86.Build.0 = Release|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Debug|x86.Build.0 = Debug|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|x86.ActiveCfg = Release|Any CPU
+		{85DD2E55-A997-42E4-931E-87CFD6EB4881}.Release|x86.Build.0 = Release|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Debug|x86.Build.0 = Debug|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD38E7CC-394F-46BC-B2F1-378105E83553}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
