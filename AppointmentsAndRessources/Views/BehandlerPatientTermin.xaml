@@ -15,6 +15,7 @@
                 <Image Source="{Binding ImagePathInfo}" Width="65" Height="35"/>
                 <TextBlock Text="{Binding PatientenVorname}" />
                 <TextBlock Text="{Binding PatientenNachname}"/>
+                <TextBlock Text="Behandler P T "/>
 
             </StackPanel>
         </Border>

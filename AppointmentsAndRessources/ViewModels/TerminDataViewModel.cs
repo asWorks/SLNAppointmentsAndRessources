@@ -29,7 +29,7 @@ namespace AppointmentsAndRessources.ViewModels
         {
 
             //isSelected = !isSelected;
-            if (!isSelected)
+            if (!IsSelected)
             {
 
                 _eventAggregator.PublishOnUIThread(new RequestPatientenInfoMessage(this.ID));
@@ -37,7 +37,7 @@ namespace AppointmentsAndRessources.ViewModels
             else
             {
                
-                isSelected = false;
+                IsSelected = false;
             }
 
 
@@ -65,7 +65,8 @@ namespace AppointmentsAndRessources.ViewModels
             var bpt = new ObservableCollection<BehandlerPatientenTerminViewModel>();
             foreach (var item in model.BehandlerPatientenTermine)
             {
-                bptvm = new BehandlerPatientenTerminViewModel(item,_eventAggregator);
+                bptvm = new BehandlerPatientenTerminViewModel(item,this,_eventAggregator);
+                
                 bpt.Add(bptvm);
             }
 
@@ -190,7 +191,7 @@ namespace AppointmentsAndRessources.ViewModels
 
 
         private bool _isSelected;
-        public bool isSelected
+        public bool IsSelected
         {
             get { return _isSelected; }
             set
@@ -200,12 +201,27 @@ namespace AppointmentsAndRessources.ViewModels
                     //SetSelectedBrush(value);
                     _isSelected = value;
                     //Appointment.istVergeben = value;
-                    NotifyOfPropertyChange(() => isSelected);
+                    NotifyOfPropertyChange(() => IsSelected);
                     //  isDirty = true;
                 }
             }
         }
 
+
+        private bool _isAppointmentAvailable;
+        public bool IsAppointmentAvailable
+        {
+            get { return _isAppointmentAvailable; }
+            set
+            {
+                if (value != _isAppointmentAvailable)
+                {
+                    _isAppointmentAvailable = value;
+                    NotifyOfPropertyChange(() => IsAppointmentAvailable);
+                    //  isDirty = true;
+                }
+            }
+        }
 
         private Brush _BehandlerBackground;
         public Brush BehandlerBackground
@@ -255,7 +271,7 @@ namespace AppointmentsAndRessources.ViewModels
 
             //PatientenID = dragged.PatientenId;
             //PatientenName = dragged.PatientenFullName;
-            isSelected = true;
+            IsSelected = true;
         }
 
 
@@ -281,7 +297,7 @@ namespace AppointmentsAndRessources.ViewModels
                     //PatientenName = message.patientenInfo.PatientenFullName;
                  
                  
-                    isSelected = true;
+                    IsSelected = true;
 
                 }
 

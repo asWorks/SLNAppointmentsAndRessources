@@ -151,12 +151,12 @@ namespace AppointmentsAndRessourses.ViewModels
                     }
                 case TermineFilterMessage.EnumFilterMessage.Vergebene:
                     {
-                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n=>n.isSelected==true));
+                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n=>n.IsSelected==true));
                         break;
                     }
                 case TermineFilterMessage.EnumFilterMessage.Freie:
                     {
-                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.isSelected == false));
+                        Termine = new ObservableCollection<TerminDataViewModel>(AlleTermine.Where(n => n.IsAppointmentAvailable == true));
                         break;
                     }
                 default:

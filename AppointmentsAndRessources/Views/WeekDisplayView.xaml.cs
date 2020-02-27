@@ -1,4 +1,7 @@
 ﻿using AppointmentsAndRessources.ViewModels;
+using Microsoft.Win32;
+using Syncfusion.Windows.Shared;
+using Syncfusion.Windows.Tools.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +49,7 @@ namespace AppointmentsAndRessources.Views
 
         private void TestBusy_Click(object sender, RoutedEventArgs e)
         {
-          // this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
+            // this.BusyIndicator.IsBusy = !this.BusyIndicator.IsBusy;
 
             //BusyIndicator.IsBusy = true;
             //TestBusy.IsEnabled = false;
@@ -159,10 +162,67 @@ namespace AppointmentsAndRessources.Views
         {
             var s = new Services.AppointmentDataService();
 
-            var x = await s.GetTerminListe(new DateTime(2018,11,18));
+            var x = await s.GetTerminListe(new DateTime(2018, 11, 18));
 
             MessageBox.Show(x.Count.ToString());
 
+        }
+
+        private void ColorPicker1_ColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            string s;
+            ColorPickerPalette colorPicker = d as ColorPickerPalette;
+
+            TextBlock1.Text = Syncfusion.Windows.Shared.ColorEdit.SuchColor(colorPicker.Color)[0];
+            TextBlock2.Text = colorPicker.ColorName;
+            TextBlock3.Text = colorPicker.Color.ToString();
+            TextBlock4.Text = colorPicker.Color.ScR.ToString();
+            byte r = colorPicker.Color.R;
+            byte g = colorPicker.Color.G;
+            byte b = colorPicker.Color.B;
+
+            s = colorPicker.Color.ToString();
+            try
+            {
+                
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\asWorks.de\Terminverwaltung\Colors",true);
+                key.SetValue("SetSelectedTerminBrushRed", r);
+                key.SetValue("SetSelectedTerminBrushGreen", g);
+                key.SetValue("SetSelectedTerminBrushBlue", b);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(s);
+
+
+            }
+
+
+            //Color red = 0xff0000.Rgb();
+            //string s = 0xff0000.ToString();
+
+            //string s = key.GetValue("SetSelectedTerminBrush").ToString();
+            //int i = int.Parse(s);
+
+            //var b = i.Rgb();
+
+
+
+
+
+
+
+
+
+        }
+
+        private void ColorPicker1_SelectedBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ColorPicker colorPicker = d as ColorPicker;
+            TextBlock1.Text = Syncfusion.Windows.Shared.ColorEdit.SuchColor(colorPicker.Color)[0];
         }
     }
 }

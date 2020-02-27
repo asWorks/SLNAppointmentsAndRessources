@@ -21,7 +21,7 @@ namespace Domain.Models
 
         public int RezeptID { get; set; }
 
-        public bool istVergeben { get; set; }
+        public bool IstVergeben { get; set; }
 
         public bool istAusgefuehrt { get; set; }
 
@@ -96,7 +96,7 @@ namespace Domain.Models
 
             MandantID = mandantID;
             RezeptID = rezeptID;
-            this.istVergeben = ist_vergeben;
+            this.IstVergeben = ist_vergeben;
             this.istAusgefuehrt = ist_ausgefuehrt;
 
         }

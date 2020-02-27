@@ -38,6 +38,7 @@
                 <TextBlock Text="{Binding ID}" Margin="0,0,2,0"/>
                 <StackPanel Orientation="Horizontal">
                    <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]"/>
+                    <TextBlock Text="TerminDataFull"/>
                 </StackPanel>
                 <!--<CheckBox Content="Auswählen" IsChecked="{Binding isSelected}"/>-->
 

@@ -284,8 +284,7 @@ namespace AppointmentsAndRessources.ViewModels
         public void CollectDropInfo(object sender, MouseEventArgs e)
         {
             Rectangle rect = new Rectangle();
-            WeekDisplayViewModel vModel = sender as WeekDisplayViewModel;
-            if (vModel != null && e.LeftButton == MouseButtonState.Pressed)
+            if (sender is WeekDisplayViewModel vModel && e.LeftButton == MouseButtonState.Pressed)
             {
 
 
