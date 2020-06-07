@@ -12,6 +12,7 @@ using AppointmentsAndRessources.Events;
 using AppointmentsAndRessources.Interfaces;
 using System.ComponentModel.Composition;
 using Services;
+using Microsoft.Extensions.Logging;
 
 namespace AppointmentsAndRessourses.ViewModels
 {

@@ -14,7 +14,7 @@
             <ColumnDefinition Width="100
                               "/>
             <ColumnDefinition/>
-            
+
         </Grid.ColumnDefinitions>
         <StackPanel>
             <ComboBox Height="90" Width="250" Background="Azure" Margin="2,50,2,0"/>
@@ -73,6 +73,13 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <StackPanel.Resources>
+
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+
+                </StackPanel.Resources>
                 <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
                 <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
                 <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
@@ -93,7 +100,7 @@
 
                 <CheckBox IsChecked="{Binding IsLoadingData, Mode=TwoWay}"/>
                 <asUserControls:BusyIndicator x:Name="asBusyIndicator" Width="100" Visibility="Hidden"/>
-                
+
             </StackPanel>
 
 
