@@ -302,5 +302,11 @@
     <Resource Include="Assets\Pictures\Bulb_green_32.png" />
     <Resource Include="Assets\Pictures\Bulb_green_48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\Add_8x_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pictures\CacheWarning_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

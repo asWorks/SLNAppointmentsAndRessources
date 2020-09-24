@@ -75,9 +75,9 @@
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <StackPanel.Resources>
 
-                    <Style TargetType="Border">
+                    <!--<Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
+                    </Style>-->
 
                 </StackPanel.Resources>
                 <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
@@ -92,11 +92,11 @@
                 <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
                 <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
                 <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
+                
 
-
-                <Button Content="  -  " x:Name="DecreaseWeek"/>
+                <syncfusion:ButtonAdv Label="  -  " x:Name="DecreaseWeek" SmallIcon="/AppointmentsAndRessources;component/Assets/Pictures/CacheWarning_16x.png"/>
                 <TextBlock Text="{Binding WeekNumber}" MinWidth="30"/>
-                <Button Content="  +  " x:Name="IncreaseWeek"/>
+                <syncfusion:ButtonAdv Label="  +  " x:Name="IncreaseWeek" SmallIcon="/AppointmentsAndRessources;component/Assets/Pictures/Bulb_yellow_48.png"/>
 
                 <CheckBox IsChecked="{Binding IsLoadingData, Mode=TwoWay}"/>
                 <asUserControls:BusyIndicator x:Name="asBusyIndicator" Width="100" Visibility="Hidden"/>
