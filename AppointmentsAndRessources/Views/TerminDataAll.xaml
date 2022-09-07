@@ -39,6 +39,7 @@
                     <TextBlock Text="{Binding ID}" Margin="50,0,0,0" Background="#FFF1F10D"/>
                     <Rectangle Width="40" Height="20" Fill="{Binding BehandlerBackground}" Margin="15,0,0,0" Stroke="#FFF5F517"/>
                     <TextBlock Text="{Binding Termin, StringFormat= : {0:HH:mm}}"  cal:Message.Attach="[Event MouseLeftButtonUp] = [Action CheckTermin]" FontFamily="MV Boli" FontSize="18"/>
+                    <TextBlock Text="TerminDataAll"/>
                 </StackPanel>
 
                 <ListBox ItemsSource="{Binding BehandlerPatientenTermine}" ItemTemplate="{StaticResource BehandlerPatientTermin}">

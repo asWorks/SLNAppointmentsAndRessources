@@ -11,8 +11,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-             
+
         </Grid.RowDefinitions>
         <Grid.Resources>
             <DataTemplate x:Key="TermineDataUCTemplate">
@@ -35,11 +36,11 @@
         <Button x:Name="BtnSave" Content="Save"  Grid.Row="1" cal:Message.Attach="[Event Click] = [Action BtnSave]"/>
         
 
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="3">
             <!--<ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" ItemTemplate="{StaticResource TermineDataUCTemplate}" IsSynchronizedWithCurrentItem="False"/>-->
             <ListView x:Name ="WeekdayListBox" ItemsSource="{Binding Termine}" IsSynchronizedWithCurrentItem="False"/>
         </ScrollViewer>
-       
-     
+        <TextBlock Text="WeekdayView" Grid.Row="2"/>
+
     </Grid>
 </UserControl>

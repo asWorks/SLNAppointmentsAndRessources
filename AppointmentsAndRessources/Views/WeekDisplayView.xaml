@@ -14,10 +14,32 @@
             <ColumnDefinition Width="100
                               "/>
             <ColumnDefinition/>
-            
+
         </Grid.ColumnDefinitions>
         <StackPanel>
             <ComboBox Height="90" Width="250" Background="Azure" Margin="2,50,2,0"/>
+            <syncfusion:ColorPickerPalette x:Name="ColorPicker1" Width="100" Height="50" ColorChanged="ColorPicker1_ColorChanged" />
+            <TextBlock x:Name="TextBlock1"/>
+            <TextBlock x:Name="TextBlock2"/>
+            <TextBlock x:Name="TextBlock3"/>
+            <TextBlock x:Name="TextBlock4"/>
+            <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                <Rectangle Width="16" Height="16">
+                    <Rectangle.Fill>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                        <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M0,15L16,15 16,0 0,0z" />
+                                        <GeometryDrawing Brush="#FF424242" Geometry="F1M12,8L15,8 15,7 12,7z M12,10L15,10 15,9 12,9z M12,6L15,6 15,5 12,5z M1,4L15,4 15,3 1,3z M4,8L8,8 8,5 4,5z M1,2L15,2 15,1 1,1z M3,5L1,5 1,6 3,6z M3,7L1,7 1,8 3,8z M1,12L15,12 15,11 1,11z M3,9L1,9 1,10 3,10z M1,13L15,13 15,14 1,14z" />
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Viewbox>
         </StackPanel>
         <Grid x:Name="CalenderGrid" Grid.Column="1">
 
@@ -51,6 +73,13 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <StackPanel.Resources>
+
+                    <!--<Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>-->
+
+                </StackPanel.Resources>
                 <RadioButton x:Name="RadioButtonTermineAlle" Content="Alle" GroupName="Termine"/>
                 <RadioButton x:Name="RadioButtonTermineVergeben" Content="Vergebene" GroupName="Termine"/>
                 <RadioButton x:Name="RadioButtonTermineFrei" Content="Freie" GroupName="Termine"/>
@@ -63,14 +92,15 @@
                 <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
                 <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
                 <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
+                
 
-
-                <Button Content="  -  " x:Name="DecreaseWeek"/>
+                <syncfusion:ButtonAdv Label="  -  " x:Name="DecreaseWeek" SmallIcon="/AppointmentsAndRessources;component/Assets/Pictures/CacheWarning_16x.png"/>
                 <TextBlock Text="{Binding WeekNumber}" MinWidth="30"/>
-                <Button Content="  +  " x:Name="IncreaseWeek"/>
+                <syncfusion:ButtonAdv Label="  +  " x:Name="IncreaseWeek" SmallIcon="/AppointmentsAndRessources;component/Assets/Pictures/Bulb_yellow_48.png"/>
 
                 <CheckBox IsChecked="{Binding IsLoadingData, Mode=TwoWay}"/>
                 <asUserControls:BusyIndicator x:Name="asBusyIndicator" Width="100" Visibility="Hidden"/>
+
             </StackPanel>
 
 

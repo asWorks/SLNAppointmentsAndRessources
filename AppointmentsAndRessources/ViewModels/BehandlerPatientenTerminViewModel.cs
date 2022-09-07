@@ -1,8 +1,12 @@
 ﻿using AppointmentsAndRessources.Events;
 using Caliburn.Micro;
 using Domain.Models;
+using Microsoft.Win32;
 using System;
+using System.Linq;
 using System.Windows.Media;
+using AppointmentsAndRessources.Extensions;
+using System.Windows;
 
 namespace AppointmentsAndRessources.ViewModels
 {
@@ -19,13 +23,14 @@ namespace AppointmentsAndRessources.ViewModels
         #region "Constructors"
 
 
-        public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model, IEventAggregator aggregator)
+        public BehandlerPatientenTerminViewModel(BehandlerPatientenTermin model, TerminDataViewModel terminDataVM, IEventAggregator aggregator)
         {
 
 
             _eventAggregator = aggregator;
             aggregator.Subscribe(this);
 
+            TerminDataVM = terminDataVM;
             bpt = model;
             ID = model.ID;
             Termin = model.Termin;
@@ -37,11 +42,11 @@ namespace AppointmentsAndRessources.ViewModels
             BehandlerNachname = model.BehandlerNachname;
             MandantID = model.MandantID;
             RezeptID = model.RezeptID;
-            this.istVergeben = model.istVergeben;
-            this.istAusgefuehrt = model.istAusgefuehrt;
+            this.IstVergeben = model.IstVergeben;
+            this.IstAusgefuehrt = model.istAusgefuehrt;
             SetBehandlerPatientenName();
 
-            ImageUriLink = new Uri("pack://application:,,,/AppointmentsAndRessources; component/Assets/Pictures/Link_02_24.png",UriKind.Absolute);
+            ImageUriLink = new Uri("pack://application:,,,/AppointmentsAndRessources; component/Assets/Pictures/Link_02_24.png", UriKind.Absolute);
             //"pack://application:,,,/ApplicationNamespace;component/Images/App/image.png";
             // AppointmentsAndRessources; component / Assets / Pictures / Link_02_24.png"
         }
@@ -57,6 +62,22 @@ namespace AppointmentsAndRessources.ViewModels
 
         #region "Properties"
 
+
+
+        private TerminDataViewModel _TerminDataVM;
+        public TerminDataViewModel TerminDataVM
+        {
+            get { return _TerminDataVM; }
+            set
+            {
+                if (value != _TerminDataVM)
+                {
+                    _TerminDataVM = value;
+                    NotifyOfPropertyChange(() => TerminDataVM);
+                    //  isDirty = true;
+                }
+            }
+        }
 
         public string ImagePathTest
         {
@@ -256,25 +277,29 @@ namespace AppointmentsAndRessources.ViewModels
 
 
         private bool _istVergeben;
-        public bool istVergeben
+        public bool IstVergeben
         {
             get { return _istVergeben; }
             set
             {
-                if (value != _istVergeben)
+                //if (value != _istVergeben)
+                if (true)
                 {
                     _istVergeben = value;
-                    bpt.istVergeben = value;
-                    isSelected = value;
-                    NotifyOfPropertyChange(() => istVergeben);
+                    bpt.IstVergeben = value;
+                    IsSelected = value;
+                    NotifyOfPropertyChange(() => IstVergeben);
+                    SetParentTermin(value);
+
                     //  isDirty = true;
                 }
             }
         }
 
 
+
         private bool _istAusgefuehrt;
-        public bool istAusgefuehrt
+        public bool IstAusgefuehrt
         {
             get { return _istAusgefuehrt; }
             set
@@ -283,7 +308,7 @@ namespace AppointmentsAndRessources.ViewModels
                 {
                     _istAusgefuehrt = value;
                     bpt.istAusgefuehrt = value;
-                    NotifyOfPropertyChange(() => istAusgefuehrt);
+                    NotifyOfPropertyChange(() => IstAusgefuehrt);
                     //  isDirty = true;
                 }
             }
@@ -324,7 +349,7 @@ namespace AppointmentsAndRessources.ViewModels
         }
 
         private bool _isSelected;
-        public bool isSelected
+        public bool IsSelected
         {
             get { return _isSelected; }
             set
@@ -332,9 +357,9 @@ namespace AppointmentsAndRessources.ViewModels
                 if (value != _isSelected)
                 {
                     _isSelected = value;
-                    bpt.istVergeben = value;
-                     SetSelectedBrush(value);
-                    NotifyOfPropertyChange(() => isSelected);
+                    bpt.IstVergeben = value;
+                    SetSelectedBrush(value);
+                    NotifyOfPropertyChange(() => IsSelected);
                     //  isDirty = true;
                 }
             }
@@ -357,7 +382,7 @@ namespace AppointmentsAndRessources.ViewModels
                 }
             }
         }
- 
+
         #endregion
 
 
@@ -373,11 +398,11 @@ namespace AppointmentsAndRessources.ViewModels
         {
 
             //isSelected = !isSelected;
-            if (!isSelected)
+            if (!IsSelected)
             {
 
                 _eventAggregator.PublishOnUIThread(new RequestPatientenInfoMessage(this.ID));
-               
+
             }
             else
             {
@@ -386,13 +411,61 @@ namespace AppointmentsAndRessources.ViewModels
                 PatientenVorname = "Nicht";
                 PatientenNachname = "vergeben";
                 ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Link_02_24.png";
-                isSelected = false;
+                IsSelected = false;
             }
 
 
 
         }
 
+        private void SetParentTermin(bool value)
+        {
+
+            int claimed = TerminDataVM.BehandlerPatientenTermine == null ? -1 : TerminDataVM.BehandlerPatientenTermine.Count(x => x.IstVergeben == true);
+
+            switch (claimed)
+            {
+                case 0:
+                    TerminDataVM.IsSelected = false;
+                    TerminDataVM.IsAppointmentAvailable = true;
+                    break;
+
+                case int n when (n >= 0 && n <= 2):
+                    TerminDataVM.IsSelected = true;
+                    TerminDataVM.IsAppointmentAvailable = true;
+                    break;
+
+                case 3:
+                    TerminDataVM.IsSelected = true;
+                    TerminDataVM.IsAppointmentAvailable = false;
+                    break;
+
+                case -1:
+                    break;
+                default:
+                    break;
+            }
+
+            //if (value)
+            //{
+            //    TerminDataVM.isSelected = value;
+            //}
+            //else
+            //{
+
+            //    var buffer = TerminDataVM.BehandlerPatientenTermine.Where(x => x.istVergeben == true);
+            //    if (buffer.Any())
+            //    {
+            //        TerminDataVM.isSelected = true;
+            //    }
+            //    else
+            //    {
+            //        TerminDataVM.isSelected = value;
+            //    }
+
+
+            //}
+        }
 
         #endregion
 
@@ -429,37 +502,59 @@ namespace AppointmentsAndRessources.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Sets the background color of the selected appointment.
+        /// Boolean flag is converted into color values ​​in the method.
+        /// Currently hard-coded - maybe later configurable in Settings.
+        /// </summary>
+        /// <param name="flag"></param>
         public void SetSelectedBrush(bool flag)
         {
-            Brush bg;
-            switch (flag)
+            //RegistryKey key=Registry.CurrentUser.CreateSubKey(@"SOFTWARE\asWorks.de\Terminverwaltung\Colors");
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\asWorks.de\Terminverwaltung\Colors");
+
+
+
+            try
             {
-                case true:
-                    {
-                        bg = new SolidColorBrush(Colors.Yellow);
-                        break;
-                    }
 
-                case false:
-                    {
-                        bg = new SolidColorBrush(Colors.White);
-                        break;
-                    }
-
-
-                default:
-                    {
-                        bg = new SolidColorBrush(Colors.LightBlue);
-                        break;
-                    }
+                var r = byte.Parse(key.GetValue("SetSelectedTerminBrushRed").ToString());
+                var g = byte.Parse(key.GetValue("SetSelectedTerminBrushGreen").ToString());
+                var b = byte.Parse(key.GetValue("SetSelectedTerminBrushBlue").ToString());
+                var color = Color.FromRgb(r, g, b);
+                TerminBackground = flag == true ? new SolidColorBrush(color) : new SolidColorBrush(Colors.White);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                // MessageBox.Show(s1);
             }
 
-            TerminBackground = bg;
+            //string s1 = 0xff0000.ToString();
+            //int i1 = int.Parse(s1);
+
+            //string s = key.GetValue("SetSelectedTerminBrush").ToString();
+            //s = s.Replace("#", "0x");
+            //s = s.ToLower();
+            //int i = int.Parse(s);
+
+
+            //string s1 = 0xff0000.ToString();
+
+
+
+
+
+
+
+
 
         }
+
+
         public void SetBehandlerBrush()
         {
+
             Brush bg;
             switch (BehandlerID)
             {
@@ -507,7 +602,7 @@ namespace AppointmentsAndRessources.ViewModels
                     ImagePathInfo = "/AppointmentsAndRessources;component/Assets/Pictures/Bulb_green_24.png";
 
 
-                    isSelected = true;
+                    IsSelected = true;
 
                 }
 
