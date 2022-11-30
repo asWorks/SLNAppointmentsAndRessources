@@ -10,7 +10,6 @@ namespace Services
     {
         public static int GetCurrentMandant()
         {
-            //Test new Branch MigationToNet6
             return 1;
         }
     }
