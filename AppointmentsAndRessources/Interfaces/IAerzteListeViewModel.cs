@@ -8,5 +8,6 @@ namespace AppointmentsAndRessources.Interfaces
 {
     public interface IAerzteListeViewModel
     {
+        //Comment fot Git . . . . 
     }
 }
