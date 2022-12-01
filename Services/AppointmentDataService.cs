@@ -43,6 +43,8 @@ namespace Services
 
             //terminListe = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum).Result.ToList();
             var tl = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
+           // var tl = _AppointmentContext(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
+
 
             terminListe = tl.ToList();
 
@@ -50,12 +52,12 @@ namespace Services
             {
                 try
                 {
-                    var res = await GenerateTermineAsync(ForDate);
-                    if (res == GenerateAppointmentResult.Success)
-                    {
+                    var res = await GenerateTermineAsync(ForDate);                 //Context.SaveChanges funktioniert nicht wie erwartet. Prüfen
+                    //if (res == GenerateAppointmentResult.Success)
+                    //{
                         var t2 = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
                         terminListe = t2.ToList();
-                    }
+                    //}
                 }
                 catch (Exception)
                 {

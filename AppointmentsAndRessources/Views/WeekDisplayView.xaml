@@ -17,7 +17,7 @@
 
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <ComboBox Height="90" Width="250" Background="Azure" Margin="2,50,2,0"/>
+            <!--<ComboBox Height="90" Width="250" Background="Azure" Margin="2,50,2,0"/>-->
             <syncfusion:ColorPickerPalette x:Name="ColorPicker1" Width="100" Height="50" ColorChanged="ColorPicker1_ColorChanged" />
             <TextBlock x:Name="TextBlock1"/>
             <TextBlock x:Name="TextBlock2"/>
@@ -63,6 +63,8 @@
                 <RowDefinition Height="20" />
 
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="30*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <RadioButton x:Name="RadioButtonFull" Content="Full" GroupName="Template"/>
@@ -92,7 +94,7 @@
                 <Button Content="Test" x:Name="TestBusy" Click="TestBusy_Click"/>
                 <Button Content="Test1" x:Name="TestBusy1" Click="TestBusy1_Click"/>
                 <Button Content="Asyncall" x:Name="TestAsyncCall1" Click="TestAsyncCall1_Click"/>
-                
+
 
                 <syncfusion:ButtonAdv Label="  -  " x:Name="DecreaseWeek" SmallIcon="/AppointmentsAndRessources;component/Assets/Pictures/CacheWarning_16x.png"/>
                 <TextBlock Text="{Binding WeekNumber}" MinWidth="30"/>
@@ -115,7 +117,7 @@
 
             </StackPanel>
             <!--<Ellipse Height="15" Width="200" Grid.Row="0" Fill="#FF1138EA" />-->
-            <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" Grid.Column="1" AllowDrop="False" Grid.Row="3">
+            <ListBox ItemsSource="{Binding Wochentage}" ItemTemplate="{StaticResource WeekdayTemplate}" AllowDrop="False" Grid.Row="3">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
