@@ -5,6 +5,8 @@ namespace AppointmentsAndRessources {
     using AppointmentsAndRessources.ViewModels;
     using AppointmentsAndRessources;
     using Caliburn.Micro;
+    using Services.Interfaces;
+    using Services;
   
 
     public class Bootstrapper : BootstrapperBase {
@@ -24,6 +26,8 @@ namespace AppointmentsAndRessources {
             container.PerRequest<IWeekDisplayViewModel, WeekDisplayViewModel>();
             container.PerRequest<IWeekDayViewModel, AppointmentsAndRessourses.ViewModels.WeekDayViewModel>();
             container.PerRequest<ITestPeopleViewModel, TestPeopleViewModel>();
+            container.PerRequest<IDateTimeService, DateTimeServices>();
+         
         }
 
         protected override object GetInstance(Type service, string key) {

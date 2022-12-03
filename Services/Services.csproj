@@ -58,6 +58,7 @@
     <Compile Include="AppointmentDataService.cs" />
     <Compile Include="DateTimeServices.cs" />
     <Compile Include="DivExtensions.cs" />
+    <Compile Include="Interfaces\IDateTimeService.cs" />
     <Compile Include="MandatenService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TermineService.cs" />

@@ -1,32 +1,42 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Services.Interfaces;
+
 
 namespace Services
 {
-    public static class DateTimeServices
+    public class DateTimeServices:IDateTimeService
     {
-        public static SortedList<int, DateTime> GetWeekForNumber(int number)
+        private Task<SortedList<int, DateTime>> GetWeekDatesFromWeekNumber(int number)
         {
             DateTime d = FromIso8601Weeknumber(number);
             SortedList<int, DateTime> buf = new SortedList<int, DateTime>();
+
 
             for (int i = 0; i < 5; i++)
             {
                 buf.Add(i, d.AddDays(i));
             }
 
+            return Task.FromResult(buf);
+        }
 
+        public async Task<SortedList<int, DateTime>> GetWeekDatesFromWeekNumberAsync(int number)
+        {
+                       
+            var x = await Task.Factory.StartNew((p) => this.GetWeekDatesFromWeekNumber((int)p), number);
 
-            return buf;
+            return x.Result;
         }
 
 
-
-        public static int GetWeekNumber()
+        public int GetWeekNumber()
         {
             CultureInfo ciCurr = CultureInfo.CurrentCulture;
             int weekNum = ciCurr.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
@@ -45,7 +55,7 @@ namespace Services
         /// If December 28 is a later day in the week, week 1 starts earlier.
         /// If December 28 is a Sunday, it is in the same week as Thursday January 1.
         /// </summary>
-        public static DateTime FromIso8601Weeknumber(int weekNumber, int? year = null, DayOfWeek day = DayOfWeek.Monday)
+        public DateTime FromIso8601Weeknumber(int weekNumber, int? year = null, DayOfWeek day = DayOfWeek.Monday)
         {
             var dec28 = new DateTime((year ?? DateTime.Today.Year) - 1, 12, 28);
             var monday = dec28.AddDays(7 * weekNumber - dec28.DayOfWeek.DayOffset());
@@ -53,4 +63,4 @@ namespace Services
         }
     }
 
-    }
+}

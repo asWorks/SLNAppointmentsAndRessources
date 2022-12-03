@@ -1,6 +1,7 @@
 ﻿using Dal.Repositories;
 using Domain.Models;
 using MySQL_Dal;
+using MySQL_Dal_CodeFirst;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -27,6 +28,8 @@ namespace Services
         {
             _TherapiContext = new MySQL_Dal.GuesterModel();
             _AppointmentContext = new MySQL_Dal_CodeFirst.AppointmensModel();
+           
+            
         }
 
         private List<Domain.Models.TerminData> terminListe { get; set; }
@@ -43,7 +46,7 @@ namespace Services
 
             //terminListe = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum).Result.ToList();
             var tl = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
-           // var tl = _AppointmentContext(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
+           //var tl = _AppointmentContext.(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
 
 
             terminListe = tl.ToList();
@@ -53,11 +56,15 @@ namespace Services
                 try
                 {
                     var res = await GenerateTermineAsync(ForDate);                 //Context.SaveChanges funktioniert nicht wie erwartet. Prüfen
-                    //if (res == GenerateAppointmentResult.Success)
-                    //{
+                    if (res == GenerateAppointmentResult.Success)
+                    {
                         var t2 = await AppRepo.FindByWithTrackingAsync(n => n.Termin >= VonDatum && n.Termin <= BisDatum);
                         terminListe = t2.ToList();
-                    //}
+                    }
+                    else
+                    {
+                        Console.WriteLine("Generierte Daten konnten nicht gespeichert werden");
+                    }
                 }
                 catch (Exception)
                 {
@@ -113,12 +120,16 @@ namespace Services
                     return GenerateAppointmentResult.NoWorkingDay;
                 }
 
-                var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
-                var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
+                //var BehRepo = new GenericRepository<kollegen2>(_TherapiContext);
+                //var AppRepo = new GenericRepository<TerminData>(_AppointmentContext);
+
+                var BehRepo = new GuesterModel();
+                var AppRepo = new AppointmensModel();
 
 
 
-                var behandler = BehRepo.All();
+
+                var behandler = BehRepo.kollegen2.Where(i=>i.ABTEILUNG =="KG");
 
                 DateTime dt = SetTimeForDate(forDate, 8, 0, 0);
 
@@ -140,11 +151,21 @@ namespace Services
 
                         //buffer.Add(t);
                     }
-                    AppRepo.Insert(t);
+                   //AppRepo.Insert(t);
+                    AppRepo.Termine.Add(t);
                     dt = dt.AddMinutes(30);
                 }
 
-                if (SaveAppointments() > 0)
+                //if (SaveAppointments() > 0)
+                //{
+                //    return GenerateAppointmentResult.Success;
+                //}
+                //else
+                //{
+                //    return GenerateAppointmentResult.Failure;
+                //}
+
+                if (AppRepo.SaveChanges() > 0)
                 {
                     return GenerateAppointmentResult.Success;
                 }

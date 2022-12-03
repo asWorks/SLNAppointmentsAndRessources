@@ -83,6 +83,11 @@ namespace Dal.Repositories
             _context.SaveChanges();
         }
 
+        public void Add(TEntity entity)
+        {
+            _dbSet.Add(entity);
+        }
+
         public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);

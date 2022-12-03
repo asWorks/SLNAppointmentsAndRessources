@@ -2,6 +2,8 @@
 using AppointmentsAndRessources.Interfaces;
 using AppointmentsAndRessourses.ViewModels;
 using Caliburn.Micro;
+using Services;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +26,7 @@ namespace AppointmentsAndRessources.ViewModels
 
         IEventAggregator _eventAggregator;
         DbContext TherapiContext = null;
+        IDateTimeService _DateTimeService;
         bool bTemp = false;
 
         #region "Properties"
@@ -146,6 +149,9 @@ namespace AppointmentsAndRessources.ViewModels
             }
         }
 
+
+
+
         #endregion
 
 
@@ -154,11 +160,13 @@ namespace AppointmentsAndRessources.ViewModels
         #region "Constructors"
 
         [ImportingConstructor]
-        public WeekDisplayViewModel(IEventAggregator eventAggregator)
+        public WeekDisplayViewModel(IDateTimeService dateTimeService,IEventAggregator eventAggregator)
         {
 
             _eventAggregator = eventAggregator;
             eventAggregator.Subscribe(this);
+            _DateTimeService = dateTimeService;
+
             TherapiContext = new MySQL_Dal.GuesterModel();
 
             var repo = new Dal.Repositories.GenericRepository<MySQL_Dal.kollegen2>(TherapiContext);
@@ -172,8 +180,8 @@ namespace AppointmentsAndRessources.ViewModels
             var pat = patRepo.All();
             Patienten = new ObservableCollection<MySQL_Dal.pat5>(pat.OrderBy(i => i.N_NAME));
 
-            WeekNumber = 29;
-
+            WeekNumber = 28;
+            IncreaseWeek();
         }
         #endregion
 
@@ -234,22 +242,13 @@ namespace AppointmentsAndRessources.ViewModels
         {
 
             IsLoadingData = true;
-            //var res = await Task.Run(() =>
-            //             {
-
-            //                 _eventAggregator.PublishOnUIThread(new SaveAppointmentsMessage(false));
-
-
-            //                 int buf = 0;
-
-            //                 var ThisDispatcher = Application.Current.Dispatcher;
-
-            //                 ThisDispatcher.BeginInvoke(DispatcherPriority.Background, new System.Action(() =>
-            //                  {
-
+          
             int buf = 0;
             Wochentage = new ObservableCollection<WeekDayViewModel>();
-            SortedList<int, DateTime> Woche = Services.DateTimeServices.GetWeekForNumber(wNumber);
+           
+            SortedList<int, DateTime> Woche = await _DateTimeService.GetWeekDatesFromWeekNumberAsync(wNumber);
+           
+            
             foreach (var item in Woche)
             {
                 var wt = new WeekDayViewModel(_eventAggregator, item.Value);
@@ -260,21 +259,7 @@ namespace AppointmentsAndRessources.ViewModels
 
             return buf;
 
-            //                  }));
-
-            //                 return buf;
-
-            //             });
-
-
-
-            //return res;
-
-
-
-
-
-
+         
 
         }
         #endregion
