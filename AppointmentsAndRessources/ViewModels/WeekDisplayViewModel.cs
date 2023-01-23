@@ -251,6 +251,7 @@ namespace AppointmentsAndRessources.ViewModels
             
             foreach (var item in Woche)
             {
+                
                 var wt = new WeekDayViewModel(_eventAggregator, item.Value);
                 Wochentage.Add(wt);
                 buf += wt.Termine.Count;
